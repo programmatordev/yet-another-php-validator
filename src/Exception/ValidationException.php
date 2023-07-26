@@ -4,19 +4,12 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Exception;
 
 class ValidationException extends \Exception
 {
-
-    /**
-     * @throws \Exception
-     */
     public function __construct(string $message, array $parameters = [])
     {
         $message = $this->formatMessage($message, $parameters);
         parent::__construct($message);
     }
 
-    /**
-     * @throws \Exception
-     */
     private function formatMessage(string $message, array $parameters = []): string
     {
         foreach ($parameters as $parameter => $value) {
@@ -26,9 +19,6 @@ class ValidationException extends \Exception
         return $message;
     }
 
-    /**
-     * @throws \Exception
-     */
     private function formatValue(mixed $value): string
     {
         if ($value instanceof \DateTimeInterface) {
@@ -70,9 +60,6 @@ class ValidationException extends \Exception
         return (string) $value;
     }
 
-    /**
-     * @throws \Exception
-     */
     private function formatValues(array $values): string
     {
         foreach ($values as $key => $value) {

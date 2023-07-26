@@ -37,7 +37,7 @@ class Validator
     public function __call(string $ruleName, array $arguments = []): self
     {
         $factory = new Factory();
-        $this->addRule($ruleName, $factory->createRule($ruleName, $arguments));
+        $this->addRule($factory->createRule($ruleName, $arguments));
 
         return $this;
     }
@@ -55,7 +55,7 @@ class Validator
     public function validate(mixed $input): bool
     {
         try {
-            $this->assert($input, '');
+            $this->assert($input, 'null');
         }
         catch (ValidationException) {
             return false;
@@ -72,9 +72,9 @@ class Validator
         return $this->rules;
     }
 
-    private function addRule(string $name, RuleInterface $rule): self
+    private function addRule(RuleInterface $rule): self
     {
-        $this->rules[$name] = $rule;
+        $this->rules[] = $rule;
 
         return $this;
     }

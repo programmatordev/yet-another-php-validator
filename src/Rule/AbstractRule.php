@@ -4,7 +4,7 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 class AbstractRule
 {
-    private string $name = '';
+    private string $name;
 
     public function getName(): string
     {
