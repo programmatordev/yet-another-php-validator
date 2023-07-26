@@ -21,7 +21,7 @@ class NotBlank extends AbstractRule implements RuleInterface
             $input = trim($input);
         }
 
-        // Does not allow null, false, [] and ''
+        // Do not allow null, false, [] and ''
         if ($input === false || (empty($input) && $input != '0')) {
             throw new NotBlankException(
                 message: $this->message,
