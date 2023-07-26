@@ -17,7 +17,7 @@ interface ChainedValidatorInterface
 
     // --- Rules ---
 
-//    public function notBlank(): ChainedValidatorInterface;
-//
+    public function notBlank(?string $message = null): ChainedValidatorInterface;
+
 //    public function greaterThan(mixed $constraint): ChainedValidatorInterface;
 }
