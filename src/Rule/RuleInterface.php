@@ -13,5 +13,5 @@ interface RuleInterface
 
     public function getName(): string;
 
-    public function setName(string $name);
+    public function setName(string $name): static;
 }
