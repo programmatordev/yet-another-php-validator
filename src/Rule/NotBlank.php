@@ -6,11 +6,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
 
 class NotBlank extends AbstractRule implements RuleInterface
 {
-    private string $message;
-
-    public function __construct(?string $message = null)
+    public function __construct(private ?string $message = null)
     {
-        $this->message = $message ?? 'The {{ name }} value should not be blank.';
+        $this->message ??= 'The {{ name }} value should not be blank.';
     }
 
     /**
