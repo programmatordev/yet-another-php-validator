@@ -46,7 +46,11 @@ class GreaterThan extends AbstractRule implements RuleInterface
             return true;
         }
 
-        if (is_scalar($constraint) && is_scalar($value)) {
+        if (\is_numeric($constraint) && \is_numeric($value)) {
+            return true;
+        }
+
+        if (\is_string($constraint) && \is_string($value)) {
             return true;
         }
 
