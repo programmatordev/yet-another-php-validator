@@ -8,12 +8,12 @@ interface ChainedValidatorInterface
 {
     // --- Common ---
 
-    public function validate(mixed $input): bool;
+    public function validate(mixed $value): bool;
 
     /**
      * @throws ValidationException
      */
-    public function assert(mixed $input, string $name): void;
+    public function assert(mixed $value, string $name): void;
 
     // --- Rules ---
 

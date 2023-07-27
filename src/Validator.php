@@ -45,17 +45,17 @@ class Validator
     /**
      * @throws ValidationException
      */
-    public function assert(mixed $input, string $name): void
+    public function assert(mixed $value, string $name): void
     {
         foreach ($this->getRules() as $rule) {
-            $rule->setName($name)->validate($input);
+            $rule->setName($name)->validate($value);
         }
     }
 
-    public function validate(mixed $input): bool
+    public function validate(mixed $value): bool
     {
         try {
-            $this->assert($input, 'null');
+            $this->assert($value, 'null');
         }
         catch (ValidationException) {
             return false;
