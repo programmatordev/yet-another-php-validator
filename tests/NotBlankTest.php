@@ -11,21 +11,19 @@ class NotBlankTest extends AbstractTest
 {
     use FormatValueTrait;
 
-    #[DataProvider('provideInvalidValueData')]
-    public function testNotBlankInvalidValue(mixed $value)
+    #[DataProvider('provideFailureConditionData')]
+    public function testNotBlankFailureCondition(mixed $value)
     {
         $validator = Validator::notBlank();
 
         $this->assertFalse($validator->validate($value));
 
         $this->expectException(NotBlankException::class);
-        $this->expectExceptionMessage(
-            \sprintf('The "test" value should not be blank, "%s" given.', $this->formatValue($value))
-        );
+        $this->expectExceptionMessage(\sprintf('The "test" value should not be blank, "%s" given.', $this->formatValue($value)));
         $validator->assert($value, 'test');
     }
 
-    public static function provideInvalidValueData(): \Generator
+    public static function provideFailureConditionData(): \Generator
     {
         yield 'null' => [null];
         yield 'false' => [false];
@@ -33,8 +31,8 @@ class NotBlankTest extends AbstractTest
         yield 'blank array' => [[]];
     }
 
-    #[DataProvider('provideValidValueData')]
-    public function testNotBlankValidValue(mixed $value)
+    #[DataProvider('provideSuccessConditionData')]
+    public function testNotBlankSuccessCondition(mixed $value)
     {
         $validator = Validator::notBlank();
 
@@ -43,7 +41,7 @@ class NotBlankTest extends AbstractTest
         $validator->assert($value, 'test');
     }
 
-    public static function provideValidValueData(): \Generator
+    public static function provideSuccessConditionData(): \Generator
     {
         yield 'true' => [true];
 
@@ -60,12 +58,12 @@ class NotBlankTest extends AbstractTest
         yield 'zero number' => [0];
     }
 
-    public function testNotBlankExceptionMessageParameters()
+    public function testNotBlankMessageArgument()
     {
-        $this->expectExceptionMessage('The "test" value "false" is invalid. Must not be blank.');
+        $this->expectExceptionMessage('The "test" value "" is invalid. Must not be blank.');
 
         Validator
             ::notBlank(message: 'The "{{ name }}" value "{{ value }}" is invalid. Must not be blank.')
-            ->assert(false, 'test');
+            ->assert('', 'test');
     }
 }
