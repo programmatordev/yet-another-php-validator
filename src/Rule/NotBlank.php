@@ -24,8 +24,8 @@ class NotBlank extends AbstractRule implements RuleInterface
             throw new NotBlankException(
                 message: $this->message,
                 parameters: [
-                    'value' => $value,
-                    'name' => $this->getName()
+                    'name' => $this->getName(),
+                    'value' => $value
                 ]
             );
         }
