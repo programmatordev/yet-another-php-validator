@@ -3,11 +3,11 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\AssertComparisonTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\AssertComparableTrait;
 
 class GreaterThan extends AbstractRule implements RuleInterface
 {
-    use AssertComparisonTrait;
+    use AssertComparableTrait;
 
     private string $message;
 
@@ -25,7 +25,7 @@ class GreaterThan extends AbstractRule implements RuleInterface
     public function assert(mixed $value, string $name): void
     {
         // Assert if constraint and value can be compared
-        $this->assertComparison($this->constraint, $value, GreaterThanException::class);
+        $this->assertComparable($this->constraint, $value, GreaterThanException::class);
 
         if (!($value > $this->constraint)) {
             throw new GreaterThanException(

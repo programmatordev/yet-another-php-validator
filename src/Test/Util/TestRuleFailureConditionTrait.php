@@ -15,7 +15,7 @@ trait TestRuleFailureConditionTrait
         mixed $value,
         string $expectedException,
         string $expectedExceptionMessage
-    )
+    ): void
     {
         $this->assertFalse($rule->validate($value));
 

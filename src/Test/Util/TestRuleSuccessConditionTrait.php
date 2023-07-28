@@ -10,7 +10,7 @@ trait TestRuleSuccessConditionTrait
     public static abstract function provideSuccessConditionData(): \Generator;
 
     #[DataProvider('provideSuccessConditionData')]
-    public function testRuleSuccessCondition(RuleInterface $rule, mixed $value)
+    public function testRuleSuccessCondition(RuleInterface $rule, mixed $value): void
     {
         $rule->assert($value, 'test');
 

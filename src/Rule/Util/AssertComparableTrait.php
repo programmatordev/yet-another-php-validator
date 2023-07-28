@@ -2,9 +2,9 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule\Util;
 
-trait AssertComparisonTrait
+trait AssertComparableTrait
 {
-    private function assertComparison(mixed $value1, mixed $value2, string $exception): bool
+    private function assertComparable(mixed $value1, mixed $value2, string $exception): bool
     {
         if ($value1 instanceof \DateTimeInterface && $value2 instanceof \DateTimeInterface) {
             return true;
