@@ -2,7 +2,7 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\InvalidRuleException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
@@ -24,7 +24,7 @@ class Validator
     }
 
     /**
-     * @throws InvalidRuleException
+     * @throws RuleNotFoundException
      */
     public static function __callStatic(string $ruleName, array $arguments = []): self
     {
@@ -32,7 +32,7 @@ class Validator
     }
 
     /**
-     * @throws InvalidRuleException
+     * @throws RuleNotFoundException
      */
     public function __call(string $ruleName, array $arguments = []): self
     {

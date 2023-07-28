@@ -2,7 +2,7 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\InvalidRuleException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 class Factory
@@ -10,18 +10,18 @@ class Factory
     private string $namespace = 'ProgrammatorDev\\YetAnotherPhpValidator\\Rule';
 
     /**
-     * @throws InvalidRuleException
+     * @throws RuleNotFoundException
      */
     public function createRule(string $ruleName, array $arguments = []): RuleInterface
     {
-        try {
-            $className = \sprintf('%s\\%s', $this->namespace, \ucfirst($ruleName));
-            return new $className(...$arguments);
-        }
-        catch (\Error) {
-            throw new InvalidRuleException(
+        $className = \sprintf('%s\\%s', $this->namespace, \ucfirst($ruleName));
+
+        if (!class_exists($className)) {
+            throw new RuleNotFoundException(
                 \sprintf('"%s" rule does not exist.', $ruleName)
             );
         }
+
+        return new $className(...$arguments);
     }
 }
