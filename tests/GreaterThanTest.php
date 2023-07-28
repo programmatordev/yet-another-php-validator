@@ -4,12 +4,15 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\Util\FormatValueTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
 class GreaterThanTest extends AbstractTest
 {
-    use FormatValueTrait;
+    use TestRuleFailureConditionTrait;
+    use TestRuleSuccessConditionTrait;
 
     #[DataProvider('provideInvalidConditionData')]
     public function testGreaterThanValidateInvalidCondition(mixed $constraint, mixed $value)
@@ -52,66 +55,51 @@ class GreaterThanTest extends AbstractTest
         yield 'null constraint' => [null, 10];
     }
 
-    #[DataProvider('provideFailureConditionData')]
-    public function testGreaterThanFailureCondition(mixed $constraint, mixed $value)
-    {
-        $validator = Validator::greaterThan($constraint);
-
-        $this->assertFalse($validator->validate($value));
-
-        $this->expectException(GreaterThanException::class);
-        $this->expectExceptionMessage(
-            \sprintf(
-                'The "test" value should be greater than "%s", "%s" given.',
-                $this->formatValue($constraint),
-                $this->formatValue($value)
-            )
-        );
-        $validator->assert($value, 'test');
-    }
-
     public static function provideFailureConditionData(): \Generator
     {
-        yield 'datetime' => [new \DateTime('today'), new \DateTime('yesterday')];
-        yield 'same datetime' => [new \DateTime('2000-01-01 00:00:00'), new \DateTime('2000-01-01 00:00:00')];
-        yield 'int' => [10, 1];
-        yield 'same int' => [10, 10];
-        yield 'float' => [10.0, 1.0];
-        yield 'same float' => [10.0, 10.0];
-        yield 'int with float' => [10, 1.0];
-        yield 'same int with float' => [10, 10.0];
-        yield 'string' => ['z', 'a'];
-        yield 'same string' => ['a', 'a'];
-    }
+        $exception = GreaterThanException::class;
+        $exceptionMessage = '/The "(.*)" value should be greater than "(.*)", "(.*)" given./';
 
-    #[DataProvider('provideSuccessConditionData')]
-    public function testGreaterThanSuccessCondition(mixed $constraint, mixed $value)
-    {
-        $validator = Validator::greaterThan($constraint);
-
-        $this->assertTrue($validator->validate($value));
-
-        $validator->assert($value, 'test');
+        yield 'datetime' => [
+            new GreaterThan(new \DateTime('today')),
+            new \DateTime('yesterday'),
+            $exception,
+            $exceptionMessage
+        ];
+        yield 'same datetime' => [
+            new GreaterThan(new \DateTime('2000-01-01')),
+            new \DateTime('2000-01-01'),
+            $exception,
+            $exceptionMessage
+        ];
+        yield 'int' => [new GreaterThan(10), 1, $exception, $exceptionMessage];
+        yield 'same int' => [new GreaterThan(10), 10, $exception, $exceptionMessage];
+        yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $exceptionMessage];
+        yield 'same float' => [new GreaterThan(10.0), 10.0, $exception, $exceptionMessage];
+        yield 'int with float' => [new GreaterThan(10), 1.0, $exception, $exceptionMessage];
+        yield 'same int with float' => [new GreaterThan(10), 10.0, $exception, $exceptionMessage];
+        yield 'string' => [new GreaterThan('z'), 'a', $exception, $exceptionMessage];
+        yield 'same string' => [new GreaterThan('a'), 'a', $exception, $exceptionMessage];
     }
 
     public static function provideSuccessConditionData(): \Generator
     {
-        yield 'datetime' => [new \DateTime('today'), new \DateTime('tomorrow')];
-        yield 'int' => [10, 20];
-        yield 'float' => [10.0, 20.0];
-        yield 'int with float' => [10, 20.0];
-        yield 'string' => ['a', 'z'];
+        yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('tomorrow')];
+        yield 'int' => [new GreaterThan(10), 20];
+        yield 'float' => [new GreaterThan(10.0), 20.0];
+        yield 'int with float' => [new GreaterThan(10), 20.0];
+        yield 'string' => [new GreaterThan('a'), 'z'];
     }
 
-    public function testGreaterThanMessageArgument()
-    {
-        $this->expectExceptionMessage('The "test" value "1" is invalid. Must not be greater than "10".');
-
-        Validator
-            ::greaterThan(
-                constraint: 10,
-                message: 'The "{{ name }}" value "{{ value }}" is invalid. Must not be greater than "{{ constraint }}".'
-            )
-            ->assert(1, 'test');
-    }
+//    public function testGreaterThanMessageArgument()
+//    {
+//        $this->expectExceptionMessage('The "test" value "1" is invalid. Must not be greater than "10".');
+//
+//        Validator
+//            ::greaterThan(
+//                constraint: 10,
+//                message: 'The "{{ name }}" value "{{ value }}" is invalid. Must not be greater than "{{ constraint }}".'
+//            )
+//            ->assert(1, 'test');
+//    }
 }

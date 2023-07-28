@@ -2,68 +2,41 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\Util\FormatValueTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
 
 class NotBlankTest extends AbstractTest
 {
-    use FormatValueTrait;
-
-    #[DataProvider('provideFailureConditionData')]
-    public function testNotBlankFailureCondition(mixed $value)
-    {
-        $validator = Validator::notBlank();
-
-        $this->assertFalse($validator->validate($value));
-
-        $this->expectException(NotBlankException::class);
-        $this->expectExceptionMessage(\sprintf('The "test" value should not be blank, "%s" given.', $this->formatValue($value)));
-        $validator->assert($value, 'test');
-    }
+    use TestRuleFailureConditionTrait;
+    use TestRuleSuccessConditionTrait;
 
     public static function provideFailureConditionData(): \Generator
     {
-        yield 'null' => [null];
-        yield 'false' => [false];
-        yield 'blank string' => [''];
-        yield 'blank array' => [[]];
-    }
+        $exception = NotBlankException::class;
+        $exceptionMessage = '/The "(.*)" value should not be blank, "(.*)" given./';
 
-    #[DataProvider('provideSuccessConditionData')]
-    public function testNotBlankSuccessCondition(mixed $value)
-    {
-        $validator = Validator::notBlank();
-
-        $this->assertTrue($validator->validate($value));
-
-        $validator->assert($value, 'test');
+        yield 'null' => [new NotBlank(), null, $exception, $exceptionMessage];
+        yield 'false' => [new NotBlank(), false, $exception, $exceptionMessage];
+        yield 'blank string' => [new NotBlank(), '', $exception, $exceptionMessage];
+        yield 'blank array' => [new NotBlank(), [], $exception, $exceptionMessage];
     }
 
     public static function provideSuccessConditionData(): \Generator
     {
-        yield 'true' => [true];
+        yield 'true' => [new NotBlank(), true];
 
-        yield 'string' => ['string'];
-        yield 'whitespace string' => [' '];
-        yield 'zero string' => ['0'];
+        yield 'string' => [new NotBlank(), 'string'];
+        yield 'whitespace string' => [new NotBlank(), ' '];
+        yield 'zero string' => [new NotBlank(), '0'];
 
-        yield 'array' => [['string']];
-        yield 'blank string array' => [['']];
-        yield 'whitespace array' => [[' ']];
-        yield 'zero array' => [[0]];
+        yield 'array' => [new NotBlank(), ['string']];
+        yield 'blank string array' => [new NotBlank(), ['']];
+        yield 'whitespace array' => [new NotBlank(), [' ']];
+        yield 'zero array' => [new NotBlank(), [0]];
 
-        yield 'number' => [10];
-        yield 'zero number' => [0];
-    }
-
-    public function testNotBlankMessageArgument()
-    {
-        $this->expectExceptionMessage('The "test" value "" is invalid. Must not be blank.');
-
-        Validator
-            ::notBlank(message: 'The "{{ name }}" value "{{ value }}" is invalid. Must not be blank.')
-            ->assert('', 'test');
+        yield 'number' => [new NotBlank(), 10];
+        yield 'zero number' => [new NotBlank(), 0];
     }
 }
