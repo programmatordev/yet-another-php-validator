@@ -16,14 +16,14 @@ class NotBlank extends AbstractRule implements RuleInterface
     /**
      * @throws NotBlankException
      */
-    public function validate(mixed $value): void
+    public function assert(mixed $value, string $name): void
     {
         // Do not allow null, false, [] and ''
         if ($value === false || (empty($value) && $value != '0')) {
             throw new NotBlankException(
                 message: $this->message,
                 parameters: [
-                    'name' => $this->getName(),
+                    'name' => $name,
                     'value' => $value
                 ]
             );

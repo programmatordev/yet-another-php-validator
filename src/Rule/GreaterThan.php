@@ -18,7 +18,7 @@ class GreaterThan extends AbstractRule implements RuleInterface
     /**
      * @throws GreaterThanException
      */
-    public function validate(mixed $value): void
+    public function assert(mixed $value, string $name): void
     {
         if (!$this->canBeCompared($this->constraint, $value)) {
             throw new \LogicException(
@@ -34,7 +34,7 @@ class GreaterThan extends AbstractRule implements RuleInterface
             throw new GreaterThanException(
                 message: $this->message,
                 parameters: [
-                    'name' => $this->getName(),
+                    'name' => $name,
                     'constraint' => $this->constraint,
                     'value' => $value
                 ]

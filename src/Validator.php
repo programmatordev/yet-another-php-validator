@@ -48,7 +48,7 @@ class Validator
     public function assert(mixed $value, string $name): void
     {
         foreach ($this->getRules() as $rule) {
-            $rule->setName($name)->validate($value);
+            $rule->assert($value, $name);
         }
     }
 
