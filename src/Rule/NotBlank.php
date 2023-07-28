@@ -6,9 +6,11 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
 
 class NotBlank extends AbstractRule implements RuleInterface
 {
-    public function __construct(private ?string $message = null)
+    private string $message;
+
+    public function __construct(string $message = null)
     {
-        $this->message ??= 'The "{{ name }}" value should not be blank, "{{ value }}" given.';
+        $this->message = $message ?? 'The "{{ name }}" value should not be blank, "{{ value }}" given.';
     }
 
     /**
@@ -16,11 +18,8 @@ class NotBlank extends AbstractRule implements RuleInterface
      */
     public function validate(mixed $value): void
     {
-        // Keep value unchanged for parameters
-        $input = $value;
-
         // Do not allow null, false, [] and ''
-        if ($input === false || (empty($input) && $input != '0')) {
+        if ($value === false || (empty($value) && $value != '0')) {
             throw new NotBlankException(
                 message: $this->message,
                 parameters: [

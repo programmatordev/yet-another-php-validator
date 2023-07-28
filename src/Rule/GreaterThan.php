@@ -6,11 +6,13 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
 
 class GreaterThan extends AbstractRule implements RuleInterface
 {
+    private string $message;
+
     public function __construct(
         private readonly mixed $constraint,
-        private ?string $message = null)
+        string $message = null)
     {
-        $this->message ??= 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.';
+        $this->message = $message ?? 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.';
     }
 
     /**
@@ -40,17 +42,17 @@ class GreaterThan extends AbstractRule implements RuleInterface
         }
     }
 
-    protected function canBeCompared(mixed $constraint, mixed $value): bool
+    protected function canBeCompared(mixed $value1, mixed $value2): bool
     {
-        if ($constraint instanceof \DateTimeInterface && $value instanceof \DateTimeInterface) {
+        if ($value1 instanceof \DateTimeInterface && $value2 instanceof \DateTimeInterface) {
             return true;
         }
 
-        if (\is_numeric($constraint) && \is_numeric($value)) {
+        if (\is_numeric($value1) && \is_numeric($value2)) {
             return true;
         }
 
-        if (\is_string($constraint) && \is_string($value)) {
+        if (\is_string($value1) && \is_string($value2)) {
             return true;
         }
 
