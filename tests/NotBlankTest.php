@@ -12,7 +12,7 @@ class NotBlankTest extends AbstractTest
     use TestRuleFailureConditionTrait;
     use TestRuleSuccessConditionTrait;
 
-    public static function provideFailureConditionData(): \Generator
+    public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = NotBlankException::class;
         $exceptionMessage = '/The "(.*)" value should not be blank, "(.*)" given./';
@@ -23,7 +23,7 @@ class NotBlankTest extends AbstractTest
         yield 'blank array' => [new NotBlank(), [], $exception, $exceptionMessage];
     }
 
-    public static function provideSuccessConditionData(): \Generator
+    public static function provideRuleSuccessConditionData(): \Generator
     {
         yield 'true' => [new NotBlank(), true];
 

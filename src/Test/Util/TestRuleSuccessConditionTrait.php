@@ -7,9 +7,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 trait TestRuleSuccessConditionTrait
 {
-    public static abstract function provideSuccessConditionData(): \Generator;
+    public static abstract function provideRuleSuccessConditionData(): \Generator;
 
-    #[DataProvider('provideSuccessConditionData')]
+    #[DataProvider('provideRuleSuccessConditionData')]
     public function testRuleSuccessCondition(RuleInterface $rule, mixed $value): void
     {
         $rule->assert($value, 'test');

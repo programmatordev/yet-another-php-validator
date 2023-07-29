@@ -12,7 +12,7 @@ class GreaterThanTest extends AbstractTest
     use TestRuleFailureConditionTrait;
     use TestRuleSuccessConditionTrait;
 
-    public static function provideFailureConditionData(): \Generator
+    public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = GreaterThanException::class;
         $exceptionMessageInvalid = '/Cannot compare a type "(.*)" with a type "(.*)"/';
@@ -27,7 +27,7 @@ class GreaterThanTest extends AbstractTest
         yield 'null constraint' => [new GreaterThan(null), 10, $exception, $exceptionMessageInvalid];
 
         yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('yesterday'), $exception, $exceptionMessageFailure];
-        yield 'same datetime' => [new GreaterThan(new \DateTime('2000-01-01')), new \DateTime('2000-01-01'), $exception, $exceptionMessageFailure];
+        yield 'same datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('today'), $exception, $exceptionMessageFailure];
         yield 'int' => [new GreaterThan(10), 1, $exception, $exceptionMessageFailure];
         yield 'same int' => [new GreaterThan(10), 10, $exception, $exceptionMessageFailure];
         yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $exceptionMessageFailure];
@@ -38,7 +38,7 @@ class GreaterThanTest extends AbstractTest
         yield 'same string' => [new GreaterThan('a'), 'a', $exception, $exceptionMessageFailure];
     }
 
-    public static function provideSuccessConditionData(): \Generator
+    public static function provideRuleSuccessConditionData(): \Generator
     {
         yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('tomorrow')];
         yield 'int' => [new GreaterThan(10), 20];

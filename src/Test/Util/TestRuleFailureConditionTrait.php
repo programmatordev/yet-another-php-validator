@@ -7,9 +7,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 trait TestRuleFailureConditionTrait
 {
-    public static abstract function provideFailureConditionData(): \Generator;
+    public static abstract function provideRuleFailureConditionData(): \Generator;
 
-    #[DataProvider('provideFailureConditionData')]
+    #[DataProvider('provideRuleFailureConditionData')]
     public function testRuleFailureCondition(
         RuleInterface $rule,
         mixed $value,
