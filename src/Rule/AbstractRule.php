@@ -2,19 +2,24 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
-class AbstractRule
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+
+abstract class AbstractRule
 {
-    private string $name;
-
-    public function getName(): string
+    public function validate($value): bool
     {
-        return $this->name;
+        try {
+            $this->assert($value, 'null');
+        }
+        catch (ValidationException) {
+            return false;
+        }
+
+        return true;
     }
 
-    public function setName(string $name): static
-    {
-        $this->name = $name;
-
-        return $this;
-    }
+    /**
+     * @throws ValidationException
+     */
+    public abstract function assert(mixed $value, string $name): void;
 }

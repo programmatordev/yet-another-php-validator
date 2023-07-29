@@ -38,7 +38,7 @@ class ValidationException extends \Exception
         }
 
         if (\is_string($value)) {
-            return \sprintf('"%s"', $value);
+            return $value;
         }
 
         if (\is_resource($value)) {
@@ -66,6 +66,6 @@ class ValidationException extends \Exception
             $values[$key] = $this->formatValue($value);
         }
 
-        return \implode(', ', $values);
+        return \sprintf('[%s]', \implode(', ', $values));
     }
 }

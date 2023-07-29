@@ -2,58 +2,52 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
-use PHPUnit\Framework\Attributes\DataProvider;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleCustomMessageTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
 
 class NotBlankTest extends AbstractTest
 {
-    #[DataProvider('provideInvalidInputData')]
-    public function testNotBlankInvalidInput(mixed $input)
+    use TestRuleFailureConditionTrait;
+    use TestRuleSuccessConditionTrait;
+    use TestRuleCustomMessageTrait;
+
+    public static function provideRuleFailureConditionData(): \Generator
     {
-        $validator = Validator::notBlank();
+        $exception = NotBlankException::class;
+        $exceptionMessage = '/The "(.*)" value should not be blank, "(.*)" given./';
 
-        $this->assertFalse($validator->validate($input));
-
-        $this->expectException(NotBlankException::class);
-        $this->expectExceptionMessage('The "test" value should not be blank.');
-        $validator->assert($input, 'test');
+        yield 'null' => [new NotBlank(), null, $exception, $exceptionMessage];
+        yield 'false' => [new NotBlank(), false, $exception, $exceptionMessage];
+        yield 'blank string' => [new NotBlank(), '', $exception, $exceptionMessage];
+        yield 'blank array' => [new NotBlank(), [], $exception, $exceptionMessage];
     }
 
-    public static function provideInvalidInputData(): \Generator
+    public static function provideRuleSuccessConditionData(): \Generator
     {
-        yield 'null' => [null];
-        yield 'false' => [false];
-        yield 'blank array' => [[]];
-        yield 'blank string' => [''];
-        yield 'whitespace' => [' '];
+        yield 'true' => [new NotBlank(), true];
+
+        yield 'string' => [new NotBlank(), 'string'];
+        yield 'whitespace string' => [new NotBlank(), ' '];
+        yield 'zero string' => [new NotBlank(), '0'];
+
+        yield 'array' => [new NotBlank(), ['string']];
+        yield 'blank string array' => [new NotBlank(), ['']];
+        yield 'whitespace array' => [new NotBlank(), [' ']];
+        yield 'zero array' => [new NotBlank(), [0]];
+
+        yield 'number' => [new NotBlank(), 10];
+        yield 'zero number' => [new NotBlank(), 0];
     }
 
-    #[DataProvider('provideValidInputData')]
-    public function testNotBlankValidInput(mixed $input)
+    public static function provideRuleCustomMessageData(): \Generator
     {
-        $validator = Validator::notBlank();
-
-        $this->assertTrue($validator->validate($input));
-
-        Validator::notBlank()->assert($input, 'test');
-    }
-
-    public static function provideValidInputData(): \Generator
-    {
-        yield 'true' => [true];
-        yield 'zero number' => [0];
-        yield 'zero string' => ['0'];
-        yield 'array' => [[0]];
-        yield 'string' => ['string'];
-    }
-
-    public function testNotBlankExceptionMessageParameters()
-    {
-        $this->expectExceptionMessage('The "test" value false is invalid. Must not be blank.');
-
-        Validator::notBlank(
-            message: 'The {{ name }} value {{ input }} is invalid. Must not be blank.'
-        )->assert(false, 'test');
+        yield 'message' => [
+            new NotBlank(
+                message: 'The "{{ name }}" value "{{ value }}" is not blank.'
+            ), '', 'The "test" value "" is not blank.'
+        ];
     }
 }
