@@ -4,6 +4,7 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleCustomMessageTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
 
@@ -11,6 +12,7 @@ class GreaterThanTest extends AbstractTest
 {
     use TestRuleFailureConditionTrait;
     use TestRuleSuccessConditionTrait;
+    use TestRuleCustomMessageTrait;
 
     public static function provideRuleFailureConditionData(): \Generator
     {
@@ -45,5 +47,15 @@ class GreaterThanTest extends AbstractTest
         yield 'float' => [new GreaterThan(10.0), 20.0];
         yield 'int with float' => [new GreaterThan(10), 20.0];
         yield 'string' => [new GreaterThan('a'), 'z'];
+    }
+
+    public static function provideRuleCustomMessageData(): \Generator
+    {
+        yield 'message' => [
+            new GreaterThan(
+                constraint: 10,
+                message: 'The "{{ name }}" value "{{ value }}" is not greater than "{{ constraint }}".'
+            ), 1, 'The "test" value "1" is not greater than "10".'
+        ];
     }
 }

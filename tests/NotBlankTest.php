@@ -4,6 +4,7 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleCustomMessageTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
 
@@ -11,6 +12,7 @@ class NotBlankTest extends AbstractTest
 {
     use TestRuleFailureConditionTrait;
     use TestRuleSuccessConditionTrait;
+    use TestRuleCustomMessageTrait;
 
     public static function provideRuleFailureConditionData(): \Generator
     {
@@ -38,5 +40,14 @@ class NotBlankTest extends AbstractTest
 
         yield 'number' => [new NotBlank(), 10];
         yield 'zero number' => [new NotBlank(), 0];
+    }
+
+    public static function provideRuleCustomMessageData(): \Generator
+    {
+        yield 'message' => [
+            new NotBlank(
+                message: 'The "{{ name }}" value "{{ value }}" is not blank.'
+            ), '', 'The "test" value "" is not blank.'
+        ];
     }
 }
