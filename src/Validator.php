@@ -4,6 +4,7 @@ namespace ProgrammatorDev\YetAnotherPhpValidator;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+use ProgrammatorDev\YetAnotherPhpValidator\Factory\Factory;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 /**

@@ -52,10 +52,11 @@ class GreaterThanTest extends AbstractTest
     public static function provideRuleCustomMessageData(): \Generator
     {
         yield 'message' => [
-            new GreaterThan(
-                constraint: 10,
-                message: 'The "{{ name }}" value "{{ value }}" is not greater than "{{ constraint }}".'
-            ), 1, 'The "test" value "1" is not greater than "10".'
+            new GreaterThan(10, [
+                'message' => 'The "{{ name }}" value "{{ value }}" is not greater than "{{ constraint }}".'
+            ]),
+            1,
+            'The "test" value "1" is not greater than "10".'
         ];
     }
 }

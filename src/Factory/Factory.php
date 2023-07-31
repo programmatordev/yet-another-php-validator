@@ -1,6 +1,6 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator;
+namespace ProgrammatorDev\YetAnotherPhpValidator\Factory;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;

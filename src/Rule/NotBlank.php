@@ -3,14 +3,21 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NotBlank extends AbstractRule implements RuleInterface
 {
-    private string $message;
+    private array $options;
 
-    public function __construct(string $message = null)
+    public function __construct(array $options = [])
     {
-        $this->message = $message ?? 'The "{{ name }}" value should not be blank, "{{ value }}" given.';
+        $resolver = new OptionsResolver();
+
+        $resolver->setDefaults(['message' => 'The "{{ name }}" value should not be blank, "{{ value }}" given.']);
+
+        $resolver->setAllowedTypes('message', 'string');
+
+        $this->options = $resolver->resolve($options);
     }
 
     /**
@@ -21,7 +28,7 @@ class NotBlank extends AbstractRule implements RuleInterface
         // Do not allow null, false, [] and ''
         if ($value === false || (empty($value) && $value != '0')) {
             throw new NotBlankException(
-                message: $this->message,
+                message: $this->options['message'],
                 parameters: [
                     'name' => $name,
                     'value' => $value
