@@ -45,9 +45,11 @@ class NotBlankTest extends AbstractTest
     public static function provideRuleCustomMessageData(): \Generator
     {
         yield 'message' => [
-            new NotBlank(
-                message: 'The "{{ name }}" value "{{ value }}" is not blank.'
-            ), '', 'The "test" value "" is not blank.'
+            new NotBlank([
+                'message' => 'The "{{ name }}" value "{{ value }}" is not blank.'
+            ]),
+            '',
+            'The "test" value "" is not blank.'
         ];
     }
 }
