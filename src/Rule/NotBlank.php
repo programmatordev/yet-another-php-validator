@@ -13,9 +13,13 @@ class NotBlank extends AbstractRule implements RuleInterface
     {
         $resolver = new OptionsResolver();
 
-        $resolver->setDefaults(['message' => 'The "{{ name }}" value should not be blank, "{{ value }}" given.']);
+        $resolver->setDefaults([
+            'message' => 'The "{{ name }}" value should not be blank, "{{ value }}" given.',
+            'normalizer' => null
+        ]);
 
         $resolver->setAllowedTypes('message', 'string');
+        $resolver->setAllowedTypes('normalizer', ['null', 'string', 'callable']);
 
         $this->options = $resolver->resolve($options);
     }
@@ -25,8 +29,16 @@ class NotBlank extends AbstractRule implements RuleInterface
      */
     public function assert(mixed $value, string $name): void
     {
+        // Keep original value for parameter
+        $input = $value;
+
+        // Call normalizer if provided
+        if ($this->options['normalizer'] !== null) {
+            $input = ($this->options['normalizer'])($input);
+        }
+
         // Do not allow null, false, [] and ''
-        if ($value === false || (empty($value) && $value != '0')) {
+        if ($input === false || (empty($input) && $input != '0')) {
             throw new NotBlankException(
                 message: $this->options['message'],
                 parameters: [
