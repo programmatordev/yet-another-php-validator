@@ -5,12 +5,12 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Test\Util;
 use PHPUnit\Framework\Attributes\DataProvider;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
-trait TestRuleCustomMessageTrait
+trait TestRuleMessageOptionTrait
 {
-    public static abstract function provideRuleCustomMessageData(): \Generator;
+    public static abstract function provideRuleMessageOptionData(): \Generator;
 
-    #[DataProvider('provideRuleCustomMessageData')]
-    public function testRuleCustomMessage(RuleInterface $rule, mixed $value, string $exceptionMessage): void
+    #[DataProvider('provideRuleMessageOptionData')]
+    public function testRuleMessageOption(RuleInterface $rule, mixed $value, string $exceptionMessage): void
     {
         $this->expectExceptionMessage($exceptionMessage);
         $rule->assert($value, 'test');

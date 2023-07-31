@@ -4,7 +4,7 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleCustomMessageTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
 
@@ -12,7 +12,7 @@ class NotBlankTest extends AbstractTest
 {
     use TestRuleFailureConditionTrait;
     use TestRuleSuccessConditionTrait;
-    use TestRuleCustomMessageTrait;
+    use TestRuleMessageOptionTrait;
 
     public static function provideRuleFailureConditionData(): \Generator
     {
@@ -23,6 +23,8 @@ class NotBlankTest extends AbstractTest
         yield 'false' => [new NotBlank(), false, $exception, $exceptionMessage];
         yield 'blank string' => [new NotBlank(), '', $exception, $exceptionMessage];
         yield 'blank array' => [new NotBlank(), [], $exception, $exceptionMessage];
+
+        yield 'normalizer whitespace' => [new NotBlank(['normalizer' => 'trim']), ' ', $exception, $exceptionMessage];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
@@ -42,7 +44,7 @@ class NotBlankTest extends AbstractTest
         yield 'zero number' => [new NotBlank(), 0];
     }
 
-    public static function provideRuleCustomMessageData(): \Generator
+    public static function provideRuleMessageOptionData(): \Generator
     {
         yield 'message' => [
             new NotBlank([
