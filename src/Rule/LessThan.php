@@ -35,9 +35,9 @@ class LessThan extends AbstractRule implements RuleInterface
             throw new LessThanException(
                 message: $this->options['message'],
                 parameters: [
+                    'value' => $value,
                     'name' => $name,
-                    'constraint' => $this->constraint,
-                    'value' => $value
+                    'constraint' => $this->constraint
                 ]
             );
         }

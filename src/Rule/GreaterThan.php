@@ -35,9 +35,9 @@ class GreaterThan extends AbstractRule implements RuleInterface
             throw new GreaterThanException(
                 message: $this->options['message'],
                 parameters: [
+                    'value' => $value,
                     'name' => $name,
-                    'constraint' => $this->constraint,
-                    'value' => $value
+                    'constraint' => $this->constraint
                 ]
             );
         }
