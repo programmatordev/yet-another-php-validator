@@ -23,14 +23,14 @@ class Choice extends AbstractRule implements RuleInterface
         $resolver->setDefaults([
             'message' => 'The "{{ name }}" value is not a valid choice, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
             'multipleMessage' => 'The "{{ name }}" value has one or more invalid choices, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
-            'maxMessage' => 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.',
-            'minMessage' => 'The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.'
+            'minMessage' => 'The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
+            'maxMessage' => 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
         ]);
 
         $resolver->setAllowedTypes('message', 'string');
         $resolver->setAllowedTypes('multipleMessage', 'string');
-        $resolver->setAllowedTypes('maxMessage', 'string');
         $resolver->setAllowedTypes('minMessage', 'string');
+        $resolver->setAllowedTypes('maxMessage', 'string');
 
         $this->options = $resolver->resolve($options);
     }

@@ -28,7 +28,6 @@ class LessThan extends AbstractRule implements RuleInterface
      */
     public function assert(mixed $value, string $name): void
     {
-        // Assert if constraint and value can be compared
         $this->assertIsComparable($this->constraint, $value);
 
         if (!($value < $this->constraint)) {

@@ -22,4 +22,6 @@ interface ChainedValidatorInterface
     public function lessThan(mixed $constraint, array $options = []): ChainedValidatorInterface;
 
     public function choice(array $constraints, bool $multiple = false, ?int $minConstraint = null, ?int $maxConstraint = null, array $options = []): ChainedValidatorInterface;
+
+    public function range(mixed $minConstraint, mixed $maxConstraint, array $options = []): ChainedValidatorInterface;
 }
