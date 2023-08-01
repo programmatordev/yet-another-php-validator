@@ -23,7 +23,7 @@ class Range extends AbstractRule implements RuleInterface
         $resolver = new OptionsResolver();
 
         $resolver->setDefaults([
-            'message' => 'The {{ name }} value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.'
+            'message' => 'The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.'
         ]);
 
         $resolver->setAllowedTypes('message', 'string');
