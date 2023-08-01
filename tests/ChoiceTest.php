@@ -19,7 +19,7 @@ class ChoiceTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         yield 'multiple but not array' => [
-            new Choice([1, 2], true), 1, '/Expected value of type "array" when is multiple, "(.*)" given/'
+            new Choice([1, 2], true), 1, '/Expected value of type "array" when multiple, "(.*)" given/'
         ];
     }
 
@@ -68,7 +68,7 @@ class ChoiceTest extends AbstractTest
         yield 'multiple message' => [
             new Choice(
                 constraints: $constraints,
-                isMultiple: true,
+                multiple: true,
                 options: [
                     'multipleMessage' => 'The "{{ name }}" value "{{ value }}" is not a valid choice.'
                 ]
@@ -77,7 +77,7 @@ class ChoiceTest extends AbstractTest
         yield 'min message' => [
             new Choice(
                 constraints: $constraints,
-                isMultiple: true,
+                multiple: true,
                 minConstraint: 2,
                 options: [
                     'minMessage' => 'The "{{ name }}" value should have at least {{ minConstraint }} choices.'
@@ -87,7 +87,7 @@ class ChoiceTest extends AbstractTest
         yield 'max message' => [
             new Choice(
                 constraints: $constraints,
-                isMultiple: true,
+                multiple: true,
                 maxConstraint: 2,
                 options: [
                     'maxMessage' => 'The "{{ name }}" value should have at most {{ maxConstraint }} choices.'

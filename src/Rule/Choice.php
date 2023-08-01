@@ -12,7 +12,7 @@ class Choice extends AbstractRule implements RuleInterface
 
     public function __construct(
         private readonly array $constraints,
-        private readonly bool $isMultiple = false,
+        private readonly bool $multiple = false,
         private readonly ?int $minConstraint = null,
         private readonly ?int $maxConstraint = null,
         array $options = []
@@ -37,13 +37,13 @@ class Choice extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        if ($this->isMultiple && !\is_array($value)) {
+        if ($this->multiple && !\is_array($value)) {
             throw new UnexpectedValueException(
-                \sprintf('Expected value of type "array" when is multiple, "%s" given', get_debug_type($value))
+                \sprintf('Expected value of type "array" when multiple, "%s" given', get_debug_type($value))
             );
         }
 
-        if ($this->isMultiple) {
+        if ($this->multiple) {
             foreach ($value as $input) {
                 if (!\in_array($input, $this->constraints, true)) {
                     throw new ChoiceException(
