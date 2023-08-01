@@ -18,32 +18,32 @@ class GreaterThanTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $exceptionMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
+        $message = '/Cannot compare a type "(.*)" with a type "(.*)"/';
 
-        yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $exceptionMessage];
-        yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $exceptionMessage];
-        yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $exceptionMessage];
-        yield 'int constraint with string value' => [new GreaterThan(10), 'a', $exceptionMessage];
-        yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $exceptionMessage];
-        yield 'array constraint' => [new GreaterThan([10]), 10, $exceptionMessage];
-        yield 'null constraint' => [new GreaterThan(null), 10, $exceptionMessage];
+        yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $message];
+        yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $message];
+        yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $message];
+        yield 'int constraint with string value' => [new GreaterThan(10), 'a', $message];
+        yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $message];
+        yield 'array constraint' => [new GreaterThan([10]), 10, $message];
+        yield 'null constraint' => [new GreaterThan(null), 10, $message];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = GreaterThanException::class;
-        $exceptionMessage = '/The "(.*)" value should be greater than "(.*)", "(.*)" given./';
+        $message = '/The "(.*)" value should be greater than "(.*)", "(.*)" given./';
 
-        yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('yesterday'), $exception, $exceptionMessage];
-        yield 'same datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('today'), $exception, $exceptionMessage];
-        yield 'int' => [new GreaterThan(10), 1, $exception, $exceptionMessage];
-        yield 'same int' => [new GreaterThan(10), 10, $exception, $exceptionMessage];
-        yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $exceptionMessage];
-        yield 'same float' => [new GreaterThan(10.0), 10.0, $exception, $exceptionMessage];
-        yield 'int with float' => [new GreaterThan(10), 1.0, $exception, $exceptionMessage];
-        yield 'same int with float' => [new GreaterThan(10), 10.0, $exception, $exceptionMessage];
-        yield 'string' => [new GreaterThan('z'), 'a', $exception, $exceptionMessage];
-        yield 'same string' => [new GreaterThan('a'), 'a', $exception, $exceptionMessage];
+        yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('yesterday'), $exception, $message];
+        yield 'same datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('today'), $exception, $message];
+        yield 'int' => [new GreaterThan(10), 1, $exception, $message];
+        yield 'same int' => [new GreaterThan(10), 10, $exception, $message];
+        yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $message];
+        yield 'same float' => [new GreaterThan(10.0), 10.0, $exception, $message];
+        yield 'int with float' => [new GreaterThan(10), 1.0, $exception, $message];
+        yield 'same int with float' => [new GreaterThan(10), 10.0, $exception, $message];
+        yield 'string' => [new GreaterThan('z'), 'a', $exception, $message];
+        yield 'same string' => [new GreaterThan('a'), 'a', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
@@ -58,11 +58,12 @@ class GreaterThanTest extends AbstractTest
     public static function provideRuleMessageOptionData(): \Generator
     {
         yield 'message' => [
-            new GreaterThan(10, [
-                'message' => 'The "{{ name }}" value "{{ value }}" is not greater than "{{ constraint }}".'
-            ]),
-            1,
-            'The "test" value "1" is not greater than "10".'
+            new GreaterThan(
+                constraint: 10,
+                options: [
+                    'message' => 'The "{{ name }}" value "{{ value }}" is not greater than "{{ constraint }}".'
+                ]
+            ), 1, 'The "test" value "1" is not greater than "10".'
         ];
     }
 }

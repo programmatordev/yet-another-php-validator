@@ -39,7 +39,7 @@ class Choice extends AbstractRule implements RuleInterface
     {
         if ($this->isMultiple && !\is_array($value)) {
             throw new UnexpectedValueException(
-                \sprintf('Expected value of type "array", "%s" given', get_debug_type($value))
+                \sprintf('Expected value of type "array" when is multiple, "%s" given', get_debug_type($value))
             );
         }
 
