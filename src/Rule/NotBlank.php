@@ -19,7 +19,7 @@ class NotBlank extends AbstractRule implements RuleInterface
         ]);
 
         $resolver->setAllowedTypes('message', 'string');
-        $resolver->setAllowedTypes('normalizer', ['null', 'string', 'callable']);
+        $resolver->setAllowedTypes('normalizer', ['null', 'callable']);
 
         $this->options = $resolver->resolve($options);
     }

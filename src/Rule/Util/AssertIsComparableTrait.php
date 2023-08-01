@@ -2,9 +2,11 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule\Util;
 
-trait AssertComparableTrait
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
+
+trait AssertIsComparableTrait
 {
-    private function assertComparable(mixed $value1, mixed $value2, string $exception): bool
+    private function assertIsComparable(mixed $value1, mixed $value2): bool
     {
         if ($value1 instanceof \DateTimeInterface && $value2 instanceof \DateTimeInterface) {
             return true;
@@ -18,7 +20,7 @@ trait AssertComparableTrait
             return true;
         }
 
-        throw new $exception(
+        throw new UnexpectedValueException(
             \sprintf(
                 'Cannot compare a type "%s" with a type "%s"',
                 get_debug_type($value1),
