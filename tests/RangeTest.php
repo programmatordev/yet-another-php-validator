@@ -29,7 +29,8 @@ class RangeTest extends AbstractTest
         yield 'array constraint' => [new Range([10], 10), 10, $comparableMessage];
         yield 'null constraint' => [new Range(null, 10), 10, $comparableMessage];
 
-        yield 'min constraint greater than max constraint' => [new Range(10, 9), 10, $constraintMessage];
+        yield 'min greater than max constraint' => [new Range(10, 9), 10, $constraintMessage];
+        yield 'same min and max constraint' => [new Range(10, 10), 10, $constraintMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
