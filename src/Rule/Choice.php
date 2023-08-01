@@ -43,6 +43,17 @@ class Choice extends AbstractRule implements RuleInterface
             );
         }
 
+        if (
+            $this->multiple
+            && $this->minConstraint !== null
+            && $this->maxConstraint !== null
+            && $this->minConstraint > $this->maxConstraint
+        ) {
+            throw new UnexpectedValueException(
+                'Max constraint value must be greater than or equal to min constraint value.'
+            );
+        }
+
         if ($this->multiple) {
             foreach ($value as $input) {
                 if (!\in_array($input, $this->constraints, true)) {
