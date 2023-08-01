@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\RangeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\AssertIsComparableTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -35,13 +35,13 @@ class Range extends AbstractRule implements RuleInterface
     {
         $this->assertIsComparable($this->minConstraint, $this->maxConstraint);
 
-        try {
-            Validator
-                ::greaterThanOrEqual($this->minConstraint)
-                ->lessThanOrEqual($this->maxConstraint)
-                ->assert($value, $name);
+        if (!Validator::greaterThan($this->minConstraint)->validate($this->maxConstraint)) {
+            throw new UnexpectedValueException(
+                'Max constraint value must be greater than min constraint value.'
+            );
         }
-        catch (ValidationException) {
+
+        if (!Validator::greaterThanOrEqual($this->minConstraint)->lessThanOrEqual($this->maxConstraint)->validate($value)) {
             throw new RangeException(
                 message: $this->options['message'],
                 parameters: [
