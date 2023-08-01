@@ -18,9 +18,12 @@ class ChoiceTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        yield 'multiple but not array' => [
-            new Choice([1, 2], true), 1, '/Expected value of type "array" when multiple, "(.*)" given/'
-        ];
+        $constraints = [1, 2, 3, 4, 5];
+        $multipleMessage = '/Expected value of type "array" when multiple, "(.*)" given/';
+        $constraintMessage = '/Max constraint value must be greater than or equal to min constraint value./';
+
+        yield 'multiple not array' => [new Choice($constraints, true), 1, $multipleMessage];
+        yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $constraintMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
@@ -50,7 +53,8 @@ class ChoiceTest extends AbstractTest
         yield 'multiple valid choices' => [new Choice($constraints, true), [1, 2, 3]];
         yield 'min constraint' => [new Choice($constraints, true, 2), [1, 2]];
         yield 'max constraint' => [new Choice($constraints, true, null, 2), [1, 2]];
-        yield 'min and max constraint' => [new Choice($constraints, true, 2, 2), [1, 2]];
+        yield 'min and max constraint' => [new Choice($constraints, true, 2, 4), [1, 2, 3]];
+        yield 'same min and max constraint' => [new Choice($constraints, true, 2, 2), [1, 2]];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
