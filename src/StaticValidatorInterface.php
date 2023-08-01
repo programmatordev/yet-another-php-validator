@@ -11,4 +11,6 @@ interface StaticValidatorInterface
     public static function lessThan(mixed $constraint, array $options = []): ChainedValidatorInterface;
 
     public static function choice(array $constraints, bool $multiple = false, ?int $minConstraint = null, ?int $maxConstraint = null, array $options = []): ChainedValidatorInterface;
+
+    public static function range(mixed $minConstraint, mixed $maxConstraint, array $options = []): ChainedValidatorInterface;
 }
