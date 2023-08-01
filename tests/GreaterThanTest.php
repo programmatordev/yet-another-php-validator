@@ -7,37 +7,43 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class GreaterThanTest extends AbstractTest
 {
+    use TestRuleUnexpectedValueTrait;
     use TestRuleFailureConditionTrait;
     use TestRuleSuccessConditionTrait;
     use TestRuleMessageOptionTrait;
 
+    public static function provideRuleUnexpectedValueData(): \Generator
+    {
+        $exceptionMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
+
+        yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $exceptionMessage];
+        yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $exceptionMessage];
+        yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $exceptionMessage];
+        yield 'int constraint with string value' => [new GreaterThan(10), 'a', $exceptionMessage];
+        yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $exceptionMessage];
+        yield 'array constraint' => [new GreaterThan([10]), 10, $exceptionMessage];
+        yield 'null constraint' => [new GreaterThan(null), 10, $exceptionMessage];
+    }
+
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = GreaterThanException::class;
-        $exceptionMessageInvalid = '/Cannot compare a type "(.*)" with a type "(.*)"/';
-        $exceptionMessageFailure = '/The "(.*)" value should be greater than "(.*)", "(.*)" given./';
+        $exceptionMessage = '/The "(.*)" value should be greater than "(.*)", "(.*)" given./';
 
-        yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $exception, $exceptionMessageInvalid];
-        yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $exception, $exceptionMessageInvalid];
-        yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $exception, $exceptionMessageInvalid];
-        yield 'int constraint with string value' => [new GreaterThan(10), 'a', $exception, $exceptionMessageInvalid];
-        yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $exception, $exceptionMessageInvalid];
-        yield 'array constraint' => [new GreaterThan([10]), 10, $exception, $exceptionMessageInvalid];
-        yield 'null constraint' => [new GreaterThan(null), 10, $exception, $exceptionMessageInvalid];
-
-        yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('yesterday'), $exception, $exceptionMessageFailure];
-        yield 'same datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('today'), $exception, $exceptionMessageFailure];
-        yield 'int' => [new GreaterThan(10), 1, $exception, $exceptionMessageFailure];
-        yield 'same int' => [new GreaterThan(10), 10, $exception, $exceptionMessageFailure];
-        yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $exceptionMessageFailure];
-        yield 'same float' => [new GreaterThan(10.0), 10.0, $exception, $exceptionMessageFailure];
-        yield 'int with float' => [new GreaterThan(10), 1.0, $exception, $exceptionMessageFailure];
-        yield 'same int with float' => [new GreaterThan(10), 10.0, $exception, $exceptionMessageFailure];
-        yield 'string' => [new GreaterThan('z'), 'a', $exception, $exceptionMessageFailure];
-        yield 'same string' => [new GreaterThan('a'), 'a', $exception, $exceptionMessageFailure];
+        yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('yesterday'), $exception, $exceptionMessage];
+        yield 'same datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('today'), $exception, $exceptionMessage];
+        yield 'int' => [new GreaterThan(10), 1, $exception, $exceptionMessage];
+        yield 'same int' => [new GreaterThan(10), 10, $exception, $exceptionMessage];
+        yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $exceptionMessage];
+        yield 'same float' => [new GreaterThan(10.0), 10.0, $exception, $exceptionMessage];
+        yield 'int with float' => [new GreaterThan(10), 1.0, $exception, $exceptionMessage];
+        yield 'same int with float' => [new GreaterThan(10), 10.0, $exception, $exceptionMessage];
+        yield 'string' => [new GreaterThan('z'), 'a', $exception, $exceptionMessage];
+        yield 'same string' => [new GreaterThan('a'), 'a', $exception, $exceptionMessage];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
