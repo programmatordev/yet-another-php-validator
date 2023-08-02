@@ -37,7 +37,7 @@ class All extends AbstractRule implements RuleInterface
 
         if (!\is_array($value)) {
             throw new UnexpectedValueException(
-                \sprintf('Expected value of type "array", "%s" given', get_debug_type($value))
+                \sprintf('Expected value of type "array", "%s" given.', get_debug_type($value))
             );
         }
 
