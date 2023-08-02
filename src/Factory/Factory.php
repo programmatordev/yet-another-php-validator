@@ -7,21 +7,23 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 class Factory
 {
-    private string $namespace = 'ProgrammatorDev\\YetAnotherPhpValidator\\Rule';
+    private array $namespaces = ['ProgrammatorDev\\YetAnotherPhpValidator\\Rule'];
 
     /**
      * @throws RuleNotFoundException
      */
     public function createRule(string $ruleName, array $arguments = []): RuleInterface
     {
-        $className = \sprintf('%s\\%s', $this->namespace, \ucfirst($ruleName));
+        foreach ($this->namespaces as $namespace) {
+            $className = \sprintf('%s\\%s', $namespace, \ucfirst($ruleName));
 
-        if (!class_exists($className)) {
-            throw new RuleNotFoundException(
-                \sprintf('"%s" rule does not exist.', $ruleName)
-            );
+            if (class_exists($className)) {
+                return new $className(...$arguments);
+            }
         }
 
-        return new $className(...$arguments);
+        throw new RuleNotFoundException(
+            \sprintf('"%s" rule does not exist.', $ruleName)
+        );
     }
 }

@@ -3,6 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 interface ChainedValidatorInterface
 {
@@ -30,4 +31,6 @@ interface ChainedValidatorInterface
     public function notBlank(array $options = []): ChainedValidatorInterface;
 
     public function range(mixed $minConstraint, mixed $maxConstraint, array $options = []): ChainedValidatorInterface;
+
+    public function rule(RuleInterface $constraint): ChainedValidatorInterface;
 }
