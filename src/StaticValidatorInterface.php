@@ -2,6 +2,8 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator;
 
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+
 interface StaticValidatorInterface
 {
     public static function all(array $constraints, array $options = null): ChainedValidatorInterface;
@@ -19,4 +21,6 @@ interface StaticValidatorInterface
     public static function notBlank(array $options = []): ChainedValidatorInterface;
 
     public static function range(mixed $minConstraint, mixed $maxConstraint, array $options = []): ChainedValidatorInterface;
+
+    public static function rule(RuleInterface $constraint): ChainedValidatorInterface;
 }
