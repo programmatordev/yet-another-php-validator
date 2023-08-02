@@ -41,23 +41,23 @@ class All extends AbstractRule implements RuleInterface
             );
         }
 
-        try {
-            foreach ($value as $key => $input) {
-                foreach ($this->constraints as $constraint) {
+        foreach ($value as $key => $input) {
+            foreach ($this->constraints as $constraint) {
+                try {
                     $constraint->assert($input, $name);
                 }
+                catch (ValidationException $exception) {
+                    throw new AllException(
+                        message: $this->options['message'],
+                        parameters: [
+                            'value' => $value,
+                            'name' => $name,
+                            'key' => $key,
+                            'message' => $exception->getMessage()
+                        ]
+                    );
+                }
             }
-        }
-        catch (ValidationException $exception) {
-            throw new AllException(
-                message: $this->options['message'],
-                parameters: [
-                    'value' => $value,
-                    'name' => $name,
-                    'key' => $key,
-                    'message' => $exception->getMessage()
-                ]
-            );
         }
     }
 }
