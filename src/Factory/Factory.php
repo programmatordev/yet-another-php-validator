@@ -26,16 +26,4 @@ class Factory
             \sprintf('"%s" rule does not exist.', $ruleName)
         );
     }
-
-    public function getNamespaces(): array
-    {
-        return $this->namespaces;
-    }
-
-    public function addNamespace(string $namespace): self
-    {
-        $this->namespaces[] = $namespace;
-
-        return $this;
-    }
 }

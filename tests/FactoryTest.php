@@ -28,18 +28,4 @@ class FactoryTest extends AbstractTest
     {
         $this->assertInstanceOf(RuleInterface::class, $this->factory->createRule('notBlank'));
     }
-
-    public function testFactoryGetNamespaces()
-    {
-        $this->assertCount(1, $this->factory->getNamespaces());
-        $this->assertSame('ProgrammatorDev\\YetAnotherPhpValidator\\Rule', $this->factory->getNamespaces()[0]);
-    }
-
-    public function testFactoryAddNamespace()
-    {
-        $this->factory->addNamespace('ProgrammatorDev\\YetAnotherPhpValidator\\Test\\Dummy');
-
-        $this->assertCount(2, $this->factory->getNamespaces());
-        $this->assertSame('ProgrammatorDev\\YetAnotherPhpValidator\\Test\\Dummy', $this->factory->getNamespaces()[1]);
-    }
 }
