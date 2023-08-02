@@ -22,7 +22,7 @@ trait AssertIsComparableTrait
 
         throw new UnexpectedValueException(
             \sprintf(
-                'Cannot compare a type "%s" with a type "%s"',
+                'Cannot compare a type "%s" with a type "%s".',
                 get_debug_type($value1),
                 get_debug_type($value2)
             )

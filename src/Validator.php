@@ -10,7 +10,7 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 /**
  * @mixin StaticValidatorInterface
  */
-class Validator
+class Validator implements RuleInterface
 {
     private array $rules;
 
