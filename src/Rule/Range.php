@@ -3,14 +3,15 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\RangeException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\AssertIsComparableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\IsComparableTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Range extends AbstractRule implements RuleInterface
 {
-    use AssertIsComparableTrait;
+    use IsComparableTrait;
 
     private array $options;
 
@@ -31,7 +32,12 @@ class Range extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        $this->assertIsComparable($this->minConstraint, $this->maxConstraint);
+        if (!$this->isComparable($this->minConstraint, $this->maxConstraint)) {
+            throw new UnexpectedComparableException(
+                get_debug_type($this->minConstraint),
+                get_debug_type($this->maxConstraint)
+            );
+        }
 
         if (
             !Validator
