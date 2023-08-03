@@ -68,12 +68,12 @@ class Validator implements RuleInterface
     /**
      * @return RuleInterface[]
      */
-    private function getRules(): array
+    public function getRules(): array
     {
         return $this->rules;
     }
 
-    private function addRule(RuleInterface $rule): self
+    public function addRule(RuleInterface $rule): self
     {
         $this->rules[] = $rule;
 
