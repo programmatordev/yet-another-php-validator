@@ -5,12 +5,12 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\AllException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\AssertIsValidatableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ValidatableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class All extends AbstractRule implements RuleInterface
 {
-    use AssertIsValidatableTrait;
+    use ValidatableTrait;
 
     private array $options;
 
@@ -33,7 +33,11 @@ class All extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        $this->assertIsValidatable($this->constraints);
+        if (!$this->isValidatable($this->constraints)) {
+            throw new UnexpectedValueException(
+                'All constraints must be of type "RuleInterface".'
+            );
+        }
 
         if (!\is_array($value)) {
             throw new UnexpectedValueException(
