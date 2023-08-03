@@ -5,15 +5,13 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule\Util;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
-trait AssertIsValidatableTrait
+trait ValidatableTrait
 {
-    private function assertIsValidatable(array $constraints): bool
+    private function isValidatable(array $constraints): bool
     {
         foreach ($constraints as $constraint) {
             if (!$constraint instanceof RuleInterface) {
-                throw new UnexpectedValueException(
-                    \sprintf('Expected constraint of type "RuleInterface", "%s" given.', get_debug_type($constraint))
-                );
+                return false;
             }
         }
 
