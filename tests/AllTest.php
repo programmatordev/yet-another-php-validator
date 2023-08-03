@@ -24,7 +24,7 @@ class AllTest extends AbstractTest
         yield 'invalid constraint' => [
             new All([new NotBlank(), 'invalid']),
             [1, 2, 3],
-            '/Expected constraint of type "RuleInterface", "(.*)" given./'
+            '/All constraints must be of type "RuleInterface"./'
         ];
         yield 'invalid value type' => [
             new All([new NotBlank()]),
