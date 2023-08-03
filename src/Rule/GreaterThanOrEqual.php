@@ -5,12 +5,12 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanOrEqualException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\IsComparableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GreaterThanOrEqual extends AbstractRule implements RuleInterface
 {
-    use IsComparableTrait;
+    use ComparableTrait;
 
     private array $options;
 
@@ -30,20 +30,23 @@ class GreaterThanOrEqual extends AbstractRule implements RuleInterface
      */
     public function assert(mixed $value, string $name): void
     {
-        if (!$this->isComparable($this->constraint, $value)) {
+        $constraint = $this->convertToComparable($this->constraint);
+        $value = $this->convertToComparable($value);
+
+        if (!$this->isComparable($constraint, $value)) {
             throw new UnexpectedComparableException(
-                get_debug_type($this->constraint),
+                get_debug_type($constraint),
                 get_debug_type($value)
             );
         }
 
-        if (!($value >= $this->constraint)) {
+        if (!($value >= $constraint)) {
             throw new GreaterThanOrEqualException(
                 message: $this->options['message'],
                 parameters: [
                     'value' => $value,
                     'name' => $name,
-                    'constraint' => $this->constraint
+                    'constraint' => $constraint
                 ]
             );
         }

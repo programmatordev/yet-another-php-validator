@@ -5,13 +5,13 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\RangeException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\IsComparableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Range extends AbstractRule implements RuleInterface
 {
-    use IsComparableTrait;
+    use ComparableTrait;
 
     private array $options;
 
@@ -32,17 +32,21 @@ class Range extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        if (!$this->isComparable($this->minConstraint, $this->maxConstraint)) {
+        $minConstraint = $this->convertToComparable($this->minConstraint);
+        $maxConstraint = $this->convertToComparable($this->maxConstraint);
+        $value = $this->convertToComparable($value);
+
+        if (!$this->isComparable($minConstraint, $maxConstraint)) {
             throw new UnexpectedComparableException(
-                get_debug_type($this->minConstraint),
-                get_debug_type($this->maxConstraint)
+                get_debug_type($minConstraint),
+                get_debug_type($maxConstraint)
             );
         }
 
         if (
             !Validator
-                ::greaterThan($this->minConstraint)
-                ->validate($this->maxConstraint)
+                ::greaterThan($minConstraint)
+                ->validate($maxConstraint)
         ) {
             throw new UnexpectedValueException(
                 'Max constraint value must be greater than min constraint value.'
@@ -51,8 +55,8 @@ class Range extends AbstractRule implements RuleInterface
 
         if (
             !Validator
-                ::greaterThanOrEqual($this->minConstraint)
-                ->lessThanOrEqual($this->maxConstraint)
+                ::greaterThanOrEqual($minConstraint)
+                ->lessThanOrEqual($maxConstraint)
                 ->validate($value)
         ) {
             throw new RangeException(
@@ -60,8 +64,8 @@ class Range extends AbstractRule implements RuleInterface
                 parameters: [
                     'value' => $value,
                     'name' => $name,
-                    'minConstraint' => $this->minConstraint,
-                    'maxConstraint' => $this->maxConstraint
+                    'minConstraint' => $minConstraint,
+                    'maxConstraint' => $maxConstraint
                 ]
             );
         }

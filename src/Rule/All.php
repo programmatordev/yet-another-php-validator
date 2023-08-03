@@ -5,12 +5,12 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\AllException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\IsValidatableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ValidatableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class All extends AbstractRule implements RuleInterface
 {
-    use IsValidatableTrait;
+    use ValidatableTrait;
 
     private array $options;
 

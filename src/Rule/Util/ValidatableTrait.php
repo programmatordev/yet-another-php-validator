@@ -5,7 +5,7 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule\Util;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
-trait IsValidatableTrait
+trait ValidatableTrait
 {
     private function isValidatable(array $constraints): bool
     {

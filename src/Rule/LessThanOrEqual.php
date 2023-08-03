@@ -4,12 +4,12 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\LessThanOrEqualException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\IsComparableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LessThanOrEqual extends AbstractRule implements RuleInterface
 {
-    use IsComparableTrait;
+    use ComparableTrait;
 
     private array $options;
 
@@ -29,20 +29,23 @@ class LessThanOrEqual extends AbstractRule implements RuleInterface
      */
     public function assert(mixed $value, string $name): void
     {
-        if (!$this->isComparable($this->constraint, $value)) {
+        $constraint = $this->convertToComparable($this->constraint);
+        $value = $this->convertToComparable($value);
+
+        if (!$this->isComparable($constraint, $value)) {
             throw new UnexpectedComparableException(
-                get_debug_type($this->constraint),
+                get_debug_type($constraint),
                 get_debug_type($value)
             );
         }
 
-        if (!($value <= $this->constraint)) {
+        if (!($value <= $constraint)) {
             throw new LessThanOrEqualException(
                 message: $this->options['message'],
                 parameters: [
                     'value' => $value,
                     'name' => $name,
-                    'constraint' => $this->constraint
+                    'constraint' => $constraint
                 ]
             );
         }
