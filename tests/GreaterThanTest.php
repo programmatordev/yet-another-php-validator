@@ -47,6 +47,8 @@ class GreaterThanTest extends AbstractTest
         yield 'same int with float' => [new GreaterThan(10), 10.0, $exception, $message];
         yield 'string' => [new GreaterThan('z'), 'a', $exception, $message];
         yield 'same string' => [new GreaterThan('a'), 'a', $exception, $message];
+        yield 'empty string' => [new GreaterThan('a'), '', $exception, $message];
+        yield 'same empty string' => [new GreaterThan(''), '', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
@@ -57,6 +59,7 @@ class GreaterThanTest extends AbstractTest
         yield 'float' => [new GreaterThan(10.0), 20.0];
         yield 'int with float' => [new GreaterThan(10), 20.0];
         yield 'string' => [new GreaterThan('a'), 'z'];
+        yield 'empty string' => [new GreaterThan(''), 'a'];
     }
 
     public static function provideRuleMessageOptionData(): \Generator

@@ -41,6 +41,7 @@ class LessThanOrEqualTest extends AbstractTest
         yield 'float' => [new LessThanOrEqual(10.0), 20.0, $exception, $message];
         yield 'int with float' => [new LessThanOrEqual(10), 20.0, $exception, $message];
         yield 'string' => [new LessThanOrEqual('a'), 'z', $exception, $message];
+        yield 'empty string' => [new LessThanOrEqual(''), 'a', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
@@ -57,6 +58,8 @@ class LessThanOrEqualTest extends AbstractTest
         yield 'same int with float' => [new LessThanOrEqual(10), 10.0];
         yield 'string' => [new LessThanOrEqual('z'), 'a'];
         yield 'same string' => [new LessThanOrEqual('a'), 'a'];
+        yield 'empty string' => [new LessThanOrEqual('a'), ''];
+        yield 'same empty string' => [new LessThanOrEqual(''), ''];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
