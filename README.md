@@ -25,7 +25,12 @@ require_once 'vendor/autoload.php';
 Simple usage looks like:
 
 ```php
+use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
+$ageValidator = Validator::notBlank()->greaterThanOrEqual(18);
+
+$ageValidator->validate(16); // returns false
+$ageValidator->assert(16, 'Age'); // throws exception: The "Age" value should be greater than or equal to "18", "16" given.
 ```
 
 ## Documentation

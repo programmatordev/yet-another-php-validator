@@ -44,8 +44,7 @@ class Range extends AbstractRule implements RuleInterface
         }
 
         if (
-            !Validator
-                ::greaterThan($minConstraint)
+            !Validator::greaterThan($minConstraint)
                 ->validate($maxConstraint)
         ) {
             throw new UnexpectedValueException(
@@ -54,8 +53,7 @@ class Range extends AbstractRule implements RuleInterface
         }
 
         if (
-            !Validator
-                ::greaterThanOrEqual($minConstraint)
+            !Validator::greaterThanOrEqual($minConstraint)
                 ->lessThanOrEqual($maxConstraint)
                 ->validate($value)
         ) {
