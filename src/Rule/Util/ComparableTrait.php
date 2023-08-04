@@ -24,9 +24,9 @@ trait ComparableTrait
     private function convertToComparable(mixed $value): mixed
     {
         if (\is_string($value)) {
-            // If is string and has only one char,
+            // If is string and has only one char or is empty,
             // return value to avoid conflicting with DateTime formats
-            if (mb_strlen($value) === 1) {
+            if (\mb_strlen($value) <= 1) {
                 return $value;
             }
 
