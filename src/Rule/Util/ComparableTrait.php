@@ -23,15 +23,10 @@ trait ComparableTrait
 
     private function convertToComparable(mixed $value): mixed
     {
-        if (\is_string($value)) {
-            // If is string and has only one char or is empty,
-            // return value to avoid conflicting with DateTime formats
-            if (\mb_strlen($value) <= 1) {
-                return $value;
-            }
-
-            // Guess if is a DateTime string and convert
-            // (like "yesterday" or "1985-07-19")
+        // Try to guess if it is a valid datetime format,
+        // like "yesterday" or "1985-07-19"
+        // https://www.php.net/manual/en/datetime.formats.php
+        if (\is_string($value) && \mb_strlen($value) > 1) {
             try {
                 return new \DateTimeImmutable($value);
             }
