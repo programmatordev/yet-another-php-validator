@@ -2,19 +2,17 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanOrEqualException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class GreaterThanOrEqual extends AbstractRule implements RuleInterface
+class GreaterThanOrEqual extends AbstractComparisonRule implements RuleInterface
 {
-    use ComparableTrait;
+    protected array $options;
 
-    private array $options;
-
-    public function __construct(private readonly mixed $constraint, array $options = [])
+    public function __construct(
+        protected readonly mixed $constraint,
+        array $options = []
+    )
     {
         $resolver = new OptionsResolver();
 
@@ -25,30 +23,13 @@ class GreaterThanOrEqual extends AbstractRule implements RuleInterface
         $this->options = $resolver->resolve($options);
     }
 
-    /**
-     * @throws GreaterThanOrEqualException
-     */
-    public function assert(mixed $value, string $name): void
+    protected function comparison(mixed $constraint, mixed $value): bool
     {
-        $constraint = $this->convertToComparable($this->constraint);
-        $value = $this->convertToComparable($value);
+        return $value >= $constraint;
+    }
 
-        if (!$this->isComparable($constraint, $value)) {
-            throw new UnexpectedComparableException(
-                get_debug_type($constraint),
-                get_debug_type($value)
-            );
-        }
-
-        if (!($value >= $constraint)) {
-            throw new GreaterThanOrEqualException(
-                message: $this->options['message'],
-                parameters: [
-                    'value' => $value,
-                    'name' => $name,
-                    'constraint' => $constraint
-                ]
-            );
-        }
+    protected function getException(): string
+    {
+        return GreaterThanOrEqualException::class;
     }
 }
