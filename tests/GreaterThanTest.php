@@ -23,7 +23,6 @@ class GreaterThanTest extends AbstractTest
         yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $message];
         yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $message];
         yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $message];
-        yield 'datetime string constraint with string value' => [new GreaterThan('now'), 'a', $message];
         yield 'int constraint with string value' => [new GreaterThan(10), 'a', $message];
         yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $message];
         yield 'array constraint' => [new GreaterThan([10]), 10, $message];
@@ -37,8 +36,6 @@ class GreaterThanTest extends AbstractTest
 
         yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('yesterday'), $exception, $message];
         yield 'same datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('today'), $exception, $message];
-        yield 'datetime string' => [new GreaterThan('today'), 'yesterday', $exception, $message];
-        yield 'same datetime string' => [new GreaterThan('today'), 'today', $exception, $message];
         yield 'int' => [new GreaterThan(10), 1, $exception, $message];
         yield 'same int' => [new GreaterThan(10), 10, $exception, $message];
         yield 'float' => [new GreaterThan(10.0), 1.0, $exception, $message];
@@ -52,7 +49,6 @@ class GreaterThanTest extends AbstractTest
     public static function provideRuleSuccessConditionData(): \Generator
     {
         yield 'datetime' => [new GreaterThan(new \DateTime('today')), new \DateTime('tomorrow')];
-        yield 'datetime string' => [new GreaterThan('today'), 'tomorrow'];
         yield 'int' => [new GreaterThan(10), 20];
         yield 'float' => [new GreaterThan(10.0), 20.0];
         yield 'int with float' => [new GreaterThan(10), 20.0];

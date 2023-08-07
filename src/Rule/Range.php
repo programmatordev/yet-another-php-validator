@@ -32,20 +32,16 @@ class Range extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        $minConstraint = $this->convertToComparable($this->minConstraint);
-        $maxConstraint = $this->convertToComparable($this->maxConstraint);
-        $value = $this->convertToComparable($value);
-
-        if (!$this->isComparable($minConstraint, $maxConstraint)) {
+        if (!$this->isComparable($this->minConstraint, $this->maxConstraint)) {
             throw new UnexpectedComparableException(
-                get_debug_type($minConstraint),
-                get_debug_type($maxConstraint)
+                get_debug_type($this->minConstraint),
+                get_debug_type($this->maxConstraint)
             );
         }
 
         if (
-            !Validator::greaterThan($minConstraint)
-                ->validate($maxConstraint)
+            !Validator::greaterThan($this->minConstraint)
+                ->validate($this->maxConstraint)
         ) {
             throw new UnexpectedValueException(
                 'Max constraint value must be greater than min constraint value.'
@@ -53,8 +49,8 @@ class Range extends AbstractRule implements RuleInterface
         }
 
         if (
-            !Validator::greaterThanOrEqual($minConstraint)
-                ->lessThanOrEqual($maxConstraint)
+            !Validator::greaterThanOrEqual($this->minConstraint)
+                ->lessThanOrEqual($this->maxConstraint)
                 ->validate($value)
         ) {
             throw new RangeException(
@@ -62,8 +58,8 @@ class Range extends AbstractRule implements RuleInterface
                 parameters: [
                     'value' => $value,
                     'name' => $name,
-                    'minConstraint' => $minConstraint,
-                    'maxConstraint' => $maxConstraint
+                    'minConstraint' => $this->minConstraint,
+                    'maxConstraint' => $this->maxConstraint
                 ]
             );
         }

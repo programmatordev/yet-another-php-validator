@@ -23,7 +23,6 @@ class LessThanTest extends AbstractTest
         yield 'datetime constraint with int value' => [new LessThan(new \DateTime()), 10, $message];
         yield 'datetime constraint with float value' => [new LessThan(new \DateTime()), 1.0, $message];
         yield 'datetime constraint with string value' => [new LessThan(new \DateTime()), 'a', $message];
-        yield 'datetime string constraint with string value' => [new LessThan('now'), 'a', $message];
         yield 'int constraint with string value' => [new LessThan(10), 'a', $message];
         yield 'float constraint with string value' => [new LessThan(1.0), 'a', $message];
         yield 'array constraint' => [new LessThan([10]), 10, $message];
@@ -37,8 +36,6 @@ class LessThanTest extends AbstractTest
 
         yield 'datetime' => [new LessThan(new \DateTime('today')), new \DateTime('tomorrow'), $exception, $message];
         yield 'same datetime' => [new LessThan(new \DateTime('today')), new \DateTime('today'), $exception, $message];
-        yield 'datetime string' => [new LessThan('today'), 'tomorrow', $exception, $message];
-        yield 'same datetime string' => [new LessThan('today'), 'today', $exception, $message];
         yield 'int' => [new LessThan(10), 20, $exception, $message];
         yield 'same int' => [new LessThan(10), 10, $exception, $message];
         yield 'float' => [new LessThan(10.0), 20.0, $exception, $message];
@@ -52,7 +49,6 @@ class LessThanTest extends AbstractTest
     public static function provideRuleSuccessConditionData(): \Generator
     {
         yield 'datetime' => [new LessThan(new \DateTime('today')), new \DateTime('yesterday')];
-        yield 'datetime string' => [new LessThan('today'), 'yesterday'];
         yield 'int' => [new LessThan(10), 1];
         yield 'float' => [new LessThan(10.0), 1.0];
         yield 'int with float' => [new LessThan(10), 1.0];

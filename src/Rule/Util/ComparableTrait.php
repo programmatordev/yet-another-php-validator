@@ -20,21 +20,4 @@ trait ComparableTrait
 
         return false;
     }
-
-    private function convertToComparable(mixed $value): mixed
-    {
-        // Try to guess if it is a valid datetime format,
-        // like "yesterday" or "1985-07-19"
-        // https://www.php.net/manual/en/datetime.formats.php
-        if (\is_string($value) && \mb_strlen($value) > 1) {
-            try {
-                return new \DateTimeImmutable($value);
-            }
-            catch (\Exception) {
-                return $value;
-            }
-        }
-
-        return $value;
-    }
 }

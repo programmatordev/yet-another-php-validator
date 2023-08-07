@@ -23,7 +23,6 @@ class LessThanOrEqualTest extends AbstractTest
         yield 'datetime constraint with int value' => [new LessThanOrEqual(new \DateTime()), 10, $message];
         yield 'datetime constraint with float value' => [new LessThanOrEqual(new \DateTime()), 1.0, $message];
         yield 'datetime constraint with string value' => [new LessThanOrEqual(new \DateTime()), 'a', $message];
-        yield 'datetime string constraint with string value' => [new LessThanOrEqual('now'), 'a', $message];
         yield 'int constraint with string value' => [new LessThanOrEqual(10), 'a', $message];
         yield 'float constraint with string value' => [new LessThanOrEqual(1.0), 'a', $message];
         yield 'array constraint' => [new LessThanOrEqual([10]), 10, $message];
@@ -36,7 +35,6 @@ class LessThanOrEqualTest extends AbstractTest
         $message = '/The "(.*)" value should be less than or equal to "(.*)", "(.*)" given./';
 
         yield 'datetime' => [new LessThanOrEqual(new \DateTime('today')), new \DateTime('tomorrow'), $exception, $message];
-        yield 'datetime string' => [new LessThanOrEqual('today'), 'tomorrow', $exception, $message];
         yield 'int' => [new LessThanOrEqual(10), 20, $exception, $message];
         yield 'float' => [new LessThanOrEqual(10.0), 20.0, $exception, $message];
         yield 'int with float' => [new LessThanOrEqual(10), 20.0, $exception, $message];
@@ -47,8 +45,6 @@ class LessThanOrEqualTest extends AbstractTest
     {
         yield 'datetime' => [new LessThanOrEqual(new \DateTime('today')), new \DateTime('yesterday')];
         yield 'same datetime' => [new LessThanOrEqual(new \DateTime('today')), new \DateTime('today')];
-        yield 'datetime string' => [new LessThanOrEqual('today'), 'yesterday'];
-        yield 'same datetime string' => [new LessThanOrEqual('today'), 'today'];
         yield 'int' => [new LessThanOrEqual(10), 1];
         yield 'same int' => [new LessThanOrEqual(10), 10];
         yield 'float' => [new LessThanOrEqual(10.0), 1.0];
