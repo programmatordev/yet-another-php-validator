@@ -23,7 +23,7 @@ class LessThan extends AbstractComparisonRule implements RuleInterface
         $this->options = $resolver->resolve($options);
     }
 
-    protected function comparison(mixed $value1, mixed $value2): bool
+    protected function compareValues(mixed $value1, mixed $value2): bool
     {
         if (\is_string($value1) && \is_string($value2)) {
             return strcmp($value1, $value2) < 0;
