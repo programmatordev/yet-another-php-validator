@@ -25,6 +25,10 @@ class GreaterThan extends AbstractComparisonRule implements RuleInterface
 
     protected function comparison(mixed $constraint, mixed $value): bool
     {
+        if (\is_string($constraint) && \is_string($value)) {
+            return strcmp($value, $constraint) > 0;
+        }
+
         return $value > $constraint;
     }
 
