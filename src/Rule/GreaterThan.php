@@ -23,9 +23,13 @@ class GreaterThan extends AbstractComparisonRule implements RuleInterface
         $this->options = $resolver->resolve($options);
     }
 
-    protected function comparison(mixed $constraint, mixed $value): bool
+    protected function comparison(mixed $value1, mixed $value2): bool
     {
-        return $value > $constraint;
+        if (\is_string($value1) && \is_string($value2)) {
+            return strcmp($value1, $value2) > 0;
+        }
+
+        return $value1 > $value2;
     }
 
     protected function getException(): string
