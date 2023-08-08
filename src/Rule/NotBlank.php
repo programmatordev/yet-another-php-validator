@@ -7,9 +7,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
 class NotBlank extends AbstractRule implements RuleInterface
 {
     // Using array to bypass unallowed callable type in properties
-    private ?array $normalizer = null;
+    private array $normalizer;
 
-    private ?string $message;
+    private string $message;
 
     public function __construct(
         ?callable $normalizer = null,
