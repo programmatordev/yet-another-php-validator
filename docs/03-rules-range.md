@@ -26,7 +26,7 @@ Validator::range(new DateTime('yesterday'), new DateTime('tomorrow'))->validate(
 > Check [`strcmp`](https://www.php.net/manual/en/function.strcmp.php) for more information.
 
 > **Note**
-> An `UnexpectedValueException` will be thrown when trying to compare incomparable values, like a `string` with an `int`
+> An `UnexpectedValueException` will be thrown when trying to compare incomparable values, like a `string` with an `int`.
 
 > **Note**
 > An `UnexpectedValueException` will be thrown when the `minConstraint` value is greater than or equal to the `maxConstraint` value.
