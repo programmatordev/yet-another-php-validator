@@ -3,24 +3,17 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GreaterThan extends AbstractComparisonRule implements RuleInterface
 {
-    protected array $options;
+    protected string $message;
 
     public function __construct(
         protected readonly mixed $constraint,
-        array $options = []
+        ?string $message = null
     )
     {
-        $resolver = new OptionsResolver();
-
-        $resolver->setDefaults(['message' => 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.']);
-
-        $resolver->setAllowedTypes('message', 'string');
-
-        $this->options = $resolver->resolve($options);
+        $this->message = $message ?? 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.';
     }
 
     protected function compareValues(mixed $value1, mixed $value2): bool

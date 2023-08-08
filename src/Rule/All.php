@@ -6,29 +6,22 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\AllException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ValidatableTrait;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class All extends AbstractRule implements RuleInterface
 {
     use ValidatableTrait;
 
-    private array $options;
+    private string $message;
 
     /**
      * @param RuleInterface[] $constraints
      */
     public function __construct(
         private readonly array $constraints,
-        array $options = []
+        ?string $message = null
     )
     {
-        $resolver = new OptionsResolver();
-
-        $resolver->setDefaults(['message' => 'At "{{ key }}": {{ message }}']);
-
-        $resolver->setAllowedTypes('message', 'string');
-
-        $this->options = $resolver->resolve($options);
+        $this->message = $message ?? 'At "{{ key }}": {{ message }}';
     }
 
     public function assert(mixed $value, string $name): void
@@ -45,23 +38,23 @@ class All extends AbstractRule implements RuleInterface
             );
         }
 
-        foreach ($value as $key => $input) {
-            foreach ($this->constraints as $constraint) {
-                try {
+        try {
+            foreach ($value as $key => $input) {
+                foreach ($this->constraints as $constraint) {
                     $constraint->assert($input, $name);
                 }
-                catch (ValidationException $exception) {
-                    throw new AllException(
-                        message: $this->options['message'],
-                        parameters: [
-                            'value' => $value,
-                            'name' => $name,
-                            'key' => $key,
-                            'message' => $exception->getMessage()
-                        ]
-                    );
-                }
             }
+        }
+        catch (ValidationException $exception) {
+            throw new AllException(
+                message: $this->message,
+                parameters: [
+                    'value' => $value,
+                    'name' => $name,
+                    'key' => $key,
+                    'message' => $exception->getMessage()
+                ]
+            );
         }
     }
 }

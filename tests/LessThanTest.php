@@ -60,10 +60,10 @@ class LessThanTest extends AbstractTest
         yield 'message' => [
             new LessThan(
                 constraint: 10,
-                options: [
-                    'message' => 'The "{{ name }}" value "{{ value }}" is not less than "{{ constraint }}".'
-                ]
-            ), 20, 'The "test" value "20" is not less than "10".'
+                message: 'The "{{ name }}" value "{{ value }}" is not less than "{{ constraint }}".'
+            ),
+            20,
+            'The "test" value "20" is not less than "10".'
         ];
     }
 }

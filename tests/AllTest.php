@@ -84,10 +84,10 @@ class AllTest extends AbstractTest
         yield 'constraint' => [
             new All(
                 constraints: [new NotBlank()],
-                options: [
-                    'message' => 'The "{{ name }}" value "{{ value }}" failed at key "{{ key }}".'
-                ]
-            ), [1, 2, ''], 'The "test" value "[1, 2, ]" failed at key "2".'
+                message: 'The "{{ name }}" value "{{ value }}" failed at key "{{ key }}".'
+            ),
+            [1, 2, ''],
+            'The "test" value "[1, 2, ]" failed at key "2".'
         ];
     }
 }

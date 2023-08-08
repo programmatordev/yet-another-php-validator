@@ -7,27 +7,20 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableExcepti
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Range extends AbstractRule implements RuleInterface
 {
     use ComparableTrait;
 
-    private array $options;
+    private string $message;
 
     public function __construct(
         private readonly mixed $minConstraint,
         private readonly mixed $maxConstraint,
-        array $options = []
+        ?string $message = null
     )
     {
-        $resolver = new OptionsResolver();
-
-        $resolver->setDefaults(['message' => 'The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.']);
-
-        $resolver->setAllowedTypes('message', 'string');
-
-        $this->options = $resolver->resolve($options);
+        $this->message = $message ?? 'The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.';
     }
 
     public function assert(mixed $value, string $name): void
@@ -54,7 +47,7 @@ class Range extends AbstractRule implements RuleInterface
                 ->validate($value)
         ) {
             throw new RangeException(
-                message: $this->options['message'],
+                message: $this->message,
                 parameters: [
                     'value' => $value,
                     'name' => $name,

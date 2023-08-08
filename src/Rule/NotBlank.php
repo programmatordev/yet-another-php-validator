@@ -3,25 +3,21 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NotBlank extends AbstractRule implements RuleInterface
 {
-    private array $options;
+    // Using array to bypass unallowed callable type in properties
+    private array $normalizer;
 
-    public function __construct(array $options = [])
+    private string $message;
+
+    public function __construct(
+        ?callable $normalizer = null,
+        ?string $message = null
+    )
     {
-        $resolver = new OptionsResolver();
-
-        $resolver->setDefaults([
-            'normalizer' => null,
-            'message' => 'The "{{ name }}" value should not be blank, "{{ value }}" given.'
-        ]);
-
-        $resolver->setAllowedTypes('normalizer', ['null', 'callable']);
-        $resolver->setAllowedTypes('message', 'string');
-
-        $this->options = $resolver->resolve($options);
+        $this->normalizer['callable'] = $normalizer;
+        $this->message = $message ?? 'The "{{ name }}" value should not be blank, "{{ value }}" given.';
     }
 
     /**
@@ -33,14 +29,14 @@ class NotBlank extends AbstractRule implements RuleInterface
         $input = $value;
 
         // Call normalizer if provided
-        if ($this->options['normalizer'] !== null) {
-            $input = ($this->options['normalizer'])($input);
+        if ($this->normalizer['callable'] !== null) {
+            $input = ($this->normalizer['callable'])($input);
         }
 
         // Do not allow null, false, [] and ''
         if ($input === false || (empty($input) && $input != '0')) {
             throw new NotBlankException(
-                message: $this->options['message'],
+                message: $this->message,
                 parameters: [
                     'value' => $value,
                     'name' => $name

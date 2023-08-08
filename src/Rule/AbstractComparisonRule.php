@@ -20,7 +20,7 @@ abstract class AbstractComparisonRule extends AbstractRule
 
         if (!$this->compareValues($value, $this->constraint)) {
             throw new ($this->getException())(
-                message: $this->options['message'],
+                message: $this->message,
                 parameters: [
                     'value' => $value,
                     'name' => $name,
