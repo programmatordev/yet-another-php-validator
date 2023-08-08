@@ -6,14 +6,14 @@ Can compare between strings, numbers and dates.
 ## Basic Usage
 
 ```php
-Validator::greaterThan(10)->validate(20); // true
-Validator::greaterThan(10)->validate(10); // true
-Validator::greaterThan(1.5)->validate(2.5); // true
-Validator::greaterThan(1.5)->validate(1.5); // true
-Validator::greaterThan('alpha')->validate('beta'); // true
-Validator::greaterThan('alpha')->validate('alpha'); // true
-Validator::greaterThan(new DateTime('today'))->validate(new DateTime('tomorrow')); // true
-Validator::greaterThan(new DateTime('today'))->validate(new DateTime('today')); // true
+Validator::greaterThanOrEqual(10)->validate(20); // true
+Validator::greaterThanOrEqual(10)->validate(10); // true
+Validator::greaterThanOrEqual(1.5)->validate(2.5); // true
+Validator::greaterThanOrEqual(1.5)->validate(1.5); // true
+Validator::greaterThanOrEqual('alpha')->validate('beta'); // true
+Validator::greaterThanOrEqual('alpha')->validate('alpha'); // true
+Validator::greaterThanOrEqual(new DateTime('today'))->validate(new DateTime('tomorrow')); // true
+Validator::greaterThanOrEqual(new DateTime('today'))->validate(new DateTime('today')); // true
 ```
 
 > **Note**
