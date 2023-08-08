@@ -18,7 +18,7 @@ abstract class AbstractComparisonRule extends AbstractRule
             );
         }
 
-        if (!$this->comparison($value, $this->constraint)) {
+        if (!$this->compareValues($value, $this->constraint)) {
             throw new ($this->getException())(
                 message: $this->options['message'],
                 parameters: [
@@ -30,7 +30,7 @@ abstract class AbstractComparisonRule extends AbstractRule
         }
     }
 
-    protected abstract function comparison(mixed $value1, mixed $value2): bool;
+    protected abstract function compareValues(mixed $value1, mixed $value2): bool;
 
     protected abstract function getException(): string;
 }
