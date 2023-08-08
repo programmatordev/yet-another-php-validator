@@ -30,7 +30,7 @@ Each element must implement a `RuleInterface`, so it is possible to use a single
 
 type: `string` default: `At "{{ key }}": {{ message }}`
 
-Message that will be shown if at least one element of an array is invalid according to the given constraints.
+Message that will be shown if at least one element of an array is invalid according to the given `constraints`.
 Check the [Custom Messages]() section for more information.
 
 ```php
@@ -40,9 +40,9 @@ Validator::all([Validator::notBlank()])->assert([1, 2, ''], 'Test');
 
 The following parameters are available:
 
-| Parameter       | Description                           |
-|-----------------|---------------------------------------|
-| `{{ value }}`   | The current invalid array value       |
-| `{{ name }}`    | Name of the value being validated     |
-| `{{ key }}`     | The array key of the invalid value    |
-| `{{ message }}` | The rule message of the invalid value |
+| Parameter       | Description                                   |
+|-----------------|-----------------------------------------------|
+| `{{ value }}`   | The current invalid value                     |
+| `{{ name }}`    | Name of the value being validated             |
+| `{{ key }}`     | The array key of the invalid array element    |
+| `{{ message }}` | The rule message of the invalid array element |
