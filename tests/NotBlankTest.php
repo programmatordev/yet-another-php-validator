@@ -24,7 +24,8 @@ class NotBlankTest extends AbstractTest
         yield 'blank string' => [new NotBlank(), '', $exception, $exceptionMessage];
         yield 'blank array' => [new NotBlank(), [], $exception, $exceptionMessage];
 
-        yield 'normalizer whitespace' => [new NotBlank(['normalizer' => 'trim']), ' ', $exception, $exceptionMessage];
+        yield 'normalizer whitespace' => [new NotBlank(normalizer: 'trim'), ' ', $exception, $exceptionMessage];
+        yield 'normalizer whitespace function' => [new NotBlank(normalizer: fn($value) => trim($value)), ' ', $exception, $exceptionMessage];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
@@ -47,11 +48,9 @@ class NotBlankTest extends AbstractTest
     public static function provideRuleMessageOptionData(): \Generator
     {
         yield 'message' => [
-            new NotBlank(
-                options: [
-                    'message' => 'The "{{ name }}" value "{{ value }}" is not blank.'
-                ]
-            ), '', 'The "test" value "" is not blank.'
+            new NotBlank(message: 'The "{{ name }}" value "{{ value }}" is not blank.'),
+            '',
+            'The "test" value "" is not blank.'
         ];
     }
 }
