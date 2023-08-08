@@ -75,10 +75,10 @@ class RangeTest extends AbstractTest
             new Range(
                 minConstraint: 10,
                 maxConstraint: 20,
-                options: [
-                    'message' => 'The "{{ name }}" value "{{ value }}" should be between "{{ minConstraint }}" and "{{ maxConstraint }}".'
-                ]
-            ), 30, 'The "test" value "30" should be between "10" and "20".'
+                message: 'The "{{ name }}" value "{{ value }}" should be between "{{ minConstraint }}" and "{{ maxConstraint }}".'
+            ),
+            30,
+            'The "test" value "30" should be between "10" and "20".'
         ];
     }
 }
