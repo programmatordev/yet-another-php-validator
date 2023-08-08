@@ -1,6 +1,7 @@
 # GreaterThan
 
-Validates that a value is greater than another value. Can compare between strings, numbers and dates.
+Validates that a value is greater than another value. 
+Can compare between strings, numbers and dates.
 
 ## Basic Usage
 
@@ -24,7 +25,8 @@ Validator::greaterThan(new DateTime('today'))->validate(new DateTime('tomorrow')
 
 type: `mixed` `required`
 
-It defines the comparison/minimum value. Can be a `string`, `int`, `float` or `DateTimeInterface` object.
+It defines the comparison/minimum value. 
+Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
