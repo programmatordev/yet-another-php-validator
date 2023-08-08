@@ -36,7 +36,8 @@ Validator::notBlank(normalizer: fn($value) => trim($value))->validate(' '); // f
 
 type: `string` default: `The "{{ name }}" value should not be blank, "{{ value }}" given.`
 
-Message that will be shown if the value is blank. Check the [Custom Messages]() section for more information.
+Message that will be shown if the value is blank. 
+Check the [Custom Messages]() section for more information.
 
 The following parameters are available:
 
