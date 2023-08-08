@@ -39,8 +39,8 @@ Check the [Custom Messages]() section for more information.
 
 The following parameters are available:
 
-| Parameter          | Description                        |
-|--------------------|------------------------------------|
-| `{{ value }}`      | The current invalid value          |
-| `{{ name }}`       | Name of the value being validated  |
-| `{{ constraint }}` | The comparison/minimum value       |
+| Parameter          | Description                       |
+|--------------------|-----------------------------------|
+| `{{ value }}`      | The current invalid value         |
+| `{{ name }}`       | Name of the value being validated |
+| `{{ constraint }}` | The comparison value              |
