@@ -64,39 +64,39 @@ class ChoiceTest extends AbstractTest
         yield 'message' => [
             new Choice(
                 constraints: $constraints,
-                options: [
-                    'message' => 'The "{{ name }}" value "{{ value }}" is not a valid choice.'
-                ]
-            ), 10, 'The "test" value "10" is not a valid choice.'
+                message: 'The "{{ name }}" value "{{ value }}" is not a valid choice.'
+            ),
+            10,
+            'The "test" value "10" is not a valid choice.'
         ];
         yield 'multiple message' => [
             new Choice(
                 constraints: $constraints,
                 multiple: true,
-                options: [
-                    'multipleMessage' => 'The "{{ name }}" value "{{ value }}" is not a valid choice.'
-                ]
-            ), [10], 'The "test" value "[10]" is not a valid choice.'
+                multipleMessage: 'The "{{ name }}" value "{{ value }}" is not a valid choice.'
+            ),
+            [10],
+            'The "test" value "[10]" is not a valid choice.'
         ];
         yield 'min message' => [
             new Choice(
                 constraints: $constraints,
                 multiple: true,
                 minConstraint: 2,
-                options: [
-                    'minMessage' => 'The "{{ name }}" value should have at least {{ minConstraint }} choices.'
-                ]
-            ), [1], 'The "test" value should have at least 2 choices.'
+                minMessage: 'The "{{ name }}" value should have at least {{ minConstraint }} choices.'
+            ),
+            [1],
+            'The "test" value should have at least 2 choices.'
         ];
         yield 'max message' => [
             new Choice(
                 constraints: $constraints,
                 multiple: true,
                 maxConstraint: 2,
-                options: [
-                    'maxMessage' => 'The "{{ name }}" value should have at most {{ maxConstraint }} choices.'
-                ]
-            ), [1, 2, 3], 'The "test" value should have at most 2 choices.'
+                maxMessage: 'The "{{ name }}" value should have at most {{ maxConstraint }} choices.'
+            ),
+            [1, 2, 3],
+            'The "test" value should have at most 2 choices.'
         ];
     }
 
