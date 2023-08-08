@@ -14,12 +14,12 @@ class NotBlank extends AbstractRule implements RuleInterface
         $resolver = new OptionsResolver();
 
         $resolver->setDefaults([
-            'message' => 'The "{{ name }}" value should not be blank, "{{ value }}" given.',
-            'normalizer' => null
+            'normalizer' => null,
+            'message' => 'The "{{ name }}" value should not be blank, "{{ value }}" given.'
         ]);
 
-        $resolver->setAllowedTypes('message', 'string');
         $resolver->setAllowedTypes('normalizer', ['null', 'callable']);
+        $resolver->setAllowedTypes('message', 'string');
 
         $this->options = $resolver->resolve($options);
     }

@@ -1,6 +1,8 @@
-# Yet Another PHP Validator
+# Get Started
 
-Versatile library focused on validating development code with expressive error messages.
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
 
 ## Requirements
 
@@ -37,24 +39,12 @@ $validator = new Validator(
     new Rule\GreaterThanOrEqual(18)
 );
 
+// ...or even this...
+$validator = (new Validator())
+    ->addRule(new Rule\NotBlank())
+    ->addRule(new Rule\GreaterThanOrEqual(18));
+
 // ...and validate with these:
 $validator->validate(16); // returns bool: false
 $validator->assert(16, 'Age'); // throws exception: The "Age" value should be greater than or equal to "18", "16" given.
 ```
-
-## Documentation
-
-
-## Contributing
-
-Any form of contribution to improve this library will be welcome and appreciated.
-Make sure to open a pull request or issue.
-
-## Acknowledgments
-
-This library is inspired by [Respect's Validation](https://github.com/Respect/Validation) and [Symfony's Validator](https://symfony.com/doc/current/validation.html).
-
-## License
-
-This project is licensed under the MIT license.
-Please see the [LICENSE](LICENSE) file distributed with this source code for further information regarding copyright and licensing.
