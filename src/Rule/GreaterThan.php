@@ -6,15 +6,10 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
 
 class GreaterThan extends AbstractComparisonRule implements RuleInterface
 {
-    protected string $message;
-
     public function __construct(
         protected readonly mixed $constraint,
-        ?string $message = null
-    )
-    {
-        $this->message = $message ?? 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.';
-    }
+        protected readonly string $message = 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.'
+    ) {}
 
     protected function compareValues(mixed $value1, mixed $value2): bool
     {

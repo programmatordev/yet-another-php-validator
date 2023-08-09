@@ -7,30 +7,16 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 
 class Choice extends AbstractRule implements RuleInterface
 {
-    private string $message;
-
-    private string $multipleMessage;
-
-    private string $minMessage;
-
-    private string $maxMessage;
-
     public function __construct(
         private readonly array $constraints,
         private readonly bool $multiple = false,
         private readonly ?int $minConstraint = null,
         private readonly ?int $maxConstraint = null,
-        ?string $message = null,
-        ?string $multipleMessage = null,
-        ?string $minMessage = null,
-        ?string $maxMessage = null
-    )
-    {
-        $this->message = $message ?? 'The "{{ name }}" value is not a valid choice, "{{ value }}" given. Accepted values are: "{{ constraints }}".';
-        $this->multipleMessage = $multipleMessage ?? 'The "{{ name }}" value has one or more invalid choices, "{{ value }}" given. Accepted values are: "{{ constraints }}".';
-        $this->minMessage = $minMessage ?? 'The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.';
-        $this->maxMessage = $maxMessage ?? 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.';
-    }
+        private readonly string $message = 'The "{{ name }}" value is not a valid choice, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
+        private readonly string $multipleMessage = 'The "{{ name }}" value has one or more invalid choices, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
+        private readonly string $minMessage = 'The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
+        private readonly string $maxMessage = 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+    ) {}
 
     public function assert(mixed $value, string $name): void
     {
