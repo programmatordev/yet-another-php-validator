@@ -45,7 +45,8 @@ type: `string` default: `At "{{ key }}": {{ message }}`
 Message that will be shown if at least one element of an array is invalid according to the given `constraints`.
 
 ```php
-Validator::all([Validator::notBlank()])->assert(['red', 'green', ''], 'Test'); // At "2": The "Test" value should not be blank, "" given.
+Validator::all([Validator::notBlank()])->assert(['red', 'green', ''], 'Test'); 
+// Throws: At "2": The "Test" value should not be blank, "" given.
 ```
 
 The following parameters are available:
