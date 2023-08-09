@@ -11,18 +11,13 @@ class All extends AbstractRule implements RuleInterface
 {
     use ValidatableTrait;
 
-    private string $message;
-
     /**
      * @param RuleInterface[] $constraints
      */
     public function __construct(
         private readonly array $constraints,
-        ?string $message = null
-    )
-    {
-        $this->message = $message ?? 'At "{{ key }}": {{ message }}';
-    }
+        private readonly string $message = 'At "{{ key }}": {{ message }}'
+    ) {}
 
     public function assert(mixed $value, string $name): void
     {
