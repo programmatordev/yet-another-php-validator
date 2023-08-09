@@ -32,20 +32,13 @@ class Range extends AbstractRule implements RuleInterface
             );
         }
 
-        if (
-            !Validator::greaterThan($this->minConstraint)
-                ->validate($this->maxConstraint)
-        ) {
+        if (!Validator::greaterThan($this->minConstraint)->validate($this->maxConstraint)) {
             throw new UnexpectedValueException(
                 'Max constraint value must be greater than min constraint value.'
             );
         }
 
-        if (
-            !Validator::greaterThanOrEqual($this->minConstraint)
-                ->lessThanOrEqual($this->maxConstraint)
-                ->validate($value)
-        ) {
+        if (!Validator::greaterThanOrEqual($this->minConstraint)->lessThanOrEqual($this->maxConstraint)->validate($value)) {
             throw new RangeException(
                 message: $this->message,
                 parameters: [
