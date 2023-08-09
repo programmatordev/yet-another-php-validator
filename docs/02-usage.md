@@ -62,7 +62,7 @@ function getWeatherTemperature(float $latitude, float $longitude, string $unitSy
 
 ### `assert`
 
-This method throws a `ValidationException` when the first rule fails, otherwise nothing is returned.
+This method throws a `ValidationException` when a rule fails, otherwise nothing is returned.
 
 ```php
 /**
@@ -190,7 +190,7 @@ function calculateDiscount(float $price, float $discount, string $type): float
 All rules have at least one error message that can be customized (some rules have more than one error message for different case scenarios).
 
 Every message has a list of dynamic parameters to help create an intuitive error text (like the invalid value, constraints, names, and others).
-To check what parameters and messages are available, look into the Options section in the page of the rule you are looking for. 
+To check what parameters and messages are available, look into the Options section in the page of a rule. 
 Go to [Rules](03-rules.md) to see all available rules.
 
 The following example uses the [Choice](03x-rules-choice.md) rule with a custom error message:
