@@ -1,9 +1,9 @@
 # Rules
 
-- [Basic Constraints](#basic-rules)
-- [Comparison Constraints](#comparison-rules)
-- [Choice Constraints](#choice-rules)
-- [Array Constraints](#array-rules)
+- [Basic Rules](#basic-rules)
+- [Comparison Rules](#comparison-rules)
+- [Choice Rules](#choice-rules)
+- [Array Rules](#array-rules)
 
 ## Basic Rules
 
