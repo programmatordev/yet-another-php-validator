@@ -2,6 +2,13 @@
 
 Validates that a value is not equal to a blank string, blank array, `false` or `null`.
 
+```php
+NotBlank(
+    ?callable $normalizer = null,
+    string $message = 'The "{{ name }}" value should not be blank, "{{ value }}" given.'
+);
+```
+
 ## Basic Usage
 
 Bellow are the only cases where the rule will fail, everything else is considered valid 
@@ -36,8 +43,7 @@ Validator::notBlank(normalizer: fn($value) => trim($value))->validate(' '); // f
 
 type: `string` default: `The "{{ name }}" value should not be blank, "{{ value }}" given.`
 
-Message that will be shown if the value is blank. 
-Check the [Custom Messages]() section for more information.
+Message that will be shown if the value is blank.
 
 The following parameters are available:
 

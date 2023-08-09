@@ -3,6 +3,14 @@
 Validates that a value is between a minimum and maximum value.
 Can compare between strings, numbers and dates.
 
+```php
+Range(
+    mixed $minConstraint,
+    mixed $maxConstraint,
+    string $message = 'The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.'
+);
+```
+
 ## Basic Usage
 
 Values equal to the defined minimum and maximum constraints are considered valid.

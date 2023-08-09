@@ -3,15 +3,25 @@
 Validates that a value is less than or equal to another value. 
 Can compare between strings, numbers and dates.
 
+```php
+LessThanOrEqual(
+    mixed $constraint,
+    string $message = 'The "{{ name }}" value should be less than or equal to "{{ constraint }}", "{{ value }}" given.'
+);
+```
+
 ## Basic Usage
 
 ```php
 Validator::lessThanOrEqual(20)->validate(10); // true
 Validator::lessThanOrEqual(10)->validate(10); // true
+
 Validator::lessThanOrEqual(2.5)->validate(1.5); // true
 Validator::lessThanOrEqual(1.5)->validate(1.5); // true
+
 Validator::lessThanOrEqual('beta')->validate('alpha'); // true
 Validator::lessThanOrEqual('alpha')->validate('alpha'); // true
+
 Validator::lessThanOrEqual(new DateTime('today'))->validate(new DateTime('yesterday')); // true
 Validator::lessThanOrEqual(new DateTime('today'))->validate(new DateTime('today')); // true
 ```
@@ -37,7 +47,6 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 type: `string` default: `The "{{ name }}" value should be less than or equal to "{{ constraint }}", "{{ value }}" given.`
 
 Message that will be shown if the value is not less than or equal to the constraint value.
-Check the [Custom Messages]() section for more information.
 
 The following parameters are available:
 

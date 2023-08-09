@@ -3,15 +3,25 @@
 Validates that a value is greater than or equal to another value. 
 Can compare between strings, numbers and dates.
 
+```php
+GreaterThanOrEqual(
+    mixed $constraint,
+    string $message = 'The "{{ name }}" value should be greater than or equal to "{{ constraint }}", "{{ value }}" given.'
+);
+```
+
 ## Basic Usage
 
 ```php
 Validator::greaterThanOrEqual(10)->validate(20); // true
 Validator::greaterThanOrEqual(10)->validate(10); // true
+
 Validator::greaterThanOrEqual(1.5)->validate(2.5); // true
 Validator::greaterThanOrEqual(1.5)->validate(1.5); // true
+
 Validator::greaterThanOrEqual('alpha')->validate('beta'); // true
 Validator::greaterThanOrEqual('alpha')->validate('alpha'); // true
+
 Validator::greaterThanOrEqual(new DateTime('today'))->validate(new DateTime('tomorrow')); // true
 Validator::greaterThanOrEqual(new DateTime('today'))->validate(new DateTime('today')); // true
 ```
@@ -36,8 +46,7 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 type: `string` default: `The "{{ name }}" value should be greater than or equal to "{{ constraint }}", "{{ value }}" given.`
 
-Message that will be shown if the value is not greater than or equal to the constraint value. 
-Check the [Custom Messages]() section for more information.
+Message that will be shown if the value is not greater than or equal to the constraint value.
 
 The following parameters are available:
 
