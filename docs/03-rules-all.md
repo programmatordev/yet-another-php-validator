@@ -1,6 +1,6 @@
 ## All
 
-Validates every element of an `array` with a set of rules.
+Validates every element of an `array` with a given set of rules.
 
 ## Basic Usage
 
