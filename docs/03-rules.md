@@ -3,7 +3,7 @@
 - [Basic Rules](#basic-rules)
 - [Comparison Rules](#comparison-rules)
 - [Choice Rules](#choice-rules)
-- [Array Rules](#array-rules)
+- [Other Rules](#other-rules)
 
 ## Basic Rules
 
@@ -21,6 +21,6 @@
 
 - [Choice](03x-rules-choice.md)
 
-## Array Rules
+## Other Rules
 
 - [All](03x-rules-all.md)
