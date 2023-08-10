@@ -1,6 +1,10 @@
 # Yet Another PHP Validator
 
-Versatile library focused on validating development code with expressive error messages.
+Versatile validator focused on validating development code with expressive error messages.
+
+> **Note**
+> This library is not in version 1.x mainly because there are so few available rules.
+> Hopefully, that should change in the near future.
 
 ## Requirements
 
@@ -44,6 +48,14 @@ $validator->assert(16, 'Age'); // throws exception: The "Age" value should be gr
 
 ## Documentation
 
+- [Get Started](docs/01-get-started.md)
+- [Usage](docs/02-usage.md)
+  - [Usage](docs/02-usage.md#usage)
+  - [Methods](docs/02-usage.md#methods)
+  - [Error Handling](docs/02-usage.md#error-handling)
+  - [Custom Error Messages](docs/02-usage.md#custom-error-messages)
+- [Rules](docs/03-rules.md)
+- [Custom Rules](docs/04-custom-rules.md)
 
 ## Contributing
 
@@ -52,7 +64,7 @@ Make sure to open a pull request or issue.
 
 ## Acknowledgments
 
-This library is inspired by [Respect's Validation](https://github.com/Respect/Validation) and [Symfony's Validator](https://symfony.com/doc/current/validation.html).
+This library is inspired by [respect/validation](https://github.com/Respect/Validation) and [symfony/validator](https://symfony.com/doc/current/validation.html).
 
 ## License
 

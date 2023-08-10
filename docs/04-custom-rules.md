@@ -88,8 +88,6 @@ This means that you can have dynamic content in your messages.
 To make it work, just pass an associative array with the name and value of your parameters, and they will be available in the message:
 
 ```php
-class FavoriteException extends ValidationException {}
-
 class Favorite extends AbstractRule implements RuleInterface
 {
     public function __construct(
@@ -105,7 +103,7 @@ class Favorite extends AbstractRule implements RuleInterface
                     'name' => $name,
                     'favorite' => $this->favorite,
                     'value' => $value
-                ]               
+                ]
             )
         }
     }

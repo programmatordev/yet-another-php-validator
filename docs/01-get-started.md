@@ -33,18 +33,13 @@ use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 // Do this...
 $validator = Validator::notBlank()->greaterThanOrEqual(18);
 
-// ...or this...
+// Or this...
 $validator = new Validator(
     new Rule\NotBlank(), 
     new Rule\GreaterThanOrEqual(18)
 );
 
-// ...or even this...
-$validator = (new Validator())
-    ->addRule(new Rule\NotBlank())
-    ->addRule(new Rule\GreaterThanOrEqual(18));
-
-// ...and validate with these:
+// Validate with these:
 $validator->validate(16); // returns bool: false
 $validator->assert(16, 'Age'); // throws exception: The "Age" value should be greater than or equal to "18", "16" given.
 ```

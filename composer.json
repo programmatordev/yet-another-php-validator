@@ -1,6 +1,6 @@
 {
     "name": "programmatordev/yet-another-php-validator",
-    "description": "PHP Validator",
+    "description": "Versatile validator focused on validating development code with expressive error messages.",
     "type": "library",
     "keywords": ["PHP", "Validator", "Validation"],
     "license": "MIT",
