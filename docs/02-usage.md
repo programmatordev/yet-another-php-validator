@@ -228,7 +228,8 @@ catch (ValidationException $exception) {
 }
 ```
 
-An `UnexpectedValueException` is thrown when the provided input data is not valid to perform the validation. 
+When using both the [`assert`](#assert) or [`validate`](#validate) methods, an `UnexpectedValueException` is thrown when the provided input data is not valid to perform the validation. 
+
 For example, when trying to compare a date with a string:
 
 ```php
@@ -242,8 +243,6 @@ catch (UnexpectedValueException $exception) {
     echo $exception->getMessage(); // Cannot compare a type "string" with a type "DateTime".
 }
 ```
-
-This exception is thrown when using [`assert`](#assert) or [`validate`](#validate).
 
 ## Custom Error Messages
 
