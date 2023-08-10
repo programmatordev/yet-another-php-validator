@@ -64,9 +64,9 @@ Check the [Custom Messages]() section for more information.
 
 The following parameters are available:
 
-| Parameter             | Description                       |
-|-----------------------|-----------------------------------|
-| `{{ value }}`         | The current invalid value         |
-| `{{ name }}`          | Name of the value being validated |
-| `{{ minConstraint }}` | The minimum range value           |
-| `{{ maxConstraint }}` | The maximum range value           |
+| Parameter             | Description               |
+|-----------------------|---------------------------|
+| `{{ value }}`         | The current invalid value |
+| `{{ name }}`          | Name of the invalid value |
+| `{{ minConstraint }}` | The minimum range value   |
+| `{{ maxConstraint }}` | The maximum range value   |

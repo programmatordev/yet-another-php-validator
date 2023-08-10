@@ -47,7 +47,7 @@ Message that will be shown if the value is blank.
 
 The following parameters are available:
 
-| Parameter     | Description                       |
-|---------------|-----------------------------------|
-| `{{ value }}` | The current invalid value         |
-| `{{ name }}`  | Name of the value being validated |
+| Parameter     | Description               |
+|---------------|---------------------------|
+| `{{ value }}` | The current invalid value |
+| `{{ name }}`  | Name of the invalid value |

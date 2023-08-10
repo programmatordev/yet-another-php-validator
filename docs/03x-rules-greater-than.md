@@ -50,8 +50,8 @@ Message that will be shown if the value is not greater than the constraint value
 
 The following parameters are available:
 
-| Parameter          | Description                       |
-|--------------------|-----------------------------------|
-| `{{ value }}`      | The current invalid value         |
-| `{{ name }}`       | Name of the value being validated |
-| `{{ constraint }}` | The comparison value              |
+| Parameter          | Description               |
+|--------------------|---------------------------|
+| `{{ value }}`      | The current invalid value |
+| `{{ name }}`       | Name of the invalid value |
+| `{{ constraint }}` | The comparison value      |
