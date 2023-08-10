@@ -39,11 +39,11 @@ class CustomRule extends AbstractRule implements RuleInterface
 ...and finally, you need to throw your custom exception when your validation fails, so it looks something like the following:
 
 ```php
-namespace My\Project\Rules;
+namespace My\Project\Rule;
 
-use My\Project\Exception\CustomRuleException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use My\Project\Exception\CustomRuleException;
 
 class CustomRule extends AbstractRule implements RuleInterface
 {
