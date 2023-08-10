@@ -189,7 +189,7 @@ function calculateDiscount(float $price, float $discount, string $type): float
 
 When using the [`assert`](#assert) method to validate a value, an exception is thrown when a rule fails.
 
-Each rule has a unique exception, formed by the name of the rule plus Exception — `RuleNameException`.
+Each rule has a unique exception, formed by the name of the rule followed by the work Exception — `RuleNameException`.
 The following shows an example:
 
 ```php
