@@ -1,8 +1,8 @@
 {
     "name": "programmatordev/yet-another-php-validator",
-    "description": "Versatile validator focused on validating development code with expressive error messages.",
+    "description": "Versatile validator focused on validating development code with expressive error messages",
     "type": "library",
-    "keywords": ["PHP", "Validator", "Validation"],
+    "keywords": ["PHP", "PHP8", "Validator", "Validation"],
     "license": "MIT",
     "authors": [
         {
