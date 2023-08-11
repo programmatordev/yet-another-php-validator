@@ -64,7 +64,7 @@ Make sure to open a pull request or issue.
 
 ## Acknowledgments
 
-This library is inspired by [respect/validation](https://github.com/Respect/Validation) and [symfony/validator](https://symfony.com/doc/current/validation.html).
+This library is inspired by [respect/validation](https://github.com/Respect/Validation) and [symfony/validator](https://github.com/symfony/validator).
 
 ## License
 
