@@ -27,7 +27,7 @@ Validator::greaterThanOrEqual(new DateTime('today'))->validate(new DateTime('tod
 ```
 
 > **Note**
-> String comparison is case-sensitive, meaning that comparing `'hello'` with `'Hello'` is different.
+> String comparison is case-sensitive, meaning that comparing `"hello"` with `"Hello"` is different.
 > Check [`strcmp`](https://www.php.net/manual/en/function.strcmp.php) for more information.
 
 > **Note**

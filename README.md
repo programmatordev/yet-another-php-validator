@@ -3,8 +3,8 @@
 Versatile validator focused on validating development code with expressive error messages.
 
 > **Note**
-> This library is not in version 1.x mainly because there are so few available rules.
-> Hopefully, that should change in the near future.
+> This library is not in version 1.x mainly because there are few available rules.
+> Hopefully, that will change in the near future.
 
 ## Requirements
 
@@ -59,7 +59,7 @@ $validator->assert(16, 'Age'); // throws exception: The "Age" value should be gr
 
 ## Contributing
 
-Any form of contribution to improve this library will be welcome and appreciated.
+Any form of contribution to improve this library (including requests) will be welcome and appreciated.
 Make sure to open a pull request or issue.
 
 ## Acknowledgments

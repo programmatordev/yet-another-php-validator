@@ -51,7 +51,7 @@ Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2, ma
 
 type: `array` `required`
 
-Collection of choices to be validated against the input value.
+Collection of constraint choices to be validated against the input value.
 
 ### `multiple`
 

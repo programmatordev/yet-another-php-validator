@@ -11,8 +11,8 @@ NotBlank(
 
 ## Basic Usage
 
-Bellow are the only cases where the rule will fail, everything else is considered valid 
-(you may want to check the [`normalizer`](#normalizer) option for a different behaviour):
+Bellow are the only cases where the rule will fail, 
+everything else is considered valid (you may want to check the [`normalizer`](#normalizer) option for a different behaviour):
 
 ```php
 Validator::notBlank()->validate(''); // false
@@ -29,7 +29,7 @@ type: `callable` default: `null`
 
 Allows to define a `callable` that will be applied to the value before checking if it is valid.
 
-For example, use `trim`, or pass your own function, to now allow a string with whitespaces only:
+For example, use `trim`, or pass your own function, to not allow a string with whitespaces only:
 
 ```php
 // Existing PHP callables

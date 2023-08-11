@@ -22,7 +22,7 @@ class CustomRuleException extends ValidationException {}
 ...then create your custom rule class...
 
 ```php
-namespace My\Project\Rules;
+namespace My\Project\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
@@ -88,6 +88,10 @@ This means that you can have dynamic content in your messages.
 To make it work, just pass an associative array with the name and value of your parameters, and they will be available in the message:
 
 ```php
+// Exception
+class FavoriteException extends ValidationException {}
+
+// Rule
 class Favorite extends AbstractRule implements RuleInterface
 {
     public function __construct(
@@ -100,9 +104,9 @@ class Favorite extends AbstractRule implements RuleInterface
             throw new FavoriteException(
                 message: 'My favorite {{ name }} is "{{ favorite }}", not "{{ value }}"!',
                 parameters: [
-                    'name' => $name,
-                    'favorite' => $this->favorite,
-                    'value' => $value
+                    'name' => $name, // {{ name }}
+                    'favorite' => $this->favorite, // {{ favorite }}
+                    'value' => $value // {{ value }}
                 ]
             )
         }

@@ -187,9 +187,9 @@ function calculateDiscount(float $price, float $discount, string $type): float
 
 ## Error Handling
 
-When using the [`assert`](#assert) method to validate a value, an exception is thrown when a rule fails.
+When using the [`assert`](#assert) method, an exception is thrown when a rule fails.
 
-Each rule has a unique exception, formed by the name of the rule followed by the work Exception — `RuleNameException`.
+Each rule has a unique exception, formed by the name of the rule followed by the word Exception, like `RuleNameException`.
 The following shows an example:
 
 ```php
@@ -225,10 +225,12 @@ try {
 }
 catch (ValidationException $exception) {
     // Do something when a rule fails
+    echo $exception->getMessage();
 }
 ```
 
-When using both the [`assert`](#assert) or [`validate`](#validate) methods, an `UnexpectedValueException` is thrown when the provided input data is not valid to perform the validation. 
+When using both the [`assert`](#assert) or [`validate`](#validate) methods, 
+an `UnexpectedValueException` is thrown when the provided input data is not valid to perform the validation. 
 
 For example, when trying to compare a date with a string:
 
@@ -262,5 +264,5 @@ Validator::choice(
     message: '"{{ value }}" is not a valid {{ name }}! You must select one of {{ constraints }}.'
 )->assert('yellow', 'color');
 
-// "yellow" is not a valid color! You must select one of [red, green, blue].
+// Throws: "yellow" is not a valid color! You must select one of [red, green, blue].
 ```
