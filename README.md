@@ -1,5 +1,9 @@
 # Yet Another PHP Validator
 
+[![Latest Version](https://img.shields.io/github/release/programmatordev/yet-another-php-validator.svg?style=flat-square)](https://github.com/programmatordev/yet-another-php-validator/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
+[![Tests](https://github.com/programmatordev/yet-another-php-validator/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/programmatordev/yet-another-php-validator/actions/workflows/ci.yml?query=branch%3Amain)
+
 PHP validator focused on validating development code with expressive error messages.
 
 > **Note**
