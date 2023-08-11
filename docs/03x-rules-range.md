@@ -13,7 +13,7 @@ Range(
 
 ## Basic Usage
 
-Values equal to the defined minimum and maximum constraints are considered valid.
+Values equal to the defined minimum and maximum values are considered valid.
 
 ```php
 Validator::range(1, 20)->validate(10); // true
@@ -30,7 +30,7 @@ Validator::range(new DateTime('yesterday'), new DateTime('tomorrow'))->validate(
 ```
 
 > **Note**
-> String comparison is case-sensitive, meaning that comparing `'hello'` with `'Hello'` is different.
+> String comparison is case-sensitive, meaning that comparing `"hello"` with `"Hello"` is different.
 > Check [`strcmp`](https://www.php.net/manual/en/function.strcmp.php) for more information.
 
 > **Note**
@@ -60,13 +60,12 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 type: `string` default: `The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.`
 
 Message that will be shown if the value is not between the minimum and maximum constraint values.
-Check the [Custom Messages]() section for more information.
 
 The following parameters are available:
 
-| Parameter             | Description                       |
-|-----------------------|-----------------------------------|
-| `{{ value }}`         | The current invalid value         |
-| `{{ name }}`          | Name of the value being validated |
-| `{{ minConstraint }}` | The minimum range value           |
-| `{{ maxConstraint }}` | The maximum range value           |
+| Parameter             | Description               |
+|-----------------------|---------------------------|
+| `{{ value }}`         | The current invalid value |
+| `{{ name }}`          | Name of the invalid value |
+| `{{ minConstraint }}` | The minimum range value   |
+| `{{ maxConstraint }}` | The maximum range value   |

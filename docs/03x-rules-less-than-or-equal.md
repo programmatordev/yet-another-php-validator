@@ -27,7 +27,7 @@ Validator::lessThanOrEqual(new DateTime('today'))->validate(new DateTime('today'
 ```
 
 > **Note**
-> String comparison is case-sensitive, meaning that comparing `'hello'` with `'Hello'` is different.
+> String comparison is case-sensitive, meaning that comparing `"hello"` with `"Hello"` is different.
 > Check [`strcmp`](https://www.php.net/manual/en/function.strcmp.php) for more information.
 
 > **Note**
@@ -50,8 +50,8 @@ Message that will be shown if the value is not less than or equal to the constra
 
 The following parameters are available:
 
-| Parameter          | Description                       |
-|--------------------|-----------------------------------|
-| `{{ value }}`      | The current invalid value         |
-| `{{ name }}`       | Name of the value being validated |
-| `{{ constraint }}` | The comparison value              |
+| Parameter          | Description               |
+|--------------------|---------------------------|
+| `{{ value }}`      | The current invalid value |
+| `{{ name }}`       | Name of the invalid value |
+| `{{ constraint }}` | The comparison value      |

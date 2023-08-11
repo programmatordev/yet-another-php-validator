@@ -51,7 +51,7 @@ Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2, ma
 
 type: `array` `required`
 
-Collection of choices to be validated against the input value.
+Collection of constraint choices to be validated against the input value.
 
 ### `multiple`
 
@@ -84,11 +84,11 @@ Message that will be shown if input value is not a valid choice.
 
 The following parameters are available:
 
-| Parameter           | Description                       |
-|---------------------|-----------------------------------|
-| `{{ value }}`       | The current invalid value         |
-| `{{ name }}`        | Name of the value being validated |
-| `{{ constraints }}` | The array of valid choices        |
+| Parameter           | Description                |
+|---------------------|----------------------------|
+| `{{ value }}`       | The current invalid value  |
+| `{{ name }}`        | Name of the invalid value  |
+| `{{ constraints }}` | The array of valid choices |
 
 ### `multipleMessage`
 
@@ -98,11 +98,11 @@ Message that will be shown when `multiple` is `true` and at least one of the inp
 
 The following parameters are available:
 
-| Parameter           | Description                       |
-|---------------------|-----------------------------------|
-| `{{ value }}`       | The current invalid value         |
-| `{{ name }}`        | Name of the value being validated |
-| `{{ constraints }}` | The array of valid choices        |
+| Parameter           | Description                |
+|---------------------|----------------------------|
+| `{{ value }}`       | The current invalid value  |
+| `{{ name }}`        | Name of the invalid value  |
+| `{{ constraints }}` | The array of valid choices |
 
 ### `minMessage`
 
@@ -116,7 +116,7 @@ The following parameters are available:
 |-----------------------|--------------------------------------|
 | `{{ value }}`         | The current invalid value            |
 | `{{ numValues }}`     | The current invalid number of values |
-| `{{ name }}`          | Name of the value being validated    |
+| `{{ name }}`          | Name of the invalid value            |
 | `{{ constraints }}`   | The array of valid choices           |
 | `{{ minConstraint }}` | The minimum number of valid choices  |
 | `{{ maxConstraint }}` | The maximum number of valid choices  |
@@ -133,7 +133,7 @@ The following parameters are available:
 |-----------------------|--------------------------------------|
 | `{{ value }}`         | The current invalid value            |
 | `{{ numValues }}`     | The current invalid number of values |
-| `{{ name }}`          | Name of the value being validated    |
+| `{{ name }}`          | Name of the invalid value            |
 | `{{ constraints }}`   | The array of valid choices           |
 | `{{ minConstraint }}` | The minimum number of valid choices  |
 | `{{ maxConstraint }}` | The maximum number of valid choices  |

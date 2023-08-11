@@ -54,6 +54,6 @@ The following parameters are available:
 | Parameter       | Description                                   |
 |-----------------|-----------------------------------------------|
 | `{{ value }}`   | The current invalid value                     |
-| `{{ name }}`    | Name of the value being validated             |
+| `{{ name }}`    | Name of the invalid value                     |
 | `{{ key }}`     | The array key of the invalid array element    |
 | `{{ message }}` | The rule message of the invalid array element |
