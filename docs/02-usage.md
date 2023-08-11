@@ -128,7 +128,7 @@ Returns an array with the defined set of rules.
 
 ```php
 /**
- * @returns RuleInterface[] 
+ * @return RuleInterface[] 
  */
 getRules(): array
 ```
