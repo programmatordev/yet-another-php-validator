@@ -1,6 +1,6 @@
 # Yet Another PHP Validator
 
-Versatile validator focused on validating development code with expressive error messages.
+PHP validator focused on validating development code with expressive error messages.
 
 > **Note**
 > This library is not in version 1.x mainly because there are few available rules.
