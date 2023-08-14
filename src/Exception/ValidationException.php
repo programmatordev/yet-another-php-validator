@@ -38,7 +38,8 @@ class ValidationException extends \Exception
         }
 
         if (\is_string($value)) {
-            return $value;
+            // Replace line breaks and tabs with single space
+            return str_replace(["\n", "\r", "\t", "\v", "\x00"], ' ', $value);
         }
 
         if (\is_resource($value)) {
