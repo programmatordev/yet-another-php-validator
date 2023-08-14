@@ -35,7 +35,7 @@ Validator::type(\DateTimeInterface::class)->validate(new \DateTime()); // true
 
 ## Options
 
-### `constraints`
+### `constraint`
 
 type: `string`|`array` `required`
 
@@ -80,8 +80,8 @@ Message that will be shown if input value is not of a specific type.
 
 The following parameters are available:
 
-| Parameter           | Description               |
-|---------------------|---------------------------|
-| `{{ value }}`       | The current invalid value |
-| `{{ name }}`        | Name of the invalid value |
-| `{{ constraints }}` | The valid type(s)         |
+| Parameter          | Description               |
+|--------------------|---------------------------|
+| `{{ value }}`      | The current invalid value |
+| `{{ name }}`       | Name of the invalid value |
+| `{{ constraint }}` | The valid type(s)         |

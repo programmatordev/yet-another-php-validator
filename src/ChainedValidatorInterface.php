@@ -66,7 +66,7 @@ interface ChainedValidatorInterface
     public function rule(RuleInterface $constraint): ChainedValidatorInterface;
 
     public function type(
-        string|array $constraints,
+        string|array $constraint,
         string $message = 'The "{{ name }}" value should be of type "{{ constraint }}", "{{ value }}" given.'
     ): ChainedValidatorInterface;
 }
