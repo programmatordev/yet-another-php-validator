@@ -8,6 +8,7 @@
 ## Basic Rules
 
 - [NotBlank](03x-rules-not-blank.md)
+- [Type](03x-rules-type.md)
 
 ## Comparison Rules
 

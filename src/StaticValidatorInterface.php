@@ -54,4 +54,9 @@ interface StaticValidatorInterface
     ): ChainedValidatorInterface;
 
     public static function rule(RuleInterface $constraint): ChainedValidatorInterface;
+
+    public static function type(
+        string|array $constraints,
+        string $message = 'The "{{ name }}" value should be of type "{{ constraint }}", "{{ value }}" given.'
+    ): ChainedValidatorInterface;
 }
