@@ -9,7 +9,7 @@ For example, if `['alpha', 'numeric']` is provided, it will validate if the valu
 Type(
     string|array $constraint,
     string $message = 'The "{{ name }}" value should be of type "{{ constraint }}", "{{ value }}" given.'
-)
+);
 ```
 
 ## Basic Usage
