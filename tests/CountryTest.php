@@ -31,17 +31,17 @@ class CountryTest extends AbstractTest
         $message = '/The "(.*)" value is not a valid country code, "(.*)" given./';
 
         yield 'default' => [new Country(), 'PRT', $exception, $message];
-        yield 'alpha2' => [new Country(code: 'alpha2'), 'PRT', $exception, $message];
-        yield 'alpha3' => [new Country(code: 'alpha3'), 'PT', $exception, $message];
+        yield 'alpha2' => [new Country(code: 'alpha-2'), 'PRT', $exception, $message];
+        yield 'alpha3' => [new Country(code: 'alpha-3'), 'PT', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
         yield 'default' => [new Country(), 'PT'];
-        yield 'alpha2' => [new Country(code: 'alpha2'), 'PT'];
-        yield 'alpha2 lowercase' => [new Country(code: 'alpha2'), 'pt'];
-        yield 'alpha3' => [new Country(code: 'alpha3'), 'PRT'];
-        yield 'alpha3 lowercase' => [new Country(code: 'alpha3'), 'prt'];
+        yield 'alpha2' => [new Country(code: 'alpha-2'), 'PT'];
+        yield 'alpha2 lowercase' => [new Country(code: 'alpha-2'), 'pt'];
+        yield 'alpha3' => [new Country(code: 'alpha-3'), 'PRT'];
+        yield 'alpha3 lowercase' => [new Country(code: 'alpha-3'), 'prt'];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
@@ -51,7 +51,7 @@ class CountryTest extends AbstractTest
                 message: 'The "{{ name }}" value "{{ value }}" is not a valid "{{ code }}" country code.'
             ),
             'invalid',
-            'The "test" value "invalid" is not a valid "alpha2" country code.'
+            'The "test" value "invalid" is not a valid "alpha-2" country code.'
         ];
     }
 }

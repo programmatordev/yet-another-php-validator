@@ -8,16 +8,16 @@ use Symfony\Component\Intl\Countries;
 
 class Country extends AbstractRule implements RuleInterface
 {
-    public const ALPHA2_CODE = 'alpha2';
-    public const ALPHA3_CODE = 'alpha3';
+    public const ALPHA_2_CODE = 'alpha-2';
+    public const ALPHA_3_CODE = 'alpha-3';
 
     private const CODE_OPTIONS = [
-        self::ALPHA2_CODE,
-        self::ALPHA3_CODE
+        self::ALPHA_2_CODE,
+        self::ALPHA_3_CODE
     ];
 
     public function __construct(
-        private readonly string $code = self::ALPHA2_CODE,
+        private readonly string $code = self::ALPHA_2_CODE,
         private readonly string $message = 'The "{{ name }}" value is not a valid country code, "{{ value }}" given.'
     ) {}
 
@@ -43,8 +43,8 @@ class Country extends AbstractRule implements RuleInterface
         $input = strtoupper($value);
 
         if (
-            ($this->code === self::ALPHA2_CODE && !Countries::exists($input))
-            || ($this->code === self::ALPHA3_CODE && !Countries::alpha3CodeExists($input))
+            ($this->code === self::ALPHA_2_CODE && !Countries::exists($input))
+            || ($this->code === self::ALPHA_3_CODE && !Countries::alpha3CodeExists($input))
         ) {
             throw new CountryException(
                 message: $this->message,
