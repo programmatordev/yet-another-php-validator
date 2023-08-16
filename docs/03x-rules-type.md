@@ -15,11 +15,11 @@ Type(
 ## Basic Usage
 
 ```php
-// Single data type
+// Single type
 Validator::type('string')->validate('green'); // true
 Validator::type('alphanumeric')->validate('gr33n'); // true
 
-// Multiple data types
+// Multiple types
 // Validates if value is of at least one of the provided types
 Validator::type(['alpha', 'numeric'])->validate('green'); // true (alpha)
 Validator::type(['alpha', 'numeric'])->validate('33'); // true (numeric)
@@ -31,7 +31,7 @@ Validator::type(\DateTimeInterface::class)->validate(new \DateTime()); // true
 ```
 
 > **Note**
-> An `UnexpectedValueException` will be thrown when a constraint type, class and interface is invalid.
+> An `UnexpectedValueException` will be thrown when a constraint type, class or interface is invalid.
 
 ## Options
 
@@ -45,7 +45,7 @@ Can validate instances of classes and interfaces.
 If an array with multiple types is provided, it will validate if the value is of at least one of the given types.
 For example, if `['alpha', 'numeric']` is provided, it will validate if the value is of type `alpha` or of type `numeric`.
 
-Available constraint types:
+Available data type constraints:
 
 - [`bool`](https://www.php.net/manual/en/function.is-bool.php), [`boolean`](https://www.php.net/manual/en/function.is-bool.php)
 - [`int`](https://www.php.net/manual/en/function.is-int.php), [`integer`](https://www.php.net/manual/en/function.is-int.php), [`long`](https://www.php.net/manual/en/function.is-int.php)
@@ -60,6 +60,9 @@ Available constraint types:
 - [`object`](https://www.php.net/manual/en/function.is-object.php)
 - [`resource`](https://www.php.net/manual/en/function.is-resource.php)
 - [`null`](https://www.php.net/manual/en/function.is-null.php)
+
+Available character type constraints:
+
 - [`alphanumeric`](https://www.php.net/manual/en/function.ctype-alnum)
 - [`alpha`](https://www.php.net/manual/en/function.ctype-alpha.php)
 - [`digit`](https://www.php.net/manual/en/function.ctype-digit.php)
