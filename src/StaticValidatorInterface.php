@@ -22,6 +22,11 @@ interface StaticValidatorInterface
         string $maxMessage = 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
     ): ChainedValidatorInterface;
 
+    public static function country(
+        string $code = 'alpha-2',
+        string $message = 'The "{{ name }}" value is not a valid country code, "{{ value }}" given.'
+    ): ChainedValidatorInterface;
+
     public static function greaterThan(
         mixed $constraint,
         string $message = 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.'
