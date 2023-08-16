@@ -17,15 +17,15 @@ class NotBlankTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = NotBlankException::class;
-        $exceptionMessage = '/The "(.*)" value should not be blank, "(.*)" given./';
+        $message = '/The "(.*)" value should not be blank, "(.*)" given./';
 
-        yield 'null' => [new NotBlank(), null, $exception, $exceptionMessage];
-        yield 'false' => [new NotBlank(), false, $exception, $exceptionMessage];
-        yield 'blank string' => [new NotBlank(), '', $exception, $exceptionMessage];
-        yield 'blank array' => [new NotBlank(), [], $exception, $exceptionMessage];
+        yield 'null' => [new NotBlank(), null, $exception, $message];
+        yield 'false' => [new NotBlank(), false, $exception, $message];
+        yield 'blank string' => [new NotBlank(), '', $exception, $message];
+        yield 'blank array' => [new NotBlank(), [], $exception, $message];
 
-        yield 'normalizer whitespace' => [new NotBlank(normalizer: 'trim'), ' ', $exception, $exceptionMessage];
-        yield 'normalizer whitespace function' => [new NotBlank(normalizer: fn($value) => trim($value)), ' ', $exception, $exceptionMessage];
+        yield 'normalizer whitespace' => [new NotBlank(normalizer: 'trim'), ' ', $exception, $message];
+        yield 'normalizer whitespace function' => [new NotBlank(normalizer: fn($value) => trim($value)), ' ', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator

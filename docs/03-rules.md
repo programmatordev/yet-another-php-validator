@@ -8,6 +8,7 @@
 ## Basic Rules
 
 - [NotBlank](03x-rules-not-blank.md)
+- [Type](03x-rules-type.md)
 
 ## Comparison Rules
 
@@ -20,6 +21,7 @@
 ## Choice Rules
 
 - [Choice](03x-rules-choice.md)
+- [Country](03x-rules-country.md)
 
 ## Other Rules
 

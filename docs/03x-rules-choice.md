@@ -40,7 +40,7 @@ Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2, ma
 ```
 
 > **Note**
-> An `UnexpectedValueException` will be thrown when `multiple` is `true` and value to be validated is not an `array`.
+> An `UnexpectedValueException` will be thrown when `multiple` is `true` and the input value is not an `array`.
 
 > **Note**
 > An `UnexpectedValueException` will be thrown when the `minConstraint` value is greater than or equal to the `maxConstraint` value.

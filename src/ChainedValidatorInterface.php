@@ -32,6 +32,11 @@ interface ChainedValidatorInterface
         string $maxMessage = 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
     ): ChainedValidatorInterface;
 
+    public function country(
+        string $code = 'alpha-2',
+        string $message = 'The "{{ name }}" value is not a valid country code, "{{ value }}" given.'
+    ): ChainedValidatorInterface;
+
     public function greaterThan(
         mixed $constraint,
         string $message = 'The "{{ name }}" value should be greater than "{{ constraint }}", "{{ value }}" given.'
@@ -64,4 +69,9 @@ interface ChainedValidatorInterface
     ): ChainedValidatorInterface;
 
     public function rule(RuleInterface $constraint): ChainedValidatorInterface;
+
+    public function type(
+        string|array $constraint,
+        string $message = 'The "{{ name }}" value should be of type "{{ constraint }}", "{{ value }}" given.'
+    ): ChainedValidatorInterface;
 }
