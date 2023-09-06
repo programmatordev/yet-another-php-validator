@@ -1,6 +1,6 @@
 # Timezone
 
-Validates that a value is valid timezone identifier.
+Validates that a value is a valid timezone identifier.
 
 ```php
 Timezone(
@@ -13,7 +13,7 @@ Timezone(
 ## Basic Usage
 
 ```php
-// All timezones
+// All timezone identifiers
 Validator::timezone()->validate('Europe/Lisbon'); // true
 
 // Restrict timezone identifiers to a specific geographical zone
