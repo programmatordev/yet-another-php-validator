@@ -18,7 +18,7 @@ class Country extends AbstractRule implements RuleInterface
 
     public function __construct(
         private readonly string $code = self::ALPHA_2_CODE,
-        private readonly string $message = 'The "{{ name }}" value is not a valid country code, "{{ value }}" given.'
+        private readonly string $message = 'The "{{ name }}" value is not a valid "{{ code }}" country code, "{{ value }}" given.'
     ) {}
 
     public function assert(mixed $value, string $name): void
