@@ -17,7 +17,14 @@ class Timezone extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        if ($this->countryCode !== null) {
+        if ($this->timezoneGroup === \DateTimeZone::PER_COUNTRY) {
+            // Country code is required when using PER_COUNTRY timezone group
+            if ($this->countryCode === null) {
+                throw new UnexpectedValueException(
+                    'A country code is required when timezone group is \DateTimeZone::PER_COUNTRY.'
+                );
+            }
+
             // Normalize country code
             $this->countryCode = strtoupper($this->countryCode);
 
@@ -27,12 +34,6 @@ class Timezone extends AbstractRule implements RuleInterface
             catch (ValidationException $exception) {
                 throw new UnexpectedValueException($exception->getMessage());
             }
-        }
-
-        if ($this->timezoneGroup === \DateTimeZone::PER_COUNTRY && $this->countryCode === null) {
-            throw new UnexpectedValueException(
-                'A country code must be given when timezone group is \DateTimeZone::PER_COUNTRY.'
-            );
         }
 
         if (!\in_array($value, \DateTimeZone::listIdentifiers($this->timezoneGroup, $this->countryCode), true)) {
