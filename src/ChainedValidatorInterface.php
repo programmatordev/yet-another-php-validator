@@ -34,7 +34,7 @@ interface ChainedValidatorInterface
 
     public function country(
         string $code = 'alpha-2',
-        string $message = 'The "{{ name }}" value is not a valid country code, "{{ value }}" given.'
+        string $message = 'The "{{ name }}" value is not a valid "{{ code }}" country code, "{{ value }}" given.'
     ): ChainedValidatorInterface;
 
     public function greaterThan(
@@ -69,6 +69,12 @@ interface ChainedValidatorInterface
     ): ChainedValidatorInterface;
 
     public function rule(RuleInterface $constraint): ChainedValidatorInterface;
+
+    public function timezone(
+        int $timezoneGroup = \DateTimeZone::ALL,
+        ?string $countryCode = null,
+        string $message = 'The "{{ name }}" value is not a valid timezone, "{{ value }}" given.'
+    ): ChainedValidatorInterface;
 
     public function type(
         string|array $constraint,

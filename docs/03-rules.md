@@ -2,6 +2,7 @@
 
 - [Basic Rules](#basic-rules)
 - [Comparison Rules](#comparison-rules)
+- [Date Rules](#date-rules)
 - [Choice Rules](#choice-rules)
 - [Other Rules](#other-rules)
 
@@ -17,6 +18,10 @@
 - [LessThan](03x-rules-less-than.md)
 - [LessThanOrEqual](03x-rules-less-than-or-equal.md)
 - [Range](03x-rules-range.md)
+
+## Date Rules
+
+- [Timezone](03x-rules-timezone.md)
 
 ## Choice Rules
 
