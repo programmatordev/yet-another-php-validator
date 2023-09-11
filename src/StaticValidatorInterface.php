@@ -22,6 +22,11 @@ interface StaticValidatorInterface
         string $message = 'The "{{ name }}" value is not a valid "{{ code }}" country code, "{{ value }}" given.'
     ): ChainedValidatorInterface&Validator;
 
+    public static function eachKey(
+        Validator $validator,
+        string $message = '{{ message }}'
+    ): ChainedValidatorInterface&Validator;
+
     public static function eachValue(
         Validator $validator,
         string $message = 'At key "{{ key }}": {{ message }}'
