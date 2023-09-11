@@ -34,15 +34,15 @@ type: `string` default: `At "{{ key }}": {{ message }}`
 Message that will be shown if at least one input value element is invalid according to the given `validator`.
 
 ```php
-Validator::all(Validator::notBlank())->assert(['red', 'green', ''], 'Test'); 
+Validator::eachValue(Validator::notBlank())->assert(['red', 'green', ''], 'Test'); 
 // Throws: At key "2": The "Test" value should not be blank, "" given.
 ```
 
 The following parameters are available:
 
-| Parameter       | Description                                   |
-|-----------------|-----------------------------------------------|
-| `{{ value }}`   | The current invalid value                     |
-| `{{ name }}`    | Name of the invalid value                     |
-| `{{ key }}`     | The array key of the invalid array element    |
-| `{{ message }}` | The rule message of the invalid array element |
+| Parameter       | Description                                      |
+|-----------------|--------------------------------------------------|
+| `{{ value }}`   | The current invalid value                        |
+| `{{ name }}`    | Name of the invalid value                        |
+| `{{ key }}`     | The key of the invalid iterable element          |
+| `{{ message }}` | The rule message of the invalid iterable element |
