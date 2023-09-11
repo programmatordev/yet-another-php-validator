@@ -45,4 +45,5 @@ The following parameters are available:
 | `{{ value }}`   | The current invalid value                        |
 | `{{ name }}`    | Name of the invalid value                        |
 | `{{ key }}`     | The key of the invalid iterable element          |
+| `{{ element }}` | The value of the invalid iterable element        |
 | `{{ message }}` | The rule message of the invalid iterable element |

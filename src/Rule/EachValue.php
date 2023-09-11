@@ -23,8 +23,8 @@ class EachValue extends AbstractRule implements RuleInterface
         }
 
         try {
-            foreach ($value as $key => $input) {
-                $this->validator->assert($input, $name);
+            foreach ($value as $key => $element) {
+                $this->validator->assert($element, $name);
             }
         }
         catch (ValidationException $exception) {
@@ -34,6 +34,7 @@ class EachValue extends AbstractRule implements RuleInterface
                     'value' => $value,
                     'name' => $name,
                     'key' => $key,
+                    'element' => $element,
                     'message' => $exception->getMessage()
                 ]
             );
