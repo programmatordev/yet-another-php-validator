@@ -30,4 +30,5 @@
 
 ## Iterable Rules
 
-- [EachValue](03x-rules-eachvalue.md)
+- [EachValue](03x-rules-each-value.md)
+- [EachKey](03x-rules-each-key.md)
