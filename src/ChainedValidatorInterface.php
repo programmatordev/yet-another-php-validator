@@ -16,11 +16,6 @@ interface ChainedValidatorInterface
 
     // --- Rules ---
 
-    public function all(
-        array $constraints,
-        string $message = 'At "{{ key }}": {{ message }}'
-    ): ChainedValidatorInterface;
-
     public function choice(
         array $constraints,
         bool $multiple = false,
@@ -35,6 +30,11 @@ interface ChainedValidatorInterface
     public function country(
         string $code = 'alpha-2',
         string $message = 'The "{{ name }}" value is not a valid "{{ code }}" country code, "{{ value }}" given.'
+    ): ChainedValidatorInterface;
+
+    public function eachValue(
+        Validator $validator,
+        string $message = 'At key "{{ key }}": {{ message }}'
     ): ChainedValidatorInterface;
 
     public function greaterThan(

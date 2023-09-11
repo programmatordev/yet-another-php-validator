@@ -6,11 +6,6 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 interface StaticValidatorInterface
 {
-    public static function all(
-        array $constraints,
-        string $message = 'At "{{ key }}": {{ message }}'
-    ): ChainedValidatorInterface;
-
     public static function choice(
         array $constraints,
         bool $multiple = false,
@@ -25,6 +20,11 @@ interface StaticValidatorInterface
     public static function country(
         string $code = 'alpha-2',
         string $message = 'The "{{ name }}" value is not a valid "{{ code }}" country code, "{{ value }}" given.'
+    ): ChainedValidatorInterface;
+
+    public static function eachValue(
+        Validator $validator,
+        string $message = 'At key "{{ key }}": {{ message }}'
     ): ChainedValidatorInterface;
 
     public static function greaterThan(
