@@ -2,31 +2,20 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\AllException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ValidatableTrait;
+use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
-class All extends AbstractRule implements RuleInterface
+class EachValue extends AbstractRule implements RuleInterface
 {
-    use ValidatableTrait;
-
-    /**
-     * @param RuleInterface[] $constraints
-     */
     public function __construct(
-        private readonly array $constraints,
-        private readonly string $message = 'At "{{ key }}": {{ message }}'
+        private readonly Validator $validator,
+        private readonly string $message = 'At key "{{ key }}": {{ message }}'
     ) {}
 
     public function assert(mixed $value, string $name): void
     {
-        if (!$this->isValidatable($this->constraints)) {
-            throw new UnexpectedValueException(
-                'All constraints must be of type "RuleInterface".'
-            );
-        }
-
         if (!\is_array($value)) {
             throw new UnexpectedValueException(
                 \sprintf('Expected value of type "array", "%s" given.', get_debug_type($value))
@@ -35,13 +24,11 @@ class All extends AbstractRule implements RuleInterface
 
         try {
             foreach ($value as $key => $input) {
-                foreach ($this->constraints as $constraint) {
-                    $constraint->assert($input, $name);
-                }
+                $this->validator->assert($input, $name);
             }
         }
         catch (ValidationException $exception) {
-            throw new AllException(
+            throw new EachValueException(
                 message: $this->message,
                 parameters: [
                     'value' => $value,
