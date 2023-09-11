@@ -16,9 +16,9 @@ class EachValue extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, string $name): void
     {
-        if (!\is_array($value)) {
+        if (!\is_iterable($value)) {
             throw new UnexpectedValueException(
-                \sprintf('Expected value of type "array", "%s" given.', get_debug_type($value))
+                \sprintf('Expected value of type "array|\Traversable", "%s" given.', get_debug_type($value))
             );
         }
 

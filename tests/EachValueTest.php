@@ -24,7 +24,7 @@ class EachValueTest extends AbstractTest
         yield 'invalid value type' => [
             new EachValue(new Validator(new NotBlank())),
             'invalid',
-            '/Expected value of type "array", "(.*)" given./'
+            '/Expected value of type "(.*)", "(.*)" given./'
         ];
         yield 'unexpected value propagation' => [
             new EachValue(new Validator(new GreaterThan(10))),
@@ -38,9 +38,15 @@ class EachValueTest extends AbstractTest
         $exception = EachValueException::class;
         $message = '/At key "(.*)": The "(.*)" value should not be blank, "(.*)" given./';
 
-        yield 'constraint' => [
+        yield 'invalid array element' => [
             new EachValue(new Validator(new NotBlank())),
             [1, 2, ''],
+            $exception,
+            $message
+        ];
+        yield 'invalid traversable element' => [
+            new EachValue(new Validator(new NotBlank())),
+            new \ArrayIterator([1, 2, '']),
             $exception,
             $message
         ];
@@ -48,15 +54,19 @@ class EachValueTest extends AbstractTest
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
-        yield 'constraint' => [
+        yield 'array element' => [
             new EachValue(new Validator(new NotBlank(), new GreaterThan(1))),
             [2, 3, 4]
+        ];
+        yield 'traversable element' => [
+            new EachValue(new Validator(new NotBlank(), new GreaterThan(1))),
+            new \ArrayIterator([2, 3, 4])
         ];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
     {
-        yield 'constraint' => [
+        yield 'message' => [
             new EachValue(
                 validator: new Validator(new NotBlank()),
                 message: 'The "{{ name }}" value "{{ value }}" failed at key "{{ key }}".'
