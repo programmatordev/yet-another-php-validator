@@ -11,7 +11,7 @@ class EachKey extends AbstractRule implements RuleInterface
 {
     public function __construct(
         private readonly Validator $validator,
-        private readonly string $message = '{{ message }}'
+        private readonly string $message = 'Invalid key: {{ message }}'
     ) {}
 
     public function assert(mixed $value, string $name): void

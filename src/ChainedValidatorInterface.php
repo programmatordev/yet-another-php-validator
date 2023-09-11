@@ -25,7 +25,7 @@ interface ChainedValidatorInterface
 
     public function eachKey(
         Validator $validator,
-        string $message = '{{ message }}'
+        string $message = 'Invalid key: {{ message }}'
     ): ChainedValidatorInterface&Validator;
 
     public function eachValue(

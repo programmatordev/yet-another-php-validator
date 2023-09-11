@@ -24,7 +24,7 @@ interface StaticValidatorInterface
 
     public static function eachKey(
         Validator $validator,
-        string $message = '{{ message }}'
+        string $message = 'Invalid key: {{ message }}'
     ): ChainedValidatorInterface&Validator;
 
     public static function eachValue(
