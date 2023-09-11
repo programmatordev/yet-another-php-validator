@@ -2,16 +2,16 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachValueException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachKeyException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
-class EachValue extends AbstractRule implements RuleInterface
+class EachKey extends AbstractRule implements RuleInterface
 {
     public function __construct(
         private readonly Validator $validator,
-        private readonly string $message = 'At key "{{ key }}": {{ message }}'
+        private readonly string $message = 'Invalid key: {{ message }}'
     ) {}
 
     public function assert(mixed $value, string $name): void
@@ -24,18 +24,23 @@ class EachValue extends AbstractRule implements RuleInterface
 
         try {
             foreach ($value as $key => $element) {
-                $this->validator->assert($element, $name);
+                $this->validator->assert($key, $name);
             }
         }
         catch (ValidationException $exception) {
-            throw new EachValueException(
+            throw new EachKeyException(
                 message: $this->message,
                 parameters: [
                     'value' => $value,
                     'name' => $name,
                     'key' => $key,
                     'element' => $element,
-                    'message' => $exception->getMessage()
+                    // Replaces string "value" with string "key" to get a more intuitive error message
+                    'message' => \preg_replace(
+                        \sprintf('/"(%s)" value/', $name),
+                        '"$1" key',
+                        $exception->getMessage()
+                    )
                 ]
             );
         }
