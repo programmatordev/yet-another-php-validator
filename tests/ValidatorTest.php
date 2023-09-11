@@ -3,6 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\LessThan;
@@ -12,6 +13,15 @@ use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
 class ValidatorTest extends AbstractTest
 {
+    public function testValidatorRequiredRules()
+    {
+        $this->expectException(UnexpectedValueException::class);
+        $this->expectExceptionMessage('Validator rules not found: at least one rule is required.');
+
+        $validator = new Validator();
+        $validator->assert(true, 'test');
+    }
+
     #[DataProvider('provideValidatorUsageApproachData')]
     public function testValidatorGetRules(Validator $validator)
     {
@@ -23,7 +33,6 @@ class ValidatorTest extends AbstractTest
     public function testValidatorFailureCondition(Validator $validator)
     {
         $this->assertFalse($validator->validate(false));
-
         $this->expectException(ValidationException::class);
         $validator->assert(false, 'test');
     }
@@ -32,7 +41,6 @@ class ValidatorTest extends AbstractTest
     public function testValidatorSuccessCondition(Validator $validator)
     {
         $this->assertTrue($validator->validate(15));
-
         $validator->assert(15, 'test');
     }
 
@@ -52,7 +60,7 @@ class ValidatorTest extends AbstractTest
             )
         ];
         yield 'method approach' => [
-            (new Validator())
+            (new Validator)
                 ->addRule(new NotBlank())
                 ->addRule(new GreaterThan(10))
                 ->addRule(new LessThan(20))

@@ -3,6 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Factory\Factory;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
@@ -48,6 +49,10 @@ class Validator implements RuleInterface
      */
     public function assert(mixed $value, string $name): void
     {
+        if (empty($this->getRules())) {
+            throw new UnexpectedValueException('Validator rules not found: at least one rule is required.');
+        }
+
         foreach ($this->getRules() as $rule) {
             $rule->assert($value, $name);
         }

@@ -2,8 +2,8 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\AllException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\All;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachValueException;
+use ProgrammatorDev\YetAnotherPhpValidator\Rule\EachValue;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
@@ -12,7 +12,7 @@ use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTra
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
-class AllTest extends AbstractTest
+class EachValueTest extends AbstractTest
 {
     use TestRuleUnexpectedValueTrait;
     use TestRuleFailureConditionTrait;
@@ -21,18 +21,13 @@ class AllTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        yield 'invalid constraint' => [
-            new All([new NotBlank(), 'invalid']),
-            [1, 2, 3],
-            '/All constraints must be of type "RuleInterface"./'
-        ];
         yield 'invalid value type' => [
-            new All([new NotBlank()]),
+            new EachValue(new Validator(new NotBlank())),
             'invalid',
-            '/Expected value of type "array", "(.*)" given./'
+            '/Expected value of type "(.*)", "(.*)" given./'
         ];
         yield 'unexpected value propagation' => [
-            new All([new GreaterThan(10)]),
+            new EachValue(new Validator(new GreaterThan(10))),
             ['a'],
             '/Cannot compare a type "(.*)" with a type "(.*)"./'
         ];
@@ -40,18 +35,18 @@ class AllTest extends AbstractTest
 
     public static function provideRuleFailureConditionData(): \Generator
     {
-        $exception = AllException::class;
-        $message = '/At "(.*)": The "(.*)" value should not be blank, "(.*)" given./';
+        $exception = EachValueException::class;
+        $message = '/At key "(.*)": The "(.*)" value should not be blank, "(.*)" given./';
 
-        yield 'constraint' => [
-            new All([new NotBlank()]),
+        yield 'invalid array element' => [
+            new EachValue(new Validator(new NotBlank())),
             [1, 2, ''],
             $exception,
             $message
         ];
-        yield 'validator' => [
-            new All([(new Validator(new NotBlank()))]),
-            [1, 2, ''],
+        yield 'invalid traversable element' => [
+            new EachValue(new Validator(new NotBlank())),
+            new \ArrayIterator([1, 2, '']),
             $exception,
             $message
         ];
@@ -59,31 +54,21 @@ class AllTest extends AbstractTest
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
-        yield 'constraints' => [
-            new All([new NotBlank(), new GreaterThan(1)]),
+        yield 'array element' => [
+            new EachValue(new Validator(new NotBlank(), new GreaterThan(1))),
             [2, 3, 4]
         ];
-        yield 'validators' => [
-            new All([
-                (new Validator(new NotBlank())),
-                (new Validator(new GreaterThan(1)))
-            ]),
-            [2, 3, 4]
-        ];
-        yield 'constraints and validators' => [
-            new All([
-                new NotBlank(),
-                (new Validator(new GreaterThan(1)))
-            ]),
-            [2, 3, 4]
+        yield 'traversable element' => [
+            new EachValue(new Validator(new NotBlank(), new GreaterThan(1))),
+            new \ArrayIterator([2, 3, 4])
         ];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
     {
-        yield 'constraint' => [
-            new All(
-                constraints: [new NotBlank()],
+        yield 'message' => [
+            new EachValue(
+                validator: new Validator(new NotBlank()),
                 message: 'The "{{ name }}" value "{{ value }}" failed at key "{{ key }}".'
             ),
             [1, 2, ''],

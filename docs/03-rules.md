@@ -4,7 +4,7 @@
 - [Comparison Rules](#comparison-rules)
 - [Date Rules](#date-rules)
 - [Choice Rules](#choice-rules)
-- [Other Rules](#other-rules)
+- [Iterable Rules](#iterable-rules)
 
 ## Basic Rules
 
@@ -28,6 +28,7 @@
 - [Choice](03x-rules-choice.md)
 - [Country](03x-rules-country.md)
 
-## Other Rules
+## Iterable Rules
 
-- [All](03x-rules-all.md)
+- [EachValue](03x-rules-each-value.md)
+- [EachKey](03x-rules-each-key.md)
