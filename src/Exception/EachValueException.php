@@ -2,4 +2,4 @@
 
 namespace ProgrammatorDev\YetAnotherPhpValidator\Exception;
 
-class AllException extends ValidationException {}
+class EachValueException extends ValidationException {}
