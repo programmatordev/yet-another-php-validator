@@ -7,13 +7,25 @@ class ValidationException extends \Exception
     public function __construct(string $message, array $parameters = [])
     {
         $message = $this->formatMessage($message, $parameters);
+
         parent::__construct($message);
     }
 
     private function formatMessage(string $message, array $parameters = []): string
     {
+        // If a name was not given, remove it from the message template but keep it intuitive
+        if (empty($parameters['name'])) {
+            $message = \str_replace(' {{ name }} ', ' ', $message);
+            unset($parameters['name']);
+        }
+
         foreach ($parameters as $parameter => $value) {
-            $message = str_replace("{{ $parameter }}", $this->formatValue($value), $message);
+            // Format values (with some exceptions [name, message] to avoid adding unnecessary quotation marks)
+            $message = \str_replace(
+                \sprintf('{{ %s }}', $parameter),
+                (\in_array($parameter, ['name', 'message'])) ? $value : $this->formatValue($value),
+                $message
+            );
         }
 
         return $message;
@@ -39,7 +51,9 @@ class ValidationException extends \Exception
 
         if (\is_string($value)) {
             // Replace line breaks and tabs with single space
-            return str_replace(["\n", "\r", "\t", "\v", "\x00"], ' ', $value);
+            $value = \str_replace(["\n", "\r", "\t", "\v", "\x00"], ' ', $value);
+
+            return \sprintf('"%s"', $value);
         }
 
         if (\is_resource($value)) {

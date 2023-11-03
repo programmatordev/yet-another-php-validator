@@ -26,7 +26,7 @@ class TypeTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = TypeException::class;
-        $message = '/The "(.*)" value should be of type "(.*)", "(.*)" given./';
+        $message = '/The (.*) value should be of type (.*), (.*) given./';
 
         yield 'bool' => [new Type('bool'), 'invalid', $exception, $message];
         yield 'boolean' => [new Type('boolean'), 'invalid', $exception, $message];
@@ -107,10 +107,10 @@ class TypeTest extends AbstractTest
         yield 'message' => [
             new Type(
                 constraint: 'int',
-                message: 'The "{{ name }}" value is not of type "{{ constraint }}".'
+                message: 'The {{ name }} value is not of type {{ constraint }}.'
             ),
             'string',
-            'The "test" value is not of type "int".'
+            'The test value is not of type "int".'
         ];
     }
 

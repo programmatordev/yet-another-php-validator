@@ -5,7 +5,6 @@ namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachKeyException;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\EachKey;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
 use ProgrammatorDev\YetAnotherPhpValidator\Rule\Type;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
 use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
@@ -37,7 +36,7 @@ class EachKeyTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EachKeyException::class;
-        $message = '/Invalid key: The "(.*)" key should be of type "(.*)", "(.*)" given./';
+        $message = '/Invalid key: The (.*) key value should be of type (.*), (.*) given./';
 
         yield 'invalid array element' => [
             new EachKey(new Validator(new Type('string'))),
@@ -70,10 +69,10 @@ class EachKeyTest extends AbstractTest
         yield 'message' => [
             new EachKey(
                 validator: new Validator(new Type('string')),
-                message: 'The "{{ name }}" key "{{ key }}" is invalid.'
+                message: 'The {{ name }} key {{ key }} is invalid.'
             ),
             ['key1' => 1, 'key2' => 2, 1 => 3],
-            'The "test" key "1" is invalid.'
+            'The test key 1 is invalid.'
         ];
     }
 }

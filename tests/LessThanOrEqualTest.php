@@ -32,7 +32,7 @@ class LessThanOrEqualTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = LessThanOrEqualException::class;
-        $message = '/The "(.*)" value should be less than or equal to "(.*)", "(.*)" given./';
+        $message = '/The (.*) value should be less than or equal to (.*), (.*) given./';
 
         yield 'datetime' => [new LessThanOrEqual(new \DateTime('today')), new \DateTime('tomorrow'), $exception, $message];
         yield 'int' => [new LessThanOrEqual(10), 20, $exception, $message];
@@ -60,10 +60,10 @@ class LessThanOrEqualTest extends AbstractTest
         yield 'message' => [
             new LessThanOrEqual(
                 constraint: 10,
-                message: 'The "{{ name }}" value "{{ value }}" is not less than or equal to "{{ constraint }}".'
+                message: 'The {{ name }} value {{ value }} is not less than or equal to {{ constraint }}.'
             ),
             20,
-            'The "test" value "20" is not less than or equal to "10".'
+            'The test value 20 is not less than or equal to 10.'
         ];
     }
 }

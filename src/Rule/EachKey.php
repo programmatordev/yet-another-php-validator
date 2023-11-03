@@ -14,7 +14,7 @@ class EachKey extends AbstractRule implements RuleInterface
         private readonly string $message = 'Invalid key: {{ message }}'
     ) {}
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_iterable($value)) {
             throw new UnexpectedValueException(
@@ -35,12 +35,8 @@ class EachKey extends AbstractRule implements RuleInterface
                     'name' => $name,
                     'key' => $key,
                     'element' => $element,
-                    // Replaces string "value" with string "key" to get a more intuitive error message
-                    'message' => \preg_replace(
-                        \sprintf('/"(%s)" value/', $name),
-                        '"$1" key',
-                        $exception->getMessage()
-                    )
+                    // Replaces string "value" with string "key value" to get a more intuitive error message
+                    'message' => \str_replace(' value ', ' key value ', $exception->getMessage())
                 ]
             );
         }

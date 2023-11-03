@@ -9,7 +9,7 @@ interface RuleInterface
     /**
      * @throws ValidationException
      */
-    public function assert(mixed $value, string $name): void;
+    public function assert(mixed $value, ?string $name = null): void;
 
     public function validate(mixed $value): bool;
 }

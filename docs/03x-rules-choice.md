@@ -8,10 +8,10 @@ Choice(
     bool $multiple = false, 
     ?int $minConstraint = null, 
     ?int $maxConstraint = null,
-    string $message = 'The "{{ name }}" value is not a valid choice, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
-    string $multipleMessage = 'The "{{ name }}" value has one or more invalid choices, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
-    string $minMessage = 'The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
-    string $maxMessage = 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+    string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
+    string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
+    string $minMessage = 'The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
+    string $maxMessage = 'The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
 );
 ```
 
@@ -78,7 +78,7 @@ For example, if `maxConstraint` is 2, the input array must have at most 2 values
 
 ### `message`
 
-type `string` default: `The "{{ name }}" value is not a valid choice, "{{ value }}" given. Accepted values are: "{{ constraints }}".`
+type `string` default: `The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.`
 
 Message that will be shown if input value is not a valid choice.
 
@@ -92,7 +92,7 @@ The following parameters are available:
 
 ### `multipleMessage`
 
-type `string` default: `The "{{ name }}" value has one or more invalid choices, "{{ value }}" given. Accepted values are: "{{ constraints }}".`
+type `string` default: `The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.`
 
 Message that will be shown when `multiple` is `true` and at least one of the input array values is not a valid choice.
 
@@ -106,7 +106,7 @@ The following parameters are available:
 
 ### `minMessage`
 
-type `string` default: `The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.`
+type `string` default: `The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.`
 
 Message that will be shown when `multiple` is `true` and input array has fewer values than the defined in `minConstraint`.
 
@@ -123,7 +123,7 @@ The following parameters are available:
 
 ### `maxMessage`
 
-type `string` default: `The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.`
+type `string` default: `The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.`
 
 Message that will be shown when `multiple` is `true` and input array has more values than the defined in `maxConstraint`.
 

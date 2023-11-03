@@ -15,10 +15,10 @@ class Range extends AbstractRule implements RuleInterface
     public function __construct(
         private readonly mixed $minConstraint,
         private readonly mixed $maxConstraint,
-        private readonly string $message = 'The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.'
+        private readonly string $message = 'The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.'
     ) {}
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if (!$this->isComparable($this->minConstraint, $this->maxConstraint)) {
             throw new UnexpectedComparableException(
