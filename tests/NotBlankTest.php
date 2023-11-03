@@ -17,7 +17,7 @@ class NotBlankTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = NotBlankException::class;
-        $message = '/The "(.*)" value should not be blank, "(.*)" given./';
+        $message = '/The (.*) value should not be blank, (.*) given./';
 
         yield 'null' => [new NotBlank(), null, $exception, $message];
         yield 'false' => [new NotBlank(), false, $exception, $message];
@@ -48,9 +48,9 @@ class NotBlankTest extends AbstractTest
     public static function provideRuleMessageOptionData(): \Generator
     {
         yield 'message' => [
-            new NotBlank(message: 'The "{{ name }}" value "{{ value }}" is not blank.'),
+            new NotBlank(message: 'The {{ name }} value {{ value }} is not blank.'),
             '',
-            'The "test" value "" is not blank.'
+            'The test value "" is not blank.'
         ];
     }
 }

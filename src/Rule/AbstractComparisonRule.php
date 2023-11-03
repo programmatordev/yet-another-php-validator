@@ -9,7 +9,7 @@ abstract class AbstractComparisonRule extends AbstractRule
 {
     use ComparableTrait;
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if (!$this->isComparable($value, $this->constraint)) {
             throw new UnexpectedComparableException(

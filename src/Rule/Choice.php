@@ -12,13 +12,13 @@ class Choice extends AbstractRule implements RuleInterface
         private readonly bool $multiple = false,
         private readonly ?int $minConstraint = null,
         private readonly ?int $maxConstraint = null,
-        private readonly string $message = 'The "{{ name }}" value is not a valid choice, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
-        private readonly string $multipleMessage = 'The "{{ name }}" value has one or more invalid choices, "{{ value }}" given. Accepted values are: "{{ constraints }}".',
-        private readonly string $minMessage = 'The "{{ name }}" value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
-        private readonly string $maxMessage = 'The "{{ name }}" value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+        private readonly string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
+        private readonly string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
+        private readonly string $minMessage = 'The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
+        private readonly string $maxMessage = 'The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
     ) {}
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->multiple && !\is_array($value)) {
             throw new UnexpectedValueException(

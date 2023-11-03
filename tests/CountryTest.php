@@ -19,7 +19,7 @@ class CountryTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $codeMessage = '/Invalid code "(.*)". Accepted values are: "(.*)"./';
-        $typeMessage = '/Expected value of type "string", "(.*)" given./';
+        $typeMessage = '/Expected value of type "string", (.*) given./';
 
         yield 'invalid code' => [new Country('invalid'), 'PT', $codeMessage];
         yield 'invalid type' => [new Country(), 123, $typeMessage];
@@ -28,7 +28,7 @@ class CountryTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = CountryException::class;
-        $message = '/The "(.*)" value is not a valid "(.*)" country code, "(.*)" given./';
+        $message = '/The (.*) value is not a valid (.*) country code, (.*) given./';
 
         yield 'default' => [new Country(), 'PRT', $exception, $message];
         yield 'alpha2' => [new Country(code: 'alpha-2'), 'PRT', $exception, $message];
@@ -48,10 +48,10 @@ class CountryTest extends AbstractTest
     {
         yield 'message' => [
             new Country(
-                message: 'The "{{ name }}" value "{{ value }}" is not a valid "{{ code }}" country code.'
+                message: 'The {{ name }} value {{ value }} is not a valid {{ code }} country code.'
             ),
             'invalid',
-            'The "test" value "invalid" is not a valid "alpha-2" country code.'
+            'The test value "invalid" is not a valid "alpha-2" country code.'
         ];
     }
 }

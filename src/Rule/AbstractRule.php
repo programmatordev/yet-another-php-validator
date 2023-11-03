@@ -9,7 +9,7 @@ abstract class AbstractRule
     public function validate($value): bool
     {
         try {
-            $this->assert($value, 'null');
+            $this->assert($value);
         }
         catch (ValidationException) {
             return false;
@@ -21,5 +21,5 @@ abstract class AbstractRule
     /**
      * @throws ValidationException
      */
-    public abstract function assert(mixed $value, string $name): void;
+    public abstract function assert(mixed $value, ?string $name = null): void;
 }
