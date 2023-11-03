@@ -11,10 +11,10 @@ class EachValue extends AbstractRule implements RuleInterface
 {
     public function __construct(
         private readonly Validator $validator,
-        private readonly string $message = 'At key "{{ key }}": {{ message }}'
+        private readonly string $message = 'At key {{ key }}: {{ message }}'
     ) {}
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_iterable($value)) {
             throw new UnexpectedValueException(

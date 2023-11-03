@@ -6,7 +6,7 @@ Can compare between strings, numbers and dates.
 ```php
 GreaterThanOrEqual(
     mixed $constraint,
-    string $message = 'The "{{ name }}" value should be greater than or equal to "{{ constraint }}", "{{ value }}" given.'
+    string $message = 'The {{ name }} value should be greater than or equal to {{ constraint }}, {{ value }} given.'
 );
 ```
 
@@ -44,7 +44,7 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
-type: `string` default: `The "{{ name }}" value should be greater than or equal to "{{ constraint }}", "{{ value }}" given.`
+type: `string` default: `The {{ name }} value should be greater than or equal to {{ constraint }}, {{ value }} given.`
 
 Message that will be shown if the value is not greater than or equal to the constraint value.
 

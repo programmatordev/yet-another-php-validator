@@ -47,7 +47,7 @@ class Validator implements RuleInterface
     /**
      * @throws ValidationException
      */
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if (empty($this->getRules())) {
             throw new UnexpectedValueException('Validator rules not found: at least one rule is required.');
@@ -61,7 +61,7 @@ class Validator implements RuleInterface
     public function validate(mixed $value): bool
     {
         try {
-            $this->assert($value, 'null');
+            $this->assert($value);
         }
         catch (ValidationException) {
             return false;

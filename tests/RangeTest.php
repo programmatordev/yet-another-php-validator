@@ -36,7 +36,7 @@ class RangeTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = RangeException::class;
-        $message = '/The "(.*)" value should be between "(.*)" and "(.*)", "(.*)" given./';
+        $message = '/The (.*) value should be between (.*) and (.*), (.*) given./';
 
         yield 'min datetime' => [new Range(new \DateTime('today'), new \DateTime('tomorrow')), new \DateTime('yesterday'), $exception, $message];
         yield 'min int' => [new Range(10, 20), 1, $exception, $message];
@@ -75,10 +75,10 @@ class RangeTest extends AbstractTest
             new Range(
                 minConstraint: 10,
                 maxConstraint: 20,
-                message: 'The "{{ name }}" value "{{ value }}" should be between "{{ minConstraint }}" and "{{ maxConstraint }}".'
+                message: 'The {{ name }} value {{ value }} should be between {{ minConstraint }} and {{ maxConstraint }}.'
             ),
             30,
-            'The "test" value "30" should be between "10" and "20".'
+            'The test value 30 should be between 10 and 20.'
         ];
     }
 }

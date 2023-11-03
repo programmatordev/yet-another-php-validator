@@ -9,7 +9,7 @@ use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
 
 class DummyRule extends AbstractRule implements RuleInterface
 {
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_bool($value)) {
             throw new UnexpectedValueException('Dummy unexpected value.');

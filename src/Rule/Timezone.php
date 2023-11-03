@@ -12,16 +12,16 @@ class Timezone extends AbstractRule implements RuleInterface
     public function __construct(
         private readonly int $timezoneGroup = \DateTimeZone::ALL,
         private ?string $countryCode = null,
-        private readonly string $message = 'The "{{ name }}" value is not a valid timezone, "{{ value }}" given.'
+        private readonly string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.'
     ) {}
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->timezoneGroup === \DateTimeZone::PER_COUNTRY) {
             // Country code is required when using PER_COUNTRY timezone group
             if ($this->countryCode === null) {
                 throw new UnexpectedValueException(
-                    'A country code is required when timezone group is \DateTimeZone::PER_COUNTRY.'
+                    'A country code is required when timezone group is "\DateTimeZone::PER_COUNTRY".'
                 );
             }
 
@@ -29,7 +29,7 @@ class Timezone extends AbstractRule implements RuleInterface
             $this->countryCode = strtoupper($this->countryCode);
 
             try {
-                Validator::country()->assert($this->countryCode, 'countryCode');
+                Validator::country()->assert($this->countryCode, 'country code');
             }
             catch (ValidationException $exception) {
                 throw new UnexpectedValueException($exception->getMessage());

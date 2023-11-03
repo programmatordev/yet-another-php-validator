@@ -30,9 +30,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Validator;
  */
 function getWeatherTemperature(float $latitude, float $longitude, string $unitSystem): float
 {
-    Validator::range(-90, 90)->assert($latitude, 'Latitude');
-    Validator::range(-180, 180)->assert($longitude, 'Longitude');
-    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'Unit System');
+    Validator::range(-90, 90)->assert($latitude, 'latitude');
+    Validator::range(-180, 180)->assert($longitude, 'longitude');
+    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'unit system');
     
     // ...
 }
@@ -50,9 +50,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Validator;
  */
 function getWeatherTemperature(float $latitude, float $longitude, string $unitSystem): float
 {
-    (new Validator(new Rule\Range(-90, 90)))->assert($latitude, 'Latitude');
-    (new Validator(new Rule\Range(-180, 180)))->assert($longitude, 'Longitude');
-    (new Validator(new Rule\NotBlank(), new Rule\Choice(['METRIC', 'IMPERIAL'])))->assert($unitSystem, 'Unit System');
+    (new Validator(new Rule\Range(-90, 90)))->assert($latitude, 'latitude');
+    (new Validator(new Rule\Range(-180, 180)))->assert($longitude, 'longitude');
+    (new Validator(new Rule\NotBlank(), new Rule\Choice(['METRIC', 'IMPERIAL'])))->assert($unitSystem, 'unit system');
 
     // ...
 }
@@ -68,7 +68,7 @@ This method throws a `ValidationException` when a rule fails, otherwise nothing 
 /**
  * @throws ValidationException
  */
-assert(mixed $value, string $name): void;
+assert(mixed $value, ?string $name = null): void;
 ```
 
 An example on how to handle an error:
@@ -79,9 +79,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
 function getWeatherTemperature(float $latitude, float $longitude, string $unitSystem): float
 {
-    Validator::range(-90, 90)->assert($latitude, 'Latitude');
-    Validator::range(-180, 180)->assert($longitude, 'Longitude');
-    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'Unit System');
+    Validator::range(-90, 90)->assert($latitude, 'latitude');
+    Validator::range(-180, 180)->assert($longitude, 'longitude');
+    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'unit system');
     
     // ...
 }
@@ -90,7 +90,7 @@ try {
     getWeatherTemperature(latitude: 100, longitude: 50, unitSystem: 'METRIC');
 }
 catch (ValidationException $exception) {
-    echo $exception->getMessage(); // The "Latitude" value should be between "-90" and "90", "100" given.
+    echo $exception->getMessage(); // The latitude value should be between -90 and 90, 100 given.
 }
 ```
 > **Note**
@@ -175,7 +175,7 @@ function calculateDiscount(float $price, float $discount, string $type): float
         $discountValidator->addRule(new Rule\LessThanOrEqual(100));
     }
     
-    $discountValidator->assert($discount, 'Discount');
+    $discountValidator->assert($discount, 'discount');
     
     // ...
 }
@@ -197,9 +197,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
 try {
-    Validator::range(-90, 90)->assert($latitude, 'Latitude');
-    Validator::range(-180, 180)->assert($longitude, 'Longitude');
-    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'Unit System');
+    Validator::range(-90, 90)->assert($latitude, 'latitude');
+    Validator::range(-180, 180)->assert($longitude, 'longitude');
+    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'unit system');
 }
 catch (Exception\RangeException $exception) {
     // Do something when Range fails
@@ -219,9 +219,9 @@ use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
 try {
-    Validator::range(-90, 90)->assert($latitude, 'Latitude');
-    Validator::range(-180, 180)->assert($longitude, 'Longitude');
-    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'Unit System');
+    Validator::range(-90, 90)->assert($latitude, 'latitude');
+    Validator::range(-180, 180)->assert($longitude, 'longitude');
+    Validator::notBlank()->choice(['METRIC', 'IMPERIAL'])->assert($unitSystem, 'unit system');
 }
 catch (ValidationException $exception) {
     // Do something when a rule fails
@@ -261,8 +261,8 @@ use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
 Validator::choice(
     constraints: ['red', 'green', 'blue'],
-    message: '"{{ value }}" is not a valid {{ name }}! You must select one of {{ constraints }}.'
+    message: '{{ value }} is not a valid {{ name }}! You must select one of {{ constraints }}.'
 )->assert('yellow', 'color');
 
-// Throws: "yellow" is not a valid color! You must select one of [red, green, blue].
+// Throws: "yellow" is not a valid color! You must select one of ["red", "green", "blue"].
 ```

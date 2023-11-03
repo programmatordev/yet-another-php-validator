@@ -71,10 +71,10 @@ class Type extends AbstractRule implements RuleInterface
 
     public function __construct(
         private readonly string|array $constraint,
-        private readonly string $message = 'The "{{ name }}" value should be of type "{{ constraint }}", "{{ value }}" given.'
+        private readonly string $message = 'The {{ name }} value should be of type {{ constraint }}, {{ value }} given.'
     ) {}
 
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         $constraints = (array) $this->constraint;
 

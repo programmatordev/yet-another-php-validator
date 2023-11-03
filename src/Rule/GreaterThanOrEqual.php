@@ -8,7 +8,7 @@ class GreaterThanOrEqual extends AbstractComparisonRule implements RuleInterface
 {
     public function __construct(
         protected readonly mixed $constraint,
-        protected readonly string $message = 'The "{{ name }}" value should be greater than or equal to "{{ constraint }}", "{{ value }}" given.'
+        protected readonly string $message = 'The {{ name }} value should be greater than or equal to {{ constraint }}, {{ value }} given.'
     ) {}
 
     protected function compareValues(mixed $value1, mixed $value2): bool

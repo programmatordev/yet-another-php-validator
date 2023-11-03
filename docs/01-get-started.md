@@ -41,5 +41,5 @@ $validator = new Validator(
 
 // Validate with these:
 $validator->validate(16); // returns bool: false
-$validator->assert(16, 'Age'); // throws exception: The "Age" value should be greater than or equal to "18", "16" given.
+$validator->assert(16, 'age'); // throws exception: The age value should be greater than or equal to 18, 16 given.
 ```

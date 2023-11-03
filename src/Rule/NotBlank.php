@@ -11,7 +11,7 @@ class NotBlank extends AbstractRule implements RuleInterface
 
     public function __construct(
         ?callable $normalizer = null,
-        private readonly string $message = 'The "{{ name }}" value should not be blank, "{{ value }}" given.'
+        private readonly string $message = 'The {{ name }} value should not be blank, {{ value }} given.'
     )
     {
         $this->normalizer['callable'] = $normalizer;
@@ -20,7 +20,7 @@ class NotBlank extends AbstractRule implements RuleInterface
     /**
      * @throws NotBlankException
      */
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         // Keep original value for parameter
         $input = $value;

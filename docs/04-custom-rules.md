@@ -51,7 +51,7 @@ class CustomRule extends AbstractRule implements RuleInterface
     {
         if ($value === 0) {
             throw new CustomRuleException(
-                message: 'The "{{ name }}" value cannot be zero!',
+                message: 'The {{ name }} value cannot be zero!',
                 parameters: [
                     'name' => $name
                 ]               
@@ -76,7 +76,7 @@ $validator = new Validator(new CustomRule());
 // With multiple rules
 $validator = new Validator(new Range(-10, 10), new CustomRule());
 
-$validator->assert(0, 'test'); // throws: The "test" value cannot be zero!
+$validator->assert(0, 'test'); // throws: The test value cannot be zero!
 $validator->validate(0); // false
 ```
 
@@ -98,11 +98,11 @@ class Favorite extends AbstractRule implements RuleInterface
         private readonly string $favorite
     )
     
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->favorite !== $value) {
             throw new FavoriteException(
-                message: 'My favorite {{ name }} is "{{ favorite }}", not "{{ value }}"!',
+                message: 'My favorite {{ name }} is {{ favorite }}, not {{ value }}!',
                 parameters: [
                     'name' => $name, // {{ name }}
                     'favorite' => $this->favorite, // {{ favorite }}
