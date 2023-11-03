@@ -7,7 +7,7 @@ Can compare between strings, numbers and dates.
 Range(
     mixed $minConstraint,
     mixed $maxConstraint,
-    string $message = 'The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.'
+    string $message = 'The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.'
 );
 ```
 
@@ -57,7 +57,7 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
-type: `string` default: `The "{{ name }}" value should be between "{{ minConstraint }}" and "{{ maxConstraint }}", "{{ value }}" given.`
+type: `string` default: `The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.`
 
 Message that will be shown if the value is not between the minimum and maximum constraint values.
 

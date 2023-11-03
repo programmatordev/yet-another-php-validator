@@ -5,13 +5,13 @@ Validates that a value is not equal to a blank string, blank array, `false` or `
 ```php
 NotBlank(
     ?callable $normalizer = null,
-    string $message = 'The "{{ name }}" value should not be blank, "{{ value }}" given.'
+    string $message = 'The {{ name }} value should not be blank, {{ value }} given.'
 );
 ```
 
 ## Basic Usage
 
-Bellow are the only cases where the rule will fail, 
+Bellow are the *only* cases where the rule will fail by default, 
 everything else is considered valid (you may want to check the [`normalizer`](#normalizer) option for a different behaviour):
 
 ```php
@@ -41,7 +41,7 @@ Validator::notBlank(normalizer: fn($value) => trim($value))->validate(' '); // f
 
 ### `message`
 
-type: `string` default: `The "{{ name }}" value should not be blank, "{{ value }}" given.`
+type: `string` default: `The {{ name }} value should not be blank, {{ value }} given.`
 
 Message that will be shown if the value is blank.
 

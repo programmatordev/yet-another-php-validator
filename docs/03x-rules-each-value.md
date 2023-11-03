@@ -5,7 +5,7 @@ Validates every element of an `array` or object implementing `\Traversable` with
 ```php
 EachValue(
     Validator $validator,
-    string $message = 'At key "{{ key }}": {{ message }}'
+    string $message = 'At key {{ key }}: {{ message }}'
 );
 ```
 
@@ -34,8 +34,8 @@ type: `string` default: `At key "{{ key }}": {{ message }}`
 Message that will be shown if at least one input value element is invalid according to the given `validator`.
 
 ```php
-Validator::eachValue(Validator::notBlank())->assert(['red', 'green', ''], 'Test'); 
-// Throws: At key "2": The "Test" value should not be blank, "" given.
+Validator::eachValue(Validator::notBlank())->assert(['red', 'green', ''], 'color'); 
+// Throws: At key 2: The color value should not be blank, "" given.
 ```
 
 The following parameters are available:
