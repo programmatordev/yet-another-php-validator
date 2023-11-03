@@ -35,6 +35,7 @@ class EachKey extends AbstractRule implements RuleInterface
                     'name' => $name,
                     'key' => $key,
                     'element' => $element,
+                    // Replaces string "value" with string "key value" to get a more intuitive error message
                     'message' => \str_replace(' value ', ' key value ', $exception->getMessage())
                 ]
             );
