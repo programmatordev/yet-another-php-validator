@@ -56,6 +56,4 @@ The following parameters are available:
 
 ## Changelog
 
-| Version | Description |
-|---------|-------------|
-| `0.2.0` | Created     |
+- `0.2.0` Created

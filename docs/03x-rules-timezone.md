@@ -89,6 +89,4 @@ The following parameters are available:
 
 ## Changelog
 
-| Version | Description |
-|---------|-------------|
-| `0.3.0` | Created     |
+- `0.3.0` Created

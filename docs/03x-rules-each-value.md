@@ -50,6 +50,4 @@ The following parameters are available:
 
 ## Changelog
 
-| Version | Description |
-|---------|-------------|
-| `0.4.0` | Created     |
+- `0.4.0` Created
