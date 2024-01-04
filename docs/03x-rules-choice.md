@@ -140,6 +140,4 @@ The following parameters are available:
 
 ## Changelog
 
-| Version | Description |
-|---------|-------------|
-| `0.1.0` | Created     |
+- `0.1.0` Created
