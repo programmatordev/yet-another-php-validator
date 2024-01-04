@@ -47,3 +47,9 @@ The following parameters are available:
 | `{{ key }}`     | The key of the invalid iterable element          |
 | `{{ element }}` | The value of the invalid iterable element        |
 | `{{ message }}` | The rule message of the invalid iterable element |
+
+## Changelog
+
+| Version | Description |
+|---------|-------------|
+| `0.4.0` | Created     |
