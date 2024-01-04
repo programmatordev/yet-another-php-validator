@@ -137,3 +137,9 @@ The following parameters are available:
 | `{{ constraints }}`   | The array of valid choices           |
 | `{{ minConstraint }}` | The minimum number of valid choices  |
 | `{{ maxConstraint }}` | The maximum number of valid choices  |
+
+## Changelog
+
+| Version | Description |
+|---------|-------------|
+| `0.1.0` | Created     |

@@ -86,3 +86,9 @@ The following parameters are available:
 | `{{ value }}`       | The current invalid value |
 | `{{ name }}`        | Name of the invalid value |
 | `{{ countryCode }}` | Selected country code     |
+
+## Changelog
+
+| Version | Description |
+|---------|-------------|
+| `0.3.0` | Created     |

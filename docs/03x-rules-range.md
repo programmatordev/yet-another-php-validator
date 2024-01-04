@@ -69,3 +69,9 @@ The following parameters are available:
 | `{{ name }}`          | Name of the invalid value |
 | `{{ minConstraint }}` | The minimum range value   |
 | `{{ maxConstraint }}` | The maximum range value   |
+
+## Changelog
+
+| Version | Description |
+|---------|-------------|
+| `0.1.0` | Created     |

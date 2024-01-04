@@ -88,3 +88,9 @@ The following parameters are available:
 | `{{ value }}`      | The current invalid value |
 | `{{ name }}`       | Name of the invalid value |
 | `{{ constraint }}` | The valid type(s)         |
+
+## Changelog
+
+| Version | Description |
+|---------|-------------|
+| `0.2.0` | Created     |
