@@ -5,4 +5,5 @@
 /vendor/
 /logs/
 /.idea
+/.ddev
 /index.php
