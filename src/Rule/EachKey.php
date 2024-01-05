@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachKeyException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
 use ProgrammatorDev\YetAnotherPhpValidator\Validator;
 
@@ -17,9 +17,7 @@ class EachKey extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_iterable($value)) {
-            throw new UnexpectedValueException(
-                \sprintf('Expected value of type "array|\Traversable", "%s" given.', get_debug_type($value))
-            );
+            throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
         }
 
         try {
