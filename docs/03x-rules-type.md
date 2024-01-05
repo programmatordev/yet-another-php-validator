@@ -77,7 +77,7 @@ Available character type constraints:
 
 ### `message`
 
-type `string` default: `The {{ name }} value should be of type {{ constraint }}, {{ value }} given.`
+type: `string` default: `The {{ name }} value should be of type {{ constraint }}, {{ value }} given.`
 
 Message that will be shown if input value is not of a specific type.
 

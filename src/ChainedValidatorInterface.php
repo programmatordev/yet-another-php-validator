@@ -33,6 +33,12 @@ interface ChainedValidatorInterface
         string $message = 'At key {{ key }}: {{ message }}'
     ): ChainedValidatorInterface&Validator;
 
+    static function email(
+        string $mode = 'html5',
+        ?callable $normalizer = null,
+        string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.'
+    ): ChainedValidatorInterface&Validator;
+
     public function greaterThan(
         mixed $constraint,
         string $message = 'The {{ name }} value should be greater than {{ constraint }}, {{ value }} given.'
