@@ -3,6 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\ChoiceException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
 
 class Choice extends AbstractRule implements RuleInterface
@@ -21,9 +22,7 @@ class Choice extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->multiple && !\is_array($value)) {
-            throw new UnexpectedValueException(
-                \sprintf('Expected value of type "array" when using multiple choices, "%s" given', get_debug_type($value))
-            );
+            throw new UnexpectedTypeException('array', get_debug_type($value));
         }
 
         if (

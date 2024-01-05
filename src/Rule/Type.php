@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\TypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
 
 class Type extends AbstractRule implements RuleInterface
 {
@@ -88,13 +88,7 @@ class Type extends AbstractRule implements RuleInterface
             }
 
             if (!isset(self::TYPE_FUNCTIONS[$constraint]) && !\class_exists($constraint) && !\interface_exists($constraint)) {
-                throw new UnexpectedValueException(
-                    \sprintf(
-                        'Invalid constraint type "%s". Accepted values are: "%s"',
-                        $constraint,
-                        \implode('", "', \array_keys(self::TYPE_FUNCTIONS))
-                    )
-                );
+                throw new UnexpectedOptionException('constraint type', self::TYPE_FUNCTIONS, $constraint);
             }
         }
 
