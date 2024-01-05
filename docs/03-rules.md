@@ -1,6 +1,7 @@
 # Rules
 
 - [Basic Rules](#basic-rules)
+- [String Rules](#string-rules)
 - [Comparison Rules](#comparison-rules)
 - [Date Rules](#date-rules)
 - [Choice Rules](#choice-rules)
@@ -10,6 +11,10 @@
 
 - [NotBlank](03x-rules-not-blank.md)
 - [Type](03x-rules-type.md)
+
+## String Rules
+
+- [Email](03x-rules-email.md)
 
 ## Comparison Rules
 
