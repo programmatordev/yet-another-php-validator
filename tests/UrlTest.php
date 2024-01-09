@@ -52,6 +52,7 @@ class UrlTest extends AbstractTest
         yield 'custom protocol' => [new URL(protocols: ['ftp']), 'ftp://test.com'];
         yield 'allow relative protocol with protocol' => [new URL(allowRelativeProtocol: true), 'https://test.com'];
         yield 'allow relative protocol without protocol' => [new URL(allowRelativeProtocol: true), '//test.com'];
+        yield 'allow relative protocol only' => [new URL(protocols: [], allowRelativeProtocol: true), '//test.com'];
         yield 'normalizer' => [new URL(normalizer: 'trim'), 'https://test.com '];
     }
 
