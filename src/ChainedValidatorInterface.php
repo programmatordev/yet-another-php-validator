@@ -84,4 +84,11 @@ interface ChainedValidatorInterface
         string|array $constraint,
         string $message = 'The {{ name }} value should be of type {{ constraint }}, {{ value }} given.'
     ): ChainedValidatorInterface&Validator;
+
+    public function url(
+        array $protocols = ['http', 'https'],
+        bool $allowRelativeProtocol = false,
+        ?callable $normalizer = null,
+        string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.'
+    ): ChainedValidatorInterface&Validator;
 }

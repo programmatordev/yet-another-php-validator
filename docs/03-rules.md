@@ -15,6 +15,7 @@
 ## String Rules
 
 - [Email](03x-rules-email.md)
+- [URL](03x-rules-url.md)
 
 ## Comparison Rules
 
