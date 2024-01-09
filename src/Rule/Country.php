@@ -3,7 +3,8 @@
 namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
 
 use ProgrammatorDev\YetAnotherPhpValidator\Exception\CountryException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
 use Symfony\Component\Intl\Countries;
 
 class Country extends AbstractRule implements RuleInterface
@@ -24,19 +25,11 @@ class Country extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\in_array($this->code, self::CODE_OPTIONS)) {
-            throw new UnexpectedValueException(
-                \sprintf(
-                    'Invalid code "%s". Accepted values are: "%s".',
-                    $this->code,
-                    \implode(", ", self::CODE_OPTIONS)
-                )
-            );
+            throw new UnexpectedOptionException('code', self::CODE_OPTIONS, $this->code);
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedValueException(
-                \sprintf('Expected value of type "string", "%s" given.', get_debug_type($value))
-            );
+            throw new UnexpectedTypeException('string', get_debug_type($value));
         }
 
         // Keep original value for parameters

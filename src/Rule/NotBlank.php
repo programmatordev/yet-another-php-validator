@@ -22,16 +22,12 @@ class NotBlank extends AbstractRule implements RuleInterface
      */
     public function assert(mixed $value, ?string $name = null): void
     {
-        // Keep original value for parameter
-        $input = $value;
-
-        // Call normalizer if provided
         if ($this->normalizer['callable'] !== null) {
-            $input = ($this->normalizer['callable'])($input);
+            $value = ($this->normalizer['callable'])($value);
         }
 
         // Do not allow null, false, [] and ''
-        if ($input === false || (empty($input) && $input != '0')) {
+        if ($value === false || (empty($value) && $value != '0')) {
             throw new NotBlankException(
                 message: $this->message,
                 parameters: [

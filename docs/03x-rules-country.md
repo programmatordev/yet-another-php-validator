@@ -53,3 +53,7 @@ The following parameters are available:
 | `{{ value }}` | The current invalid value |
 | `{{ name }}`  | Name of the invalid value |
 | `{{ code }}`  | Selected code type        |
+
+## Changelog
+
+- `0.2.0` Created

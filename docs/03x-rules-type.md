@@ -77,7 +77,7 @@ Available character type constraints:
 
 ### `message`
 
-type `string` default: `The {{ name }} value should be of type {{ constraint }}, {{ value }} given.`
+type: `string` default: `The {{ name }} value should be of type {{ constraint }}, {{ value }} given.`
 
 Message that will be shown if input value is not of a specific type.
 
@@ -88,3 +88,7 @@ The following parameters are available:
 | `{{ value }}`      | The current invalid value |
 | `{{ name }}`       | Name of the invalid value |
 | `{{ constraint }}` | The valid type(s)         |
+
+## Changelog
+
+- `0.2.0` Created

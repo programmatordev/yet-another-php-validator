@@ -55,3 +55,7 @@ The following parameters are available:
 | `{{ value }}`      | The current invalid value |
 | `{{ name }}`       | Name of the invalid value |
 | `{{ constraint }}` | The comparison value      |
+
+## Changelog
+
+- `0.1.0` Created
