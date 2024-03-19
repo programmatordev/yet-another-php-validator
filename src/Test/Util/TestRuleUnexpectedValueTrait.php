@@ -1,10 +1,10 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test\Util;
+namespace ProgrammatorDev\Validator\Test\Util;
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 trait TestRuleUnexpectedValueTrait
 {

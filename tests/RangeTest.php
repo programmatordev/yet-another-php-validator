@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\RangeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Range;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\RangeException;
+use ProgrammatorDev\Validator\Rule\Range;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class RangeTest extends AbstractTest
 {

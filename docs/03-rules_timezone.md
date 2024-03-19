@@ -27,11 +27,11 @@ Validator::timezone(timezoneGroup: \DateTimeZone::PER_COUNTRY, countryCode: 'pt'
 Validator::timezone(timezoneGroup: \DateTimeZone::PER_COUNTRY, countryCode: 'en')->validate('Europe/Lisbon'); // false
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `timezoneGroup` value is `\DateTimeZone::PER_COUNTRY`
 > and the `countryCode` value is `null` (not provided).
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `countryCode` value is not valid.
 > Only if the `timezoneGroup` value is `\DateTimeZone::PER_COUNTRY`, otherwise it is ignored.
 

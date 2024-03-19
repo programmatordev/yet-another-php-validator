@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\CountryException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Country;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\CountryException;
+use ProgrammatorDev\Validator\Rule\Country;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class CountryTest extends AbstractTest
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UrlException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\UrlException;
 
 class Url extends AbstractRule implements RuleInterface
 {

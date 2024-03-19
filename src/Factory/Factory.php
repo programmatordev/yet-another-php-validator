@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Factory;
+namespace ProgrammatorDev\Validator\Factory;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\RuleNotFoundException;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 class Factory
 {
-    private array $namespaces = ['ProgrammatorDev\\YetAnotherPhpValidator\\Rule'];
+    private array $namespaces = ['ProgrammatorDev\\Validator\\Rule'];
 
     /**
      * @throws RuleNotFoundException

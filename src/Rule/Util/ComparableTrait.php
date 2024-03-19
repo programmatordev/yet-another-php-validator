@@ -1,6 +1,6 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule\Util;
+namespace ProgrammatorDev\Validator\Rule\Util;
 
 trait ComparableTrait
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EmailException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Email;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\EmailException;
+use ProgrammatorDev\Validator\Rule\Email;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class EmailTest extends AbstractTest
 {

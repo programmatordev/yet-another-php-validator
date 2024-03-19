@@ -14,7 +14,7 @@ First, create your custom rule exception...
 ```php
 namespace My\Project\Exception;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
 
 class CustomRuleException extends ValidationException {}
 ```
@@ -24,8 +24,8 @@ class CustomRuleException extends ValidationException {}
 ```php
 namespace My\Project\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Rule\AbstractRule;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 class CustomRule extends AbstractRule implements RuleInterface
 {
@@ -41,8 +41,8 @@ class CustomRule extends AbstractRule implements RuleInterface
 ```php
 namespace My\Project\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Rule\AbstractRule;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 use My\Project\Exception\CustomRuleException;
 
 class CustomRule extends AbstractRule implements RuleInterface

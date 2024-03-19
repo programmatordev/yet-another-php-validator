@@ -1,11 +1,11 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\TimezoneException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\TimezoneException;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 class Timezone extends AbstractRule implements RuleInterface
 {

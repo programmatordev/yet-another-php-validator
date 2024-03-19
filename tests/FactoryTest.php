@@ -1,10 +1,10 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
-use ProgrammatorDev\YetAnotherPhpValidator\Factory\Factory;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\RuleNotFoundException;
+use ProgrammatorDev\Validator\Factory\Factory;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 class FactoryTest extends AbstractTest
 {

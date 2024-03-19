@@ -1,11 +1,11 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test\Fixture;
+namespace ProgrammatorDev\Validator\Test\Fixture;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Rule\AbstractRule;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 class DummyRule extends AbstractRule implements RuleInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\LessThanException;
+use ProgrammatorDev\Validator\Exception\LessThanException;
 
 class LessThan extends AbstractComparisonRule implements RuleInterface
 {

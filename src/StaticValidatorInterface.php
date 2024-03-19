@@ -1,8 +1,8 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator;
+namespace ProgrammatorDev\Validator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface StaticValidatorInterface
 {

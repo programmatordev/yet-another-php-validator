@@ -16,7 +16,7 @@ Validator::eachKey(Validator::notBlank()->type('string'))->validate(['red' => '#
 Validator::eachKey(Validator::notBlank()->type('string'))->validate(['red' => '#f00', 1 => '#0f0']); // false
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not an `array` or an object implementing `\Traversable`.
 
 ## Options

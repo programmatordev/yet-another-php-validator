@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\LessThanOrEqualException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\LessThanOrEqual;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\LessThanOrEqualException;
+use ProgrammatorDev\Validator\Rule\LessThanOrEqual;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class LessThanOrEqualTest extends AbstractTest
 {

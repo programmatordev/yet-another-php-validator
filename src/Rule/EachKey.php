@@ -1,11 +1,11 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachKeyException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\EachKeyException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 class EachKey extends AbstractRule implements RuleInterface
 {

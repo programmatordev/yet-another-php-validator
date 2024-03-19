@@ -1,9 +1,9 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\TypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\TypeException;
+use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
 
 class Type extends AbstractRule implements RuleInterface
 {

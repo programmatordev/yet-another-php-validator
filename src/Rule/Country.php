@@ -1,10 +1,10 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\CountryException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\CountryException;
+use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Intl\Countries;
 
 class Country extends AbstractRule implements RuleInterface

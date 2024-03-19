@@ -1,16 +1,16 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\EachValue;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\EachValueException;
+use ProgrammatorDev\Validator\Rule\EachValue;
+use ProgrammatorDev\Validator\Rule\GreaterThan;
+use ProgrammatorDev\Validator\Rule\NotBlank;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Validator;
 
 class EachValueTest extends AbstractTest
 {

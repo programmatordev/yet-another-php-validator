@@ -29,14 +29,14 @@ Validator::range(new DateTime('yesterday'), new DateTime('tomorrow'))->validate(
 Validator::range(new DateTime('yesterday'), new DateTime('tomorrow'))->validate(new DateTime('tomorrow')); // true
 ```
 
-> **Note**
+> [!NOTE]
 > String comparison is case-sensitive, meaning that comparing `"hello"` with `"Hello"` is different.
 > Check [`strcmp`](https://www.php.net/manual/en/function.strcmp.php) for more information.
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when trying to compare incomparable values, like a `string` with an `int`.
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `minConstraint` value is greater than or equal to the `maxConstraint` value.
 
 ## Options

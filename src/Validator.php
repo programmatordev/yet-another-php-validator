@@ -1,12 +1,12 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator;
+namespace ProgrammatorDev\Validator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Factory\Factory;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\RuleNotFoundException;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Factory\Factory;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 /**
  * @mixin StaticValidatorInterface

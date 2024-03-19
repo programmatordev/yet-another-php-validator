@@ -1,10 +1,10 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ChoiceException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ChoiceException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 
 class Choice extends AbstractRule implements RuleInterface
 {

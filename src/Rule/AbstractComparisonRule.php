@@ -1,9 +1,9 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
+use ProgrammatorDev\Validator\Exception\UnexpectedComparableException;
+use ProgrammatorDev\Validator\Rule\Util\ComparableTrait;
 
 abstract class AbstractComparisonRule extends AbstractRule
 {

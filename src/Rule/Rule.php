@@ -1,6 +1,6 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
 class Rule extends AbstractRule implements RuleInterface
 {
