@@ -28,9 +28,7 @@ class Range extends AbstractRule implements RuleInterface
         }
 
         if (!Validator::greaterThan($this->min)->validate($this->max)) {
-            throw new UnexpectedValueException(
-                'Maximum value must be greater than minimum value.'
-            );
+            throw new UnexpectedValueException('Maximum value must be greater than minimum value.');
         }
 
         if (!Validator::greaterThanOrEqual($this->min)->lessThanOrEqual($this->max)->validate($value)) {

@@ -20,9 +20,11 @@ class CountTest extends AbstractTest
     {
         $missingOptionsMessage = '/At least one of the options "min" or "max" must be given./';
         $invalidTypeMessage = '/Expected value of type "array|\Countable", "(.*)" given./';
+        $constraintMessage = '/Maximum value must be greater than or equal to minimum value./';
 
         yield 'missing options' => [new Count(), [1, 2, 3], $missingOptionsMessage];
         yield 'invalid type value' => [new Count(min: 5, max: 10), 1, $invalidTypeMessage];
+        yield 'min greater than max constraint' => [new Count(min: 10, max: 5), 1, $constraintMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

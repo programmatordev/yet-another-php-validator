@@ -18,6 +18,14 @@ interface ChainedValidatorInterface
         string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.'
     ): ChainedValidatorInterface&Validator;
 
+    public function count(
+        ?int $min = null,
+        ?int $max = null,
+        ?string $minMessage = null,
+        ?string $maxMessage = null,
+        ?string $exactMessage = null
+    ): ChainedValidatorInterface&Validator;
+
     public function country(
         string $code = 'alpha-2',
         string $message = 'The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.'

@@ -5,12 +5,13 @@ namespace ProgrammatorDev\Validator\Rule;
 use ProgrammatorDev\Validator\Exception\CountException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Validator;
 
 class Count extends AbstractRule implements RuleInterface
 {
     private string $minMessage = 'The {{ name }} value should contain {{ min }} elements or more, {{ numElements }} elements given.';
     private string $maxMessage = 'The {{ name }} value should contain {{ max }} elements or less, {{ numElements }} elements given.';
-    private string $exactMessage = 'The {{ name }} value should contain exactly {{ numElements }} elements, {{ numElements }} elements given.';
+    private string $exactMessage = 'The {{ name }} value should contain exactly {{ min }} elements, {{ numElements }} elements given.';
 
     public function __construct(
         private readonly ?int $min = null,
@@ -29,6 +30,14 @@ class Count extends AbstractRule implements RuleInterface
     {
         if ($this->min === null && $this->max === null) {
             throw new UnexpectedValueException('At least one of the options "min" or "max" must be given.');
+        }
+
+        if (
+            $this->min !== null
+            && $this->max !== null
+            && !Validator::greaterThanOrEqual($this->min)->validate($this->max)
+        ) {
+            throw new UnexpectedValueException('Maximum value must be greater than or equal to minimum value.');
         }
 
         if (!\is_countable($value)) {

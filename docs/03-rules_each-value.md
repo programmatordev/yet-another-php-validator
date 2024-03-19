@@ -1,6 +1,6 @@
 ## EachValue
 
-Validates every element of an `array` or object implementing `\Traversable` with a given set of rules.
+Validates every element of an `array`, or object implementing `\Traversable`, with a given set of rules.
 
 ```php
 EachValue(
