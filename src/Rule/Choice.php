@@ -11,12 +11,12 @@ class Choice extends AbstractRule implements RuleInterface
     public function __construct(
         private readonly array $constraints,
         private readonly bool $multiple = false,
-        private readonly ?int $minConstraint = null,
-        private readonly ?int $maxConstraint = null,
+        private readonly ?int $min = null,
+        private readonly ?int $max = null,
         private readonly string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
         private readonly string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-        private readonly string $minMessage = 'The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
-        private readonly string $maxMessage = 'The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+        private readonly string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.',
+        private readonly string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.'
     ) {}
 
     public function assert(mixed $value, ?string $name = null): void
@@ -27,12 +27,12 @@ class Choice extends AbstractRule implements RuleInterface
 
         if (
             $this->multiple
-            && $this->minConstraint !== null
-            && $this->maxConstraint !== null
-            && $this->minConstraint > $this->maxConstraint
+            && $this->min !== null
+            && $this->max !== null
+            && $this->min > $this->max
         ) {
             throw new UnexpectedValueException(
-                'Max constraint value must be greater than or equal to min constraint value.'
+                'Maximum value must be greater than or equal to minimum value.'
             );
         }
 
@@ -50,32 +50,32 @@ class Choice extends AbstractRule implements RuleInterface
                 }
             }
 
-            $numValues = \count($value);
+            $numElements = \count($value);
 
-            if ($this->minConstraint !== null && $numValues < $this->minConstraint) {
+            if ($this->min !== null && $numElements < $this->min) {
                 throw new ChoiceException(
                     message: $this->minMessage,
                     parameters: [
                         'value' => $value,
-                        'numValues' => $numValues,
                         'name' => $name,
                         'constraints' => $this->constraints,
-                        'minConstraint' => $this->minConstraint,
-                        'maxConstraint' => $this->maxConstraint
+                        'min' => $this->min,
+                        'max' => $this->max,
+                        'numElements' => $numElements
                     ]
                 );
             }
 
-            if ($this->maxConstraint !== null && $numValues > $this->maxConstraint) {
+            if ($this->max !== null && $numElements > $this->max) {
                 throw new ChoiceException(
                     message: $this->maxMessage,
                     parameters: [
                         'value' => $value,
-                        'numValues' => $numValues,
                         'name' => $name,
                         'constraints' => $this->constraints,
-                        'minConstraint' => $this->minConstraint,
-                        'maxConstraint' => $this->maxConstraint
+                        'min' => $this->min,
+                        'max' => $this->max,
+                        'numElements' => $numElements
                     ]
                 );
             }

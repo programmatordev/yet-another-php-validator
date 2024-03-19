@@ -5,9 +5,9 @@ Can compare between strings, numbers and dates.
 
 ```php
 Range(
-    mixed $minConstraint,
-    mixed $maxConstraint,
-    string $message = 'The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.'
+    mixed $min,
+    mixed $max,
+    string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.'
 );
 ```
 
@@ -37,18 +37,18 @@ Validator::range(new DateTime('yesterday'), new DateTime('tomorrow'))->validate(
 > An `UnexpectedValueException` will be thrown when trying to compare incomparable values, like a `string` with an `int`.
 
 > [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `minConstraint` value is greater than or equal to the `maxConstraint` value.
+> An `UnexpectedValueException` will be thrown when the `min` value is greater than or equal to the `max` value.
 
 ## Options
 
-### `minConstraint`
+### `min`
 
 type: `mixed` `required`
 
 It defines the minimum range value.
 Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
-### `maxConstraint`
+### `max`
 
 type: `mixed` `required`
 
@@ -57,18 +57,18 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
-type: `string` default: `The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.`
+type: `string` default: `The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.`
 
-Message that will be shown if the value is not between the minimum and maximum constraint values.
+Message that will be shown if the value is not between the minimum and maximum values.
 
 The following parameters are available:
 
-| Parameter             | Description               |
-|-----------------------|---------------------------|
-| `{{ value }}`         | The current invalid value |
-| `{{ name }}`          | Name of the invalid value |
-| `{{ minConstraint }}` | The minimum range value   |
-| `{{ maxConstraint }}` | The maximum range value   |
+| Parameter     | Description               |
+|---------------|---------------------------|
+| `{{ value }}` | The current invalid value |
+| `{{ name }}`  | Name of the invalid value |
+| `{{ min }}`   | The minimum range value   |
+| `{{ max }}`   | The maximum range value   |
 
 ## Changelog
 

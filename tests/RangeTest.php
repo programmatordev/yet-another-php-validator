@@ -19,7 +19,7 @@ class RangeTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $comparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
-        $constraintMessage = '/Max constraint value must be greater than min constraint value./';
+        $constraintMessage = '/Maximum value must be greater than minimum value./';
 
         yield 'datetime constraint with int constraint' => [new Range(new \DateTime(), 10), new \DateTime(), $comparableMessage];
         yield 'datetime constraint with float constraint' => [new Range(new \DateTime(), 10.0), new \DateTime(), $comparableMessage];
@@ -73,9 +73,9 @@ class RangeTest extends AbstractTest
     {
         yield 'message' => [
             new Range(
-                minConstraint: 10,
-                maxConstraint: 20,
-                message: 'The {{ name }} value {{ value }} should be between {{ minConstraint }} and {{ maxConstraint }}.'
+                min: 10,
+                max: 20,
+                message: 'The {{ name }} value {{ value }} should be between {{ min }} and {{ max }}.'
             ),
             30,
             'The test value 30 should be between 10 and 20.'

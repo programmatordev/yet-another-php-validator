@@ -13,34 +13,32 @@ class Range extends AbstractRule implements RuleInterface
     use ComparableTrait;
 
     public function __construct(
-        private readonly mixed $minConstraint,
-        private readonly mixed $maxConstraint,
-        private readonly string $message = 'The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.'
+        private readonly mixed $min,
+        private readonly mixed $max,
+        private readonly string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.'
     ) {}
 
     public function assert(mixed $value, ?string $name = null): void
     {
-        if (!$this->isComparable($this->minConstraint, $this->maxConstraint)) {
+        if (!$this->isComparable($this->min, $this->max)) {
             throw new UnexpectedComparableException(
-                get_debug_type($this->minConstraint),
-                get_debug_type($this->maxConstraint)
+                get_debug_type($this->min),
+                get_debug_type($this->max)
             );
         }
 
-        if (!Validator::greaterThan($this->minConstraint)->validate($this->maxConstraint)) {
-            throw new UnexpectedValueException(
-                'Max constraint value must be greater than min constraint value.'
-            );
+        if (!Validator::greaterThan($this->min)->validate($this->max)) {
+            throw new UnexpectedValueException('Maximum value must be greater than minimum value.');
         }
 
-        if (!Validator::greaterThanOrEqual($this->minConstraint)->lessThanOrEqual($this->maxConstraint)->validate($value)) {
+        if (!Validator::greaterThanOrEqual($this->min)->lessThanOrEqual($this->max)->validate($value)) {
             throw new RangeException(
                 message: $this->message,
                 parameters: [
                     'value' => $value,
                     'name' => $name,
-                    'minConstraint' => $this->minConstraint,
-                    'maxConstraint' => $this->maxConstraint
+                    'min' => $this->min,
+                    'max' => $this->max
                 ]
             );
         }
