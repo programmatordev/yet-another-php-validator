@@ -6,11 +6,12 @@
 
 PHP validator with expressive error messages.
 
-> **Note**
+> [!NOTE]
 > This library is not in version 1.x mainly because there are few available rules.
 > Hopefully, that will change in the near future.
->
-> Also, expect some breaking changes until version `1.0`.
+
+> [!IMPORTANT]
+> Expect some breaking changes until version `1.0`.
 
 ## Requirements
 
@@ -35,8 +36,8 @@ require_once 'vendor/autoload.php';
 Simple usage looks like:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Rule;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Rule;
+use ProgrammatorDev\Validator\Validator;
 
 // Do this...
 $validator = Validator::notBlank()->greaterThanOrEqual(18);

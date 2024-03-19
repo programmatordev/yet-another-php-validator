@@ -20,10 +20,10 @@ Validator::country(code: 'alpha-2')->validate('PT'); // true
 Validator::country(code: 'alpha-3')->validate('PRT'); // true
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `code` value is not a valid option.
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not a `string`.
 
 ## Options

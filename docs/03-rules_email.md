@@ -22,7 +22,7 @@ Validator::email(mode: 'html5-allow-no-tld')->validate('test@example.com'); // t
 Validator::email(mode: 'html5-allow-no-tld')->validate('test@example'); // true
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when a `mode` option is invalid.
 
 ## Options

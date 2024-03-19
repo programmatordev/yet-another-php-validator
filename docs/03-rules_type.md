@@ -30,7 +30,7 @@ Validator::type(\DateTime::class)->validate(new \DateTime()); // true
 Validator::type(\DateTimeInterface::class)->validate(new \DateTime()); // true
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when a constraint type, class or interface is invalid.
 
 ## Options

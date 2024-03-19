@@ -1,8 +1,8 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
+use ProgrammatorDev\Validator\Exception\NotBlankException;
 
 class NotBlank extends AbstractRule implements RuleInterface
 {

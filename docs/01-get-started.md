@@ -27,8 +27,8 @@ require_once 'vendor/autoload.php';
 Simple usage looks like:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Rule;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Rule;
+use ProgrammatorDev\Validator\Validator;
 
 // Do this...
 $validator = Validator::notBlank()->greaterThanOrEqual(18);

@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\TimezoneException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Timezone;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\TimezoneException;
+use ProgrammatorDev\Validator\Rule\Timezone;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class TimezoneTest extends AbstractTest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
 
 abstract class AbstractRule
 {

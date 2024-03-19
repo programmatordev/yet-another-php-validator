@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "ProgrammatorDev\\YetAnotherPhpValidator\\": "src/"
+            "ProgrammatorDev\\Validator\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "ProgrammatorDev\\YetAnotherPhpValidator\\Test\\": "tests/"
+            "ProgrammatorDev\\Validator\\Test\\": "tests/"
         }
     },
     "config": {

@@ -1,12 +1,12 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Exception\NotBlankException;
+use ProgrammatorDev\Validator\Rule\NotBlank;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
 
 class NotBlankTest extends AbstractTest
 {

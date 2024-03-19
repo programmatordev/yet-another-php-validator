@@ -1,12 +1,12 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\RangeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedComparableException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Util\ComparableTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\RangeException;
+use ProgrammatorDev\Validator\Exception\UnexpectedComparableException;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Rule\Util\ComparableTrait;
+use ProgrammatorDev\Validator\Validator;
 
 class Range extends AbstractRule implements RuleInterface
 {

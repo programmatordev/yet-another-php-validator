@@ -1,6 +1,6 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Exception;
+namespace ProgrammatorDev\Validator\Exception;
 
 class ValidationException extends \Exception
 {

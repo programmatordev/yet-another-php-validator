@@ -1,5 +1,5 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Exception;
+namespace ProgrammatorDev\Validator\Exception;
 
 class CountryException extends ValidationException {}

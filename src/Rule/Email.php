@@ -1,12 +1,12 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EmailException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\EmailException;
+use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 
 class Email extends AbstractRule implements RuleInterface
 {

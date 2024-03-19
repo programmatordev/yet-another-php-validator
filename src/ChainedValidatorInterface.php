@@ -1,9 +1,9 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator;
+namespace ProgrammatorDev\Validator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface ChainedValidatorInterface
 {

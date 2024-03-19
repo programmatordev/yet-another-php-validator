@@ -16,7 +16,7 @@ Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->valid
 Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->validate([4, 5, 20]); // false
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not an `array` or an object implementing `\Traversable`.
 
 ## Options

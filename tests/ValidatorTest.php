@@ -1,15 +1,15 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
 use PHPUnit\Framework\Attributes\DataProvider;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\LessThan;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\NotBlank;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Rule\GreaterThan;
+use ProgrammatorDev\Validator\Rule\LessThan;
+use ProgrammatorDev\Validator\Rule\NotBlank;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Validator;
 
 class ValidatorTest extends AbstractTest
 {

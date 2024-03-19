@@ -22,8 +22,8 @@ Both should work exactly the same.
 ### Fluent
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 /**
  * @throws ValidationException
@@ -41,9 +41,9 @@ function getWeatherTemperature(float $latitude, float $longitude, string $unitSy
 ### Dependency Injection
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Rule;
+use ProgrammatorDev\Validator\Validator;
 
 /**
  * @throws ValidationException
@@ -74,8 +74,8 @@ assert(mixed $value, ?string $name = null): void;
 An example on how to handle an error:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 function getWeatherTemperature(float $latitude, float $longitude, string $unitSystem): float
 {
@@ -93,10 +93,10 @@ catch (ValidationException $exception) {
     echo $exception->getMessage(); // The latitude value should be between -90 and 90, 100 given.
 }
 ```
-> **Note**
+> [!NOTE]
 > Check the [Error Handling](#error-handling) section for more information.
 
-> **Note**
+> [!NOTE]
 > The example only shows one usage approach, but both Fluent and Dependency Injection should work the same.
 > Check the [Usage](#usage) section for more information.
 
@@ -111,14 +111,14 @@ validate(mixed $value): bool
 An example:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Validator;
 
 if (!Validator::range(-90, 90)->validate($latitude)) {
     // Do something...
 } 
 ```
 
-> **Note**
+> [!NOTE]
 > The example only shows one usage approach, but both Fluent and Dependency Injection should work the same.
 > Check the [Usage](#usage) section for more information.
 
@@ -136,20 +136,20 @@ getRules(): array
 An example:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Rule;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Rule;
+use ProgrammatorDev\Validator\Validator;
 
 $validator = new Validator(new Rule\GreaterThanOrEqual(0), new Rule\LessThanOrEqual(100));
 
 print_r($validator->getRules());
 
 // Array ( 
-//    [0] => ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThanOrEqual Object 
-//    [1] => ProgrammatorDev\YetAnotherPhpValidator\Rule\LessThanOrEqual Object
+//    [0] => ProgrammatorDev\Validator\Rule\GreaterThanOrEqual Object 
+//    [1] => ProgrammatorDev\Validator\Rule\LessThanOrEqual Object
 // ) 
 ```
 
-> **Note**
+> [!NOTE]
 > The example only shows one usage approach, but both Fluent and Dependency Injection should work the same.
 > Check the [Usage](#usage) section for more information.
 
@@ -164,8 +164,8 @@ addRule(RuleInterface $rule): self
 An example:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Rule;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Rule;
+use ProgrammatorDev\Validator\Validator;
 
 function calculateDiscount(float $price, float $discount, string $type): float
 {
@@ -181,7 +181,7 @@ function calculateDiscount(float $price, float $discount, string $type): float
 }
 ```
 
-> **Note**
+> [!NOTE]
 > The example only shows one usage approach, but both Fluent and Dependency Injection should work the same.
 > Check the [Usage](#usage) section for more information.
 
@@ -193,8 +193,8 @@ Each rule has a unique exception, formed by the name of the rule followed by the
 The following shows an example:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Exception;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception;
+use ProgrammatorDev\Validator\Validator;
 
 try {
     Validator::range(-90, 90)->assert($latitude, 'latitude');
@@ -215,8 +215,8 @@ catch (Exception\ChoiceException $exception) {
 To catch all errors with a single exception, you can use the `ValidationException`:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 try {
     Validator::range(-90, 90)->assert($latitude, 'latitude');
@@ -235,8 +235,8 @@ an `UnexpectedValueException` is thrown when the provided input data is not vali
 For example, when trying to compare a date with a string:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Validator;
 
 try {
     Validator::greaterThanOrEqual(new DateTime('today'))->validate('alpha');
@@ -254,10 +254,10 @@ Every message has a list of dynamic parameters to help create an intuitive error
 To check what parameters and messages are available, look into the Options section in the page of a rule. 
 Go to [Rules](03-rules.md) to see all available rules.
 
-The following example uses the [Choice](03x-rules-choice.md) rule with a custom error message:
+The following example uses the [Choice](03-rules_choice) rule with a custom error message:
 
 ```php
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Validator;
 
 Validator::choice(
     constraints: ['red', 'green', 'blue'],
