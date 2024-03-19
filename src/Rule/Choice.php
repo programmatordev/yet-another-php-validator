@@ -15,8 +15,8 @@ class Choice extends AbstractRule implements RuleInterface
         private readonly ?int $max = null,
         private readonly string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
         private readonly string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-        private readonly string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numValues }} choices given.',
-        private readonly string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numValues }} choices given.'
+        private readonly string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.',
+        private readonly string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.'
     ) {}
 
     public function assert(mixed $value, ?string $name = null): void
@@ -50,32 +50,32 @@ class Choice extends AbstractRule implements RuleInterface
                 }
             }
 
-            $numValues = \count($value);
+            $numElements = \count($value);
 
-            if ($this->min !== null && $numValues < $this->min) {
+            if ($this->min !== null && $numElements < $this->min) {
                 throw new ChoiceException(
                     message: $this->minMessage,
                     parameters: [
                         'value' => $value,
-                        'numValues' => $numValues,
                         'name' => $name,
                         'constraints' => $this->constraints,
                         'min' => $this->min,
-                        'max' => $this->max
+                        'max' => $this->max,
+                        'numElements' => $numElements
                     ]
                 );
             }
 
-            if ($this->max !== null && $numValues > $this->max) {
+            if ($this->max !== null && $numElements > $this->max) {
                 throw new ChoiceException(
                     message: $this->maxMessage,
                     parameters: [
                         'value' => $value,
-                        'numValues' => $numValues,
                         'name' => $name,
                         'constraints' => $this->constraints,
                         'min' => $this->min,
-                        'max' => $this->max
+                        'max' => $this->max,
+                        'numElements' => $numElements
                     ]
                 );
             }

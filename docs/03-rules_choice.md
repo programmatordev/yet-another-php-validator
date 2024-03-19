@@ -10,8 +10,8 @@ Choice(
     ?int $max = null,
     string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
     string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-    string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numValues }} choices given.',
-    string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numValues }} choices given.'
+    string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.',
+    string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.'
 );
 ```
 
@@ -106,37 +106,37 @@ The following parameters are available:
 
 ### `minMessage`
 
-type: `string` default: `The {{ name }} value must have at least {{ min }} choices, {{ numValues }} choices given.`
+type: `string` default: `The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.`
 
 Message that will be shown when `multiple` is `true` and input array has fewer values than the defined in `min`.
 
 The following parameters are available:
 
-| Parameter           | Description                          |
-|---------------------|--------------------------------------|
-| `{{ value }}`       | The current invalid value            |
-| `{{ numValues }}`   | The current invalid number of values |
-| `{{ name }}`        | Name of the invalid value            |
-| `{{ constraints }}` | The array of valid choices           |
-| `{{ min }}`         | The minimum number of valid choices  |
-| `{{ max }}`         | The maximum number of valid choices  |
+| Parameter           | Description                            |
+|---------------------|----------------------------------------|
+| `{{ value }}`       | The current invalid value              |
+| `{{ name }}`        | Name of the invalid value              |
+| `{{ constraints }}` | The array of valid choices             |
+| `{{ min }}`         | The minimum number of valid choices    |
+| `{{ max }}`         | The maximum number of valid choices    |
+| `{{ numElements }}` | The current invalid number of elements |
 
 ### `maxMessage`
 
-type: `string` default: `The {{ name }} value must have at most {{ max }} choices, {{ numValues }} choices given.`
+type: `string` default: `The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.`
 
 Message that will be shown when `multiple` is `true` and input array has more values than the defined in `max`.
 
 The following parameters are available:
 
-| Parameter           | Description                          |
-|---------------------|--------------------------------------|
-| `{{ value }}`       | The current invalid value            |
-| `{{ numValues }}`   | The current invalid number of values |
-| `{{ name }}`        | Name of the invalid value            |
-| `{{ constraints }}` | The array of valid choices           |
-| `{{ min }}`         | The minimum number of valid choices  |
-| `{{ max }}`         | The maximum number of valid choices  |
+| Parameter           | Description                            |
+|---------------------|----------------------------------------|
+| `{{ value }}`       | The current invalid value              |
+| `{{ name }}`        | Name of the invalid value              |
+| `{{ constraints }}` | The array of valid choices             |
+| `{{ min }}`         | The minimum number of valid choices    |
+| `{{ max }}`         | The maximum number of valid choices    |
+| `{{ numElements }}` | The current invalid number of elements |
 
 ## Changelog
 
