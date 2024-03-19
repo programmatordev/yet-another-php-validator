@@ -9,12 +9,12 @@ interface StaticValidatorInterface
     public static function choice(
         array $constraints,
         bool $multiple = false,
-        ?int $minConstraint = null,
-        ?int $maxConstraint = null,
+        ?int $min = null,
+        ?int $max = null,
         string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
         string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-        string $minMessage = 'The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
-        string $maxMessage = 'The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+        string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numValues }} choices given.',
+        string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numValues }} choices given.'
     ): ChainedValidatorInterface&Validator;
 
     public static function country(
@@ -64,9 +64,9 @@ interface StaticValidatorInterface
     ): ChainedValidatorInterface&Validator;
 
     public static function range(
-        mixed $minConstraint,
-        mixed $maxConstraint,
-        string $message = 'The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.'
+        mixed $min,
+        mixed $max,
+        string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.'
     ): ChainedValidatorInterface&Validator;
 
     public static function rule(

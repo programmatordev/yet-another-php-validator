@@ -6,12 +6,12 @@ Validates that a value (or multiple values) exist in a given set of choices.
 Choice(
     array $constraints, 
     bool $multiple = false, 
-    ?int $minConstraint = null, 
-    ?int $maxConstraint = null,
+    ?int $min = null, 
+    ?int $max = null,
     string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
     string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-    string $minMessage = 'The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
-    string $maxMessage = 'The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+    string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numValues }} choices given.',
+    string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numValues }} choices given.'
 );
 ```
 
@@ -27,23 +27,23 @@ Validator::choice(['red', 'green', 'blue'], multiple: true)->validate(['red', 'b
 Validator::choice(['red', 'green', 'blue'], multiple: true)->validate(['red', 'yellow']); // false;
 
 // Multiple with minimum number of choices
-Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2)->validate(['red', 'blue']); // true
-Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2)->validate(['red']); // false
+Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2)->validate(['red', 'blue']); // true
+Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2)->validate(['red']); // false
 
 // Multiple with maximum number of choices
-Validator::choice(['red', 'green', 'blue'], multiple: true, maxConstraint: 2)->validate(['red', 'blue']); // true
-Validator::choice(['red', 'green', 'blue'], multiple: true, maxConstraint: 2)->validate(['red', 'green', 'blue']); // false
+Validator::choice(['red', 'green', 'blue'], multiple: true, max: 2)->validate(['red', 'blue']); // true
+Validator::choice(['red', 'green', 'blue'], multiple: true, max: 2)->validate(['red', 'green', 'blue']); // false
 
 // Multiple with minimum and maximum number of choices
-Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2, maxConstraint: 3)->validate(['red', 'blue']); // true
-Validator::choice(['red', 'green', 'blue'], multiple: true, minConstraint: 2, maxConstraint: 3)->validate(['red']); // false
+Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2, max: 3)->validate(['red', 'blue']); // true
+Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2, max: 3)->validate(['red']); // false
 ```
 
 > [!NOTE]
 > An `UnexpectedValueException` will be thrown when `multiple` is `true` and the input value is not an `array`.
 
 > [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `minConstraint` value is greater than or equal to the `maxConstraint` value.
+> An `UnexpectedValueException` will be thrown when the `min` value is greater than or equal to the `max` value.
 
 ## Options
 
@@ -60,21 +60,21 @@ type: `bool` default: `false`
 If this option is `true`, validation against an `array` of input values is enabled. 
 Each element of the input array must be a valid choice, otherwise it will fail.
 
-### `minConstraint`
+### `min`
 
 type: `?int` default: `null`
 
 If `multiple` is `true`, set a minimum number of input values to be required.
 
-For example, if `minConstraint` is 2, the input array must have at least 2 values.
+For example, if `min` is 2, the input array must have at least 2 values.
 
-### `maxConstraint`
+### `max`
 
 type: `?int` default: `null`
 
 If `multiple` is `true`, set a maximum number of input values to be required.
 
-For example, if `maxConstraint` is 2, the input array must have at most 2 values.
+For example, if `max` is 2, the input array must have at most 2 values.
 
 ### `message`
 
@@ -106,37 +106,37 @@ The following parameters are available:
 
 ### `minMessage`
 
-type: `string` default: `The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.`
+type: `string` default: `The {{ name }} value must have at least {{ min }} choices, {{ numValues }} choices given.`
 
-Message that will be shown when `multiple` is `true` and input array has fewer values than the defined in `minConstraint`.
+Message that will be shown when `multiple` is `true` and input array has fewer values than the defined in `min`.
 
 The following parameters are available:
 
-| Parameter             | Description                          |
-|-----------------------|--------------------------------------|
-| `{{ value }}`         | The current invalid value            |
-| `{{ numValues }}`     | The current invalid number of values |
-| `{{ name }}`          | Name of the invalid value            |
-| `{{ constraints }}`   | The array of valid choices           |
-| `{{ minConstraint }}` | The minimum number of valid choices  |
-| `{{ maxConstraint }}` | The maximum number of valid choices  |
+| Parameter           | Description                          |
+|---------------------|--------------------------------------|
+| `{{ value }}`       | The current invalid value            |
+| `{{ numValues }}`   | The current invalid number of values |
+| `{{ name }}`        | Name of the invalid value            |
+| `{{ constraints }}` | The array of valid choices           |
+| `{{ min }}`         | The minimum number of valid choices  |
+| `{{ max }}`         | The maximum number of valid choices  |
 
 ### `maxMessage`
 
-type: `string` default: `The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.`
+type: `string` default: `The {{ name }} value must have at most {{ max }} choices, {{ numValues }} choices given.`
 
-Message that will be shown when `multiple` is `true` and input array has more values than the defined in `maxConstraint`.
+Message that will be shown when `multiple` is `true` and input array has more values than the defined in `max`.
 
 The following parameters are available:
 
-| Parameter             | Description                          |
-|-----------------------|--------------------------------------|
-| `{{ value }}`         | The current invalid value            |
-| `{{ numValues }}`     | The current invalid number of values |
-| `{{ name }}`          | Name of the invalid value            |
-| `{{ constraints }}`   | The array of valid choices           |
-| `{{ minConstraint }}` | The minimum number of valid choices  |
-| `{{ maxConstraint }}` | The maximum number of valid choices  |
+| Parameter           | Description                          |
+|---------------------|--------------------------------------|
+| `{{ value }}`       | The current invalid value            |
+| `{{ numValues }}`   | The current invalid number of values |
+| `{{ name }}`        | Name of the invalid value            |
+| `{{ constraints }}` | The array of valid choices           |
+| `{{ min }}`         | The minimum number of valid choices  |
+| `{{ max }}`         | The maximum number of valid choices  |
 
 ## Changelog
 

@@ -20,7 +20,7 @@ class ChoiceTest extends AbstractTest
     {
         $constraints = [1, 2, 3, 4, 5];
         $multipleMessage = '/Expected value of type "array", "(.*)" given/';
-        $constraintMessage = '/Max constraint value must be greater than or equal to min constraint value./';
+        $constraintMessage = '/Maximum value must be greater than or equal to minimum value./';
 
         yield 'multiple not array' => [new Choice($constraints, true), 1, $multipleMessage];
         yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $constraintMessage];
@@ -82,8 +82,8 @@ class ChoiceTest extends AbstractTest
             new Choice(
                 constraints: $constraints,
                 multiple: true,
-                minConstraint: 2,
-                minMessage: 'The {{ name }} value should have at least {{ minConstraint }} choices.'
+                min: 2,
+                minMessage: 'The {{ name }} value should have at least {{ min }} choices.'
             ),
             [1],
             'The test value should have at least 2 choices.'
@@ -92,8 +92,8 @@ class ChoiceTest extends AbstractTest
             new Choice(
                 constraints: $constraints,
                 multiple: true,
-                maxConstraint: 2,
-                maxMessage: 'The {{ name }} value should have at most {{ maxConstraint }} choices.'
+                max: 2,
+                maxMessage: 'The {{ name }} value should have at most {{ max }} choices.'
             ),
             [1, 2, 3],
             'The test value should have at most 2 choices.'
