@@ -9,10 +9,15 @@ use ProgrammatorDev\Validator\Validator;
 
 class EachValue extends AbstractRule implements RuleInterface
 {
+    private string $message = 'At key {{ key }}: {{ message }}';
+
     public function __construct(
         private readonly Validator $validator,
-        private readonly string $message = 'At key {{ key }}: {{ message }}'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

@@ -6,7 +6,7 @@ Can compare between strings, numbers and dates.
 ```php
 GreaterThan(
     mixed $constraint,
-    string $message = 'The {{ name }} value should be greater than {{ constraint }}, {{ value }} given.'
+    ?string $message = null
 );
 ```
 

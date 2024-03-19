@@ -6,7 +6,7 @@ Validates that a value is a valid email address.
 Email(
     string $mode = 'html5',
     ?callable $normalizer = null,
-    string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.'
+    ?string $message = null
 );
 ```
 

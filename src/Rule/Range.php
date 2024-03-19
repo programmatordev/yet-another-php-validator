@@ -12,11 +12,16 @@ class Range extends AbstractRule implements RuleInterface
 {
     use ComparableTrait;
 
+    private string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.';
+
     public function __construct(
         private readonly mixed $min,
         private readonly mixed $max,
-        private readonly string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

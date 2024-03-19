@@ -5,7 +5,7 @@ Validates every element of an `array`, or object implementing `\Traversable`, wi
 ```php
 EachValue(
     Validator $validator,
-    string $message = 'At key {{ key }}: {{ message }}'
+    ?string $message = null
 );
 ```
 

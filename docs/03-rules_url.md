@@ -7,7 +7,7 @@ Url(
     array $protocols = ['http', 'https'],
     bool $allowRelativeProtocol = false,
     ?callable $normalizer = null,
-    string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.'
+    ?string $message = null
 );
 ```
 
