@@ -60,6 +60,7 @@ class LengthTest extends AbstractTest
         yield 'exact constraint' => [new Length(min: 5, max: 5), $value];
         yield 'charset' => [new Length(min: 1, charset: 'ISO-8859-1'), $value];
         yield 'count unit' => [new Length(min: 4, max: 4, countUnit: 'bytes'), '🔥'];
+        yield 'normalizer' => [new Length(max: 5, normalizer: 'trim'), 'abcde '];
         yield 'stringable' => [new Length(min: 4), 12345];
     }
 
