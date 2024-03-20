@@ -8,16 +8,27 @@ use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 
 class Choice extends AbstractRule implements RuleInterface
 {
+    private string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.';
+    private string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.';
+    private string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.';
+    private string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.';
+
     public function __construct(
         private readonly array $constraints,
         private readonly bool $multiple = false,
         private readonly ?int $min = null,
         private readonly ?int $max = null,
-        private readonly string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
-        private readonly string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-        private readonly string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.',
-        private readonly string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.'
-    ) {}
+        ?string $message = null,
+        ?string $multipleMessage = null,
+        ?string $minMessage = null,
+        ?string $maxMessage = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+        $this->multipleMessage = $multipleMessage ?? $this->multipleMessage;
+        $this->minMessage = $minMessage ?? $this->minMessage;
+        $this->maxMessage = $maxMessage ?? $this->maxMessage;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

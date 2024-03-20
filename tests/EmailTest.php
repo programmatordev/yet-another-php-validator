@@ -18,11 +18,11 @@ class EmailTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $optionMessage = '/Invalid (.*) "(.*)". Accepted values are: "(.*)"./';
-        $typeMessage = '/Expected value of type "string", "(.*)" given./';
+        $unexpectedOptionMessage = '/Invalid (.*) "(.*)". Accepted values are: "(.*)"./';
+        $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given./';
 
-        yield 'invalid option' => [new Email('invalid'), 'test@example.com', $optionMessage];
-        yield 'invalid type' => [new Email(), 1, $typeMessage];
+        yield 'invalid option' => [new Email('invalid'), 'test@example.com', $unexpectedOptionMessage];
+        yield 'invalid type' => [new Email(), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

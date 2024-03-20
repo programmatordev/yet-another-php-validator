@@ -7,7 +7,7 @@ Can compare between strings, numbers and dates.
 Range(
     mixed $min,
     mixed $max,
-    string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.'
+    ?string $message = null
 );
 ```
 

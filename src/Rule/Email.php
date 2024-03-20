@@ -27,14 +27,16 @@ class Email extends AbstractRule implements RuleInterface
 
     // Using array to bypass unallowed callable type in properties
     private array $normalizer;
+    private string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.';
 
     public function __construct(
         private readonly string $mode = self::MODE_HTML5,
         ?callable $normalizer = null,
-        private readonly string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.'
+        ?string $message = null
     )
     {
         $this->normalizer['callable'] = $normalizer;
+        $this->message = $message ?? $this->message;
     }
 
     public function assert(mixed $value, ?string $name = null): void

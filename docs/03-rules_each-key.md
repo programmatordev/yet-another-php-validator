@@ -5,7 +5,7 @@ Validates every key of an `array` or object implementing `\Traversable` with a g
 ```php
 EachKey(
     Validator $validator,
-    string $message = 'Invalid key: {{ message }}'
+    ?string $message = null
 );
 ```
 

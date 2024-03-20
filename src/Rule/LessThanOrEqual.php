@@ -6,10 +6,15 @@ use ProgrammatorDev\Validator\Exception\LessThanOrEqualException;
 
 class LessThanOrEqual extends AbstractComparisonRule implements RuleInterface
 {
+    protected string $message = 'The {{ name }} value should be less than or equal to {{ constraint }}, {{ value }} given.';
+
     public function __construct(
         protected readonly mixed $constraint,
-        protected readonly string $message = 'The {{ name }} value should be less than or equal to {{ constraint }}, {{ value }} given.'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     protected function compareValues(mixed $value1, mixed $value2): bool
     {

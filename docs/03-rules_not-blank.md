@@ -5,7 +5,7 @@ Validates that a value is not equal to a blank string, blank array, `false` or `
 ```php
 NotBlank(
     ?callable $normalizer = null,
-    string $message = 'The {{ name }} value should not be blank, {{ value }} given.'
+    ?string $message = null
 );
 ```
 

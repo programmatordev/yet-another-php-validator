@@ -5,7 +5,7 @@ Validates that a value is a valid country code.
 ```php
 Country(
     string $code = 'alpha-2',
-    string $message = 'The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.'
+    ?string $message = null
 );
 ```
 

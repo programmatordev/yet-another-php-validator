@@ -19,17 +19,19 @@ class ChoiceTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $constraints = [1, 2, 3, 4, 5];
-        $multipleMessage = '/Expected value of type "array", "(.*)" given/';
-        $constraintMessage = '/Maximum value must be greater than or equal to minimum value./';
 
-        yield 'multiple not array' => [new Choice($constraints, true), 1, $multipleMessage];
-        yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $constraintMessage];
+        $unexpectedMultipleMessage = '/Expected value of type "array", "(.*)" given/';
+        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value./';
+
+        yield 'multiple not array' => [new Choice($constraints, true), 1, $unexpectedMultipleMessage];
+        yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $unexpectedMinMaxMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $constraints = [1, 2, 3, 4, 5];
         $exception = ChoiceException::class;
+
         $message = '/The (.*) value is not a valid choice, (.*) given. Accepted values are: (.*)./';
         $multipleMessage = '/The (.*) value has one or more invalid choices, (.*) given. Accepted values are: (.*)./';
         $maxMessage = '/The (.*) value must have at most (.*) choices, (.*) choices given./';

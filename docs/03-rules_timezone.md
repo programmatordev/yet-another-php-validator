@@ -6,7 +6,7 @@ Validates that a value is a valid timezone identifier.
 Timezone(
     string $timezoneGroup = \DateTimeZone::ALL,
     ?string $countryCode = null,
-    string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.'
+    ?string $message = null
 );
 ```
 

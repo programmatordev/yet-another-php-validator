@@ -18,9 +18,9 @@ class TypeTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $message = '/Invalid constraint type "(.*)". Accepted values are: "(.*)"/';
+        $unexpectedTypeMessage = '/Invalid constraint type "(.*)". Accepted values are: "(.*)"/';
 
-        yield 'invalid type' => [new Type('invalid'), 'string', $message];
+        yield 'invalid type' => [new Type('invalid'), 'string', $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

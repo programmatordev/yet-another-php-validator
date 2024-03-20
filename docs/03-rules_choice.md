@@ -8,10 +8,10 @@ Choice(
     bool $multiple = false, 
     ?int $min = null, 
     ?int $max = null,
-    string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
-    string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-    string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.',
-    string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.'
+    ?string $message = null,
+    ?string $multipleMessage = null,
+    ?string $minMessage = null,
+    ?string $maxMessage = null
 );
 ```
 

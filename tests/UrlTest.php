@@ -18,9 +18,9 @@ class UrlTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $typeMessage = '/Expected value of type "string", "(.*)" given./';
+        $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given./';
 
-        yield 'invalid type' => [new Url(), 1, $typeMessage];
+        yield 'invalid type' => [new Url(), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
