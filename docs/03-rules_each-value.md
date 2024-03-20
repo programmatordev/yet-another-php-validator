@@ -12,8 +12,13 @@ EachValue(
 ## Basic Usage
 
 ```php
-Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->validate([4, 5, 6]); // true
-Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->validate([4, 5, 20]); // false
+Validator::eachValue(
+    Validator::notBlank()->greaterThan(1)->lessThan(10)
+)->validate([4, 5, 6]); // true
+
+Validator::eachValue(
+    Validator::notBlank()->greaterThan(1)->lessThan(10)
+)->validate([4, 5, 20]); // false
 ```
 
 > [!NOTE]
@@ -34,7 +39,9 @@ type: `string` default: `At key "{{ key }}": {{ message }}`
 Message that will be shown if at least one input value element is invalid according to the given `validator`.
 
 ```php
-Validator::eachValue(Validator::notBlank())->assert(['red', 'green', ''], 'color'); 
+Validator::eachValue(
+    Validator::notBlank()
+)->assert(['red', 'green', ''], 'color'); 
 // Throws: At key 2: The color value should not be blank, "" given.
 ```
 
