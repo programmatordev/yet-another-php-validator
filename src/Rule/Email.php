@@ -25,8 +25,8 @@ class Email extends AbstractRule implements RuleInterface
         self::MODE_HTML5_ALLOW_NO_TLD => '/^[a-zA-Z0-9.!#$%&\'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/'
     ];
 
-    // Using array to bypass unallowed callable type in properties
-    private array $normalizer;
+    /** @var ?callable */
+    private $normalizer;
     private string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.';
 
     public function __construct(
@@ -35,7 +35,7 @@ class Email extends AbstractRule implements RuleInterface
         ?string $message = null
     )
     {
-        $this->normalizer['callable'] = $normalizer;
+        $this->normalizer = $normalizer;
         $this->message = $message ?? $this->message;
     }
 
@@ -49,8 +49,8 @@ class Email extends AbstractRule implements RuleInterface
             throw new UnexpectedTypeException('string', get_debug_type($value));
         }
 
-        if ($this->normalizer['callable'] !== null) {
-            $value = ($this->normalizer['callable'])($value);
+        if ($this->normalizer !== null) {
+            $value = ($this->normalizer)($value);
         }
 
         if ($this->mode === self::MODE_STRICT) {

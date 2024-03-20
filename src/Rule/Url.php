@@ -32,8 +32,8 @@ class Url extends AbstractRule implements RuleInterface
         (?:\# (?:[\pL\pN\-._\~!$&\'()*+,;=:@/?]|%%[0-9A-Fa-f]{2})* )?       # a fragment (optional)
     $~ixu';
 
-    // Using array to bypass unallowed callable type in properties
-    private array $normalizer;
+    /** @var ?callable */
+    private $normalizer;
     private string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.';
 
     public function __construct(
@@ -43,7 +43,7 @@ class Url extends AbstractRule implements RuleInterface
         ?string $message = null
     )
     {
-        $this->normalizer['callable'] = $normalizer;
+        $this->normalizer = $normalizer;
         $this->message = $message ?? $this->message;
     }
 
@@ -53,8 +53,8 @@ class Url extends AbstractRule implements RuleInterface
             throw new UnexpectedTypeException('string', get_debug_type($value));
         }
 
-        if ($this->normalizer['callable'] !== null) {
-            $value = ($this->normalizer['callable'])($value);
+        if ($this->normalizer !== null) {
+            $value = ($this->normalizer)($value);
         }
 
         $pattern = $this->allowRelativeProtocol ? \str_replace('(%s):', '(?:(%s):)?', self::PATTERN) : self::PATTERN;
