@@ -21,15 +21,18 @@ class EachKeyTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
+        $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given./';
+        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"./';
+
         yield 'invalid value type' => [
             new EachKey(new Validator(new Type('string'))),
             'invalid',
-            '/Expected value of type "(.*)", "(.*)" given./'
+            $unexpectedTypeMessage
         ];
         yield 'unexpected value propagation' => [
             new EachKey(new Validator(new GreaterThan(10))),
             ['key1' => 1],
-            '/Cannot compare a type "(.*)" with a type "(.*)"./'
+            $unexpectedPropagationMessage
         ];
     }
 
