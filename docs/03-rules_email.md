@@ -56,7 +56,7 @@ Validator::email(normalizer: fn($value) => trim($value))->validate('test@example
 
 ### `message`
 
-type `string` default: `The {{ name }} value is not a valid email address, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid email address, {{ value }} given.`
 
 Message that will be shown if the input value is not a valid email address.
 

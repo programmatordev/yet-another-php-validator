@@ -42,7 +42,7 @@ Available options:
 
 ### `message`
 
-type: `string` default: `The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.`
 
 Message that will be shown if the input value is not a valid country code.
 

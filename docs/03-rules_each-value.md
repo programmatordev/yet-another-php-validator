@@ -34,7 +34,7 @@ Validator that will validate each element of an `array` or object implementing `
 
 ### `message`
 
-type: `string` default: `At key "{{ key }}": {{ message }}`
+type: `?string` default: `At key "{{ key }}": {{ message }}`
 
 Message that will be shown if at least one input value element is invalid according to the given `validator`.
 
