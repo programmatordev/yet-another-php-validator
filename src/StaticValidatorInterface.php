@@ -56,6 +56,18 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function length(
+        ?int $min = null,
+        ?int $max = null,
+        string $charset = 'UTF-8',
+        string $countUnit = 'codepoints',
+        ?callable $normalizer = null,
+        ?string $minMessage = null,
+        ?string $maxMessage = null,
+        ?string $exactMessage = null,
+        ?string $charsetMessage = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function lessThan(
         mixed $constraint,
         ?string $message = null
