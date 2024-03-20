@@ -39,10 +39,10 @@ type: `?string` default: `Invalid key: {{ message }}`
 Message that will be shown if at least one input value key is invalid according to the given `validator`.
 
 ```php
+// Throws: Invalid key: The color key value should be of type "string", 1 given.
 Validator::eachKey(
     Validator::type('string')
-)->assert(['red' => '#f00', 1 => '#0f0'], 'color'); 
-// Throws: Invalid key: The color key value should be of type "string", 1 given.
+)->assert(['red' => '#f00', 1 => '#0f0'], 'color');
 ```
 
 The following parameters are available:
