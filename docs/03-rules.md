@@ -16,6 +16,7 @@
 ## String Rules
 
 - [Email](03-rules_email.md)
+- [Length](03-rules_length.md)
 - [URL](03-rules_url.md)
 
 ## Comparison Rules
