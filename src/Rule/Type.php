@@ -1,9 +1,9 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\TypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\TypeException;
+use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
 
 class Type extends AbstractRule implements RuleInterface
 {
@@ -69,10 +69,15 @@ class Type extends AbstractRule implements RuleInterface
         self::UPPERCASE => 'ctype_upper'
     ];
 
+    private string $message = 'The {{ name }} value should be of type {{ constraint }}, {{ value }} given.';
+
     public function __construct(
         private readonly string|array $constraint,
-        private readonly string $message = 'The {{ name }} value should be of type {{ constraint }}, {{ value }} given.'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

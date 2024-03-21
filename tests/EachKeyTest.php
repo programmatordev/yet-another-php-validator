@@ -1,16 +1,16 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachKeyException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\EachKey;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\GreaterThan;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Type;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\EachKeyException;
+use ProgrammatorDev\Validator\Rule\EachKey;
+use ProgrammatorDev\Validator\Rule\GreaterThan;
+use ProgrammatorDev\Validator\Rule\Type;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Validator;
 
 class EachKeyTest extends AbstractTest
 {
@@ -21,15 +21,18 @@ class EachKeyTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
+        $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given./';
+        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"./';
+
         yield 'invalid value type' => [
             new EachKey(new Validator(new Type('string'))),
             'invalid',
-            '/Expected value of type "(.*)", "(.*)" given./'
+            $unexpectedTypeMessage
         ];
         yield 'unexpected value propagation' => [
             new EachKey(new Validator(new GreaterThan(10))),
             ['key1' => 1],
-            '/Cannot compare a type "(.*)" with a type "(.*)"./'
+            $unexpectedPropagationMessage
         ];
     }
 

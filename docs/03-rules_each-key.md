@@ -1,22 +1,27 @@
-## EachValue
+## EachKey
 
-Validates every element of an `array` or object implementing `\Traversable` with a given set of rules.
+Validates every key of an `array`, or object implementing `\Traversable`, with a given set of rules.
 
 ```php
-EachValue(
+EachKey(
     Validator $validator,
-    string $message = 'At key {{ key }}: {{ message }}'
+    ?string $message = null
 );
 ```
 
 ## Basic Usage
 
 ```php
-Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->validate([4, 5, 6]); // true
-Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->validate([4, 5, 20]); // false
+Validator::eachKey(
+    Validator::notBlank()->type('string')
+)->validate(['red' => '#f00', 'green' => '#0f0']); // true
+
+Validator::eachKey(
+    Validator::notBlank()->type('string')
+)->validate(['red' => '#f00', 1 => '#0f0']); // false
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not an `array` or an object implementing `\Traversable`.
 
 ## Options
@@ -25,17 +30,19 @@ Validator::eachValue(Validator::notBlank()->greaterThan(1)->lessThan(10))->valid
 
 type: `Validator` `required`
 
-Validator that will validate each element of an `array` or object implementing `\Traversable`. 
+Validator that will validate each key of an `array` or object implementing `\Traversable`.
 
 ### `message`
 
-type: `string` default: `At key "{{ key }}": {{ message }}`
+type: `?string` default: `Invalid key: {{ message }}`
 
-Message that will be shown if at least one input value element is invalid according to the given `validator`.
+Message that will be shown if at least one input value key is invalid according to the given `validator`.
 
 ```php
-Validator::eachValue(Validator::notBlank())->assert(['red', 'green', ''], 'color'); 
-// Throws: At key 2: The color value should not be blank, "" given.
+// Throws: Invalid key: The color key value should be of type "string", 1 given.
+Validator::eachKey(
+    Validator::type('string')
+)->assert(['red' => '#f00', 1 => '#0f0'], 'color');
 ```
 
 The following parameters are available:

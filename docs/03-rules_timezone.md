@@ -6,7 +6,7 @@ Validates that a value is a valid timezone identifier.
 Timezone(
     string $timezoneGroup = \DateTimeZone::ALL,
     ?string $countryCode = null,
-    string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.'
+    ?string $message = null
 );
 ```
 
@@ -27,11 +27,11 @@ Validator::timezone(timezoneGroup: \DateTimeZone::PER_COUNTRY, countryCode: 'pt'
 Validator::timezone(timezoneGroup: \DateTimeZone::PER_COUNTRY, countryCode: 'en')->validate('Europe/Lisbon'); // false
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `timezoneGroup` value is `\DateTimeZone::PER_COUNTRY`
 > and the `countryCode` value is `null` (not provided).
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `countryCode` value is not valid.
 > Only if the `timezoneGroup` value is `\DateTimeZone::PER_COUNTRY`, otherwise it is ignored.
 
@@ -75,7 +75,7 @@ Check the [official country codes](https://en.wikipedia.org/wiki/ISO_3166-1#Curr
 
 ### `message`
 
-type: `string` default: `The {{ name }} value is not a valid timezone, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid timezone, {{ value }} given.`
 
 Message that will be shown if the input value is not a valid timezone.
 

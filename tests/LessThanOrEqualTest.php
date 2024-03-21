@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\LessThanOrEqualException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\LessThanOrEqual;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\LessThanOrEqualException;
+use ProgrammatorDev\Validator\Rule\LessThanOrEqual;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class LessThanOrEqualTest extends AbstractTest
 {
@@ -18,15 +18,15 @@ class LessThanOrEqualTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $message = '/Cannot compare a type "(.*)" with a type "(.*)"/';
+        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
 
-        yield 'datetime constraint with int value' => [new LessThanOrEqual(new \DateTime()), 10, $message];
-        yield 'datetime constraint with float value' => [new LessThanOrEqual(new \DateTime()), 1.0, $message];
-        yield 'datetime constraint with string value' => [new LessThanOrEqual(new \DateTime()), 'a', $message];
-        yield 'int constraint with string value' => [new LessThanOrEqual(10), 'a', $message];
-        yield 'float constraint with string value' => [new LessThanOrEqual(1.0), 'a', $message];
-        yield 'array constraint' => [new LessThanOrEqual([10]), 10, $message];
-        yield 'null constraint' => [new LessThanOrEqual(null), 10, $message];
+        yield 'datetime constraint with int value' => [new LessThanOrEqual(new \DateTime()), 10, $unexpectedTypeMessage];
+        yield 'datetime constraint with float value' => [new LessThanOrEqual(new \DateTime()), 1.0, $unexpectedTypeMessage];
+        yield 'datetime constraint with string value' => [new LessThanOrEqual(new \DateTime()), 'a', $unexpectedTypeMessage];
+        yield 'int constraint with string value' => [new LessThanOrEqual(10), 'a', $unexpectedTypeMessage];
+        yield 'float constraint with string value' => [new LessThanOrEqual(1.0), 'a', $unexpectedTypeMessage];
+        yield 'array constraint' => [new LessThanOrEqual([10]), 10, $unexpectedTypeMessage];
+        yield 'null constraint' => [new LessThanOrEqual(null), 10, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

@@ -1,19 +1,24 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\TimezoneException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\TimezoneException;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 class Timezone extends AbstractRule implements RuleInterface
 {
+    private string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.';
+
     public function __construct(
         private readonly int $timezoneGroup = \DateTimeZone::ALL,
         private ?string $countryCode = null,
-        private readonly string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

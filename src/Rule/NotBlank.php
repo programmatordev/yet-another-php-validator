@@ -1,20 +1,22 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\NotBlankException;
+use ProgrammatorDev\Validator\Exception\NotBlankException;
 
 class NotBlank extends AbstractRule implements RuleInterface
 {
-    // Using array to bypass unallowed callable type in properties
-    private array $normalizer;
+    /** @var ?callable */
+    private $normalizer;
+    private string $message = 'The {{ name }} value should not be blank, {{ value }} given.';
 
     public function __construct(
         ?callable $normalizer = null,
-        private readonly string $message = 'The {{ name }} value should not be blank, {{ value }} given.'
+        ?string $message = null
     )
     {
-        $this->normalizer['callable'] = $normalizer;
+        $this->normalizer = $normalizer;
+        $this->message = $message ?? $this->message;
     }
 
     /**
@@ -22,8 +24,8 @@ class NotBlank extends AbstractRule implements RuleInterface
      */
     public function assert(mixed $value, ?string $name = null): void
     {
-        if ($this->normalizer['callable'] !== null) {
-            $value = ($this->normalizer['callable'])($value);
+        if ($this->normalizer !== null) {
+            $value = ($this->normalizer)($value);
         }
 
         // Do not allow null, false, [] and ''

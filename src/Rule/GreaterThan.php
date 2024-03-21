@@ -1,15 +1,20 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\GreaterThanException;
+use ProgrammatorDev\Validator\Exception\GreaterThanException;
 
 class GreaterThan extends AbstractComparisonRule implements RuleInterface
 {
+    protected string $message = 'The {{ name }} value should be greater than {{ constraint }}, {{ value }} given.';
+
     public function __construct(
         protected readonly mixed $constraint,
-        protected readonly string $message = 'The {{ name }} value should be greater than {{ constraint }}, {{ value }} given.'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     protected function compareValues(mixed $value1, mixed $value2): bool
     {

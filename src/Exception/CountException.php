@@ -2,4 +2,4 @@
 
 namespace ProgrammatorDev\Validator\Exception;
 
-class LessThanException extends ValidationException {}
+class CountException extends ValidationException {}

@@ -5,7 +5,7 @@ Validates that a value is a valid country code.
 ```php
 Country(
     string $code = 'alpha-2',
-    string $message = 'The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.'
+    ?string $message = null
 );
 ```
 
@@ -20,10 +20,10 @@ Validator::country(code: 'alpha-2')->validate('PT'); // true
 Validator::country(code: 'alpha-3')->validate('PRT'); // true
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `code` value is not a valid option.
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not a `string`.
 
 ## Options
@@ -42,7 +42,7 @@ Available options:
 
 ### `message`
 
-type: `string` default: `The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.`
 
 Message that will be shown if the input value is not a valid country code.
 

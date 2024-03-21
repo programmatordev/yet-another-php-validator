@@ -7,7 +7,7 @@ Url(
     array $protocols = ['http', 'https'],
     bool $allowRelativeProtocol = false,
     ?callable $normalizer = null,
-    string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.'
+    ?string $message = null
 );
 ```
 
@@ -58,7 +58,7 @@ Validator::url(normalizer: fn($value) => trim($value))->validate('https://exampl
 
 ### `message`
 
-type `string` default: `The {{ name }} value is not a valid URL address, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid URL address, {{ value }} given.`
 
 Message that will be shown if the input value is not a valid URL address.
 

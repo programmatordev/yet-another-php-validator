@@ -5,7 +5,7 @@ Validates that a value is not equal to a blank string, blank array, `false` or `
 ```php
 NotBlank(
     ?callable $normalizer = null,
-    string $message = 'The {{ name }} value should not be blank, {{ value }} given.'
+    ?string $message = null
 );
 ```
 
@@ -41,7 +41,7 @@ Validator::notBlank(normalizer: fn($value) => trim($value))->validate(' '); // f
 
 ### `message`
 
-type: `string` default: `The {{ name }} value should not be blank, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should not be blank, {{ value }} given.`
 
 Message that will be shown if the value is blank.
 

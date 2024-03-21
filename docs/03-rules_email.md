@@ -6,7 +6,7 @@ Validates that a value is a valid email address.
 Email(
     string $mode = 'html5',
     ?callable $normalizer = null,
-    string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.'
+    ?string $message = null
 );
 ```
 
@@ -22,7 +22,7 @@ Validator::email(mode: 'html5-allow-no-tld')->validate('test@example.com'); // t
 Validator::email(mode: 'html5-allow-no-tld')->validate('test@example'); // true
 ```
 
-> **Note**
+> [!NOTE]
 > An `UnexpectedValueException` will be thrown when a `mode` option is invalid.
 
 ## Options
@@ -56,7 +56,7 @@ Validator::email(normalizer: fn($value) => trim($value))->validate('test@example
 
 ### `message`
 
-type `string` default: `The {{ name }} value is not a valid email address, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid email address, {{ value }} given.`
 
 Message that will be shown if the input value is not a valid email address.
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\CountryException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\CountryException;
+use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Intl\Countries;
 
 class Country extends AbstractRule implements RuleInterface
@@ -17,10 +17,15 @@ class Country extends AbstractRule implements RuleInterface
         self::ALPHA_3_CODE
     ];
 
+    private string $message = 'The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.';
+
     public function __construct(
         private readonly string $code = self::ALPHA_2_CODE,
-        private readonly string $message = 'The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

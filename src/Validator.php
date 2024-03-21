@@ -1,18 +1,19 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator;
+namespace ProgrammatorDev\Validator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\RuleNotFoundException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Factory\Factory;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Exception\RuleNotFoundException;
+use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Factory\Factory;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 /**
  * @mixin StaticValidatorInterface
  */
 class Validator implements RuleInterface
 {
+    /** @var RuleInterface[] */
     private array $rules;
 
     public function __construct(RuleInterface ...$rules)
@@ -49,11 +50,11 @@ class Validator implements RuleInterface
      */
     public function assert(mixed $value, ?string $name = null): void
     {
-        if (empty($this->getRules())) {
+        if (empty($this->rules)) {
             throw new UnexpectedValueException('Validator rules not found: at least one rule is required.');
         }
 
-        foreach ($this->getRules() as $rule) {
+        foreach ($this->rules as $rule) {
             $rule->assert($value, $name);
         }
     }
@@ -70,9 +71,6 @@ class Validator implements RuleInterface
         return true;
     }
 
-    /**
-     * @return RuleInterface[]
-     */
     public function getRules(): array
     {
         return $this->rules;

@@ -1,12 +1,12 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EmailException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedOptionException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\EmailException;
+use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 
 class Email extends AbstractRule implements RuleInterface
 {
@@ -25,16 +25,18 @@ class Email extends AbstractRule implements RuleInterface
         self::MODE_HTML5_ALLOW_NO_TLD => '/^[a-zA-Z0-9.!#$%&\'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/'
     ];
 
-    // Using array to bypass unallowed callable type in properties
-    private array $normalizer;
+    /** @var ?callable */
+    private $normalizer;
+    private string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.';
 
     public function __construct(
         private readonly string $mode = self::MODE_HTML5,
         ?callable $normalizer = null,
-        private readonly string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.'
+        ?string $message = null
     )
     {
-        $this->normalizer['callable'] = $normalizer;
+        $this->normalizer = $normalizer;
+        $this->message = $message ?? $this->message;
     }
 
     public function assert(mixed $value, ?string $name = null): void
@@ -47,8 +49,8 @@ class Email extends AbstractRule implements RuleInterface
             throw new UnexpectedTypeException('string', get_debug_type($value));
         }
 
-        if ($this->normalizer['callable'] !== null) {
-            $value = ($this->normalizer['callable'])($value);
+        if ($this->normalizer !== null) {
+            $value = ($this->normalizer)($value);
         }
 
         if ($this->mode === self::MODE_STRICT) {

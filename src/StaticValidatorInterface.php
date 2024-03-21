@@ -1,72 +1,92 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator;
+namespace ProgrammatorDev\Validator;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface StaticValidatorInterface
 {
     public static function choice(
         array $constraints,
         bool $multiple = false,
-        ?int $minConstraint = null,
-        ?int $maxConstraint = null,
-        string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.',
-        string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.',
-        string $minMessage = 'The {{ name }} value must have at least {{ minConstraint }} choices, {{ numValues }} choices given.',
-        string $maxMessage = 'The {{ name }} value must have at most {{ maxConstraint }} choices, {{ numValues }} choices given.'
+        ?int $min = null,
+        ?int $max = null,
+        ?string $message = null,
+        ?string $multipleMessage = null,
+        ?string $minMessage = null,
+        ?string $maxMessage = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function count(
+        ?int $min = null,
+        ?int $max = null,
+        ?string $minMessage = null,
+        ?string $maxMessage = null,
+        ?string $exactMessage = null
     ): ChainedValidatorInterface&Validator;
 
     public static function country(
         string $code = 'alpha-2',
-        string $message = 'The {{ name }} value is not a valid {{ code }} country code, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function eachKey(
         Validator $validator,
-        string $message = 'Invalid key: {{ message }}'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function eachValue(
         Validator $validator,
-        string $message = 'At key {{ key }}: {{ message }}'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function email(
         string $mode = 'html5',
         ?callable $normalizer = null,
-        string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function greaterThan(
         mixed $constraint,
-        string $message = 'The {{ name }} value should be greater than {{ constraint }}, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function greaterThanOrEqual(
         mixed $constraint,
-        string $message = 'The {{ name }} value should be greater than or equal to {{ constraint }}, {{ value }} given.'
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function length(
+        ?int $min = null,
+        ?int $max = null,
+        string $charset = 'UTF-8',
+        string $countUnit = 'codepoints',
+        ?callable $normalizer = null,
+        ?string $minMessage = null,
+        ?string $maxMessage = null,
+        ?string $exactMessage = null,
+        ?string $charsetMessage = null
     ): ChainedValidatorInterface&Validator;
 
     public static function lessThan(
         mixed $constraint,
-        string $message = 'The {{ name }} value should be less than {{ constraint }}, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function lessThanOrEqual(
         mixed $constraint,
-        string $message = 'The {{ name }} value should be less than or equal to {{ constraint }}, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function notBlank(
         ?callable $normalizer = null,
-        string $message = 'The {{ name }} value should not be blank, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function range(
-        mixed $minConstraint,
-        mixed $maxConstraint,
-        string $message = 'The {{ name }} value should be between {{ minConstraint }} and {{ maxConstraint }}, {{ value }} given.'
+        mixed $min,
+        mixed $max,
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function rule(
@@ -76,18 +96,18 @@ interface StaticValidatorInterface
     public static function timezone(
         int $timezoneGroup = \DateTimeZone::ALL,
         ?string $countryCode = null,
-        string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function type(
         string|array $constraint,
-        string $message = 'The {{ name }} value should be of type {{ constraint }}, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
     public static function url(
         array $protocols = ['http', 'https'],
         bool $allowRelativeProtocol = false,
         ?callable $normalizer = null,
-        string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.'
+        ?string $message = null
     ): ChainedValidatorInterface&Validator;
 }

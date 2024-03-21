@@ -14,7 +14,7 @@ First, create your custom rule exception...
 ```php
 namespace My\Project\Exception;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
 
 class CustomRuleException extends ValidationException {}
 ```
@@ -24,14 +24,14 @@ class CustomRuleException extends ValidationException {}
 ```php
 namespace My\Project\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Rule\AbstractRule;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 class CustomRule extends AbstractRule implements RuleInterface
 {
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
-        // Do validation
+        // do validation
     }
 }
 ```
@@ -41,13 +41,13 @@ class CustomRule extends AbstractRule implements RuleInterface
 ```php
 namespace My\Project\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\AbstractRule;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\RuleInterface;
+use ProgrammatorDev\Validator\Rule\AbstractRule;
+use ProgrammatorDev\Validator\Rule\RuleInterface;
 use My\Project\Exception\CustomRuleException;
 
 class CustomRule extends AbstractRule implements RuleInterface
 {
-    public function assert(mixed $value, string $name): void
+    public function assert(mixed $value, ?string $name = null): void
     {
         if ($value === 0) {
             throw new CustomRuleException(
@@ -66,18 +66,13 @@ In the example above, a new custom rule was created that validates if the input 
 To use your new custom rule, simply do the following:
 
 ```php
-// Fluent way, notice the rule() method
+// notice the rule() method
 $validator = Validator::rule(new CustomRule());
-// With multiple rules
+// with multiple rules
 $validator = Validator::range(-10, 10)->rule(new CustomRule());
 
-// Dependency injection way
-$validator = new Validator(new CustomRule());
-// With multiple rules
-$validator = new Validator(new Range(-10, 10), new CustomRule());
-
-$validator->assert(0, 'test'); // throws: The test value cannot be zero!
 $validator->validate(0); // false
+$validator->assert(0, 'test'); // throws: The test value cannot be zero!
 ```
 
 ## Message Template
@@ -88,15 +83,17 @@ This means that you can have dynamic content in your messages.
 To make it work, just pass an associative array with the name and value of your parameters, and they will be available in the message:
 
 ```php
-// Exception
+// exception
 class FavoriteException extends ValidationException {}
+```
 
-// Rule
+```php
+// rule
 class Favorite extends AbstractRule implements RuleInterface
 {
     public function __construct(
-        private readonly string $favorite
-    )
+       private readonly string $favorite
+    ) {}
     
     public function assert(mixed $value, ?string $name = null): void
     {
@@ -112,7 +109,9 @@ class Favorite extends AbstractRule implements RuleInterface
         }
     }
 }
+```
 
-// Throws: My favorite animal is "cat", not "human"!
+```php
+// throws: My favorite animal is "cat", not "human"!
 Validator::rule(new Favorite('cat'))->assert('human', 'animal');
 ```

@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ChoiceException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Choice;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\ChoiceException;
+use ProgrammatorDev\Validator\Rule\Choice;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class ChoiceTest extends AbstractTest
 {
@@ -19,17 +19,19 @@ class ChoiceTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $constraints = [1, 2, 3, 4, 5];
-        $multipleMessage = '/Expected value of type "array", "(.*)" given/';
-        $constraintMessage = '/Max constraint value must be greater than or equal to min constraint value./';
 
-        yield 'multiple not array' => [new Choice($constraints, true), 1, $multipleMessage];
-        yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $constraintMessage];
+        $unexpectedMultipleMessage = '/Expected value of type "array", "(.*)" given/';
+        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value./';
+
+        yield 'multiple not array' => [new Choice($constraints, true), 1, $unexpectedMultipleMessage];
+        yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $unexpectedMinMaxMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $constraints = [1, 2, 3, 4, 5];
         $exception = ChoiceException::class;
+
         $message = '/The (.*) value is not a valid choice, (.*) given. Accepted values are: (.*)./';
         $multipleMessage = '/The (.*) value has one or more invalid choices, (.*) given. Accepted values are: (.*)./';
         $maxMessage = '/The (.*) value must have at most (.*) choices, (.*) choices given./';
@@ -82,8 +84,8 @@ class ChoiceTest extends AbstractTest
             new Choice(
                 constraints: $constraints,
                 multiple: true,
-                minConstraint: 2,
-                minMessage: 'The {{ name }} value should have at least {{ minConstraint }} choices.'
+                min: 2,
+                minMessage: 'The {{ name }} value should have at least {{ min }} choices.'
             ),
             [1],
             'The test value should have at least 2 choices.'
@@ -92,8 +94,8 @@ class ChoiceTest extends AbstractTest
             new Choice(
                 constraints: $constraints,
                 multiple: true,
-                maxConstraint: 2,
-                maxMessage: 'The {{ name }} value should have at most {{ maxConstraint }} choices.'
+                max: 2,
+                maxMessage: 'The {{ name }} value should have at most {{ max }} choices.'
             ),
             [1, 2, 3],
             'The test value should have at most 2 choices.'

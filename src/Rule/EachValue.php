@@ -1,18 +1,23 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Rule;
+namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\EachValueException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\ValidationException;
-use ProgrammatorDev\YetAnotherPhpValidator\Validator;
+use ProgrammatorDev\Validator\Exception\EachValueException;
+use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
+use ProgrammatorDev\Validator\Exception\ValidationException;
+use ProgrammatorDev\Validator\Validator;
 
 class EachValue extends AbstractRule implements RuleInterface
 {
+    private string $message = 'At key {{ key }}: {{ message }}';
+
     public function __construct(
         private readonly Validator $validator,
-        private readonly string $message = 'At key {{ key }}: {{ message }}'
-    ) {}
+        ?string $message = null
+    )
+    {
+        $this->message = $message ?? $this->message;
+    }
 
     public function assert(mixed $value, ?string $name = null): void
     {

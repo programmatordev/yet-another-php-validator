@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\UrlException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Url;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\UrlException;
+use ProgrammatorDev\Validator\Rule\Url;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class UrlTest extends AbstractTest
 {
@@ -18,9 +18,9 @@ class UrlTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $typeMessage = '/Expected value of type "string", "(.*)" given./';
+        $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given./';
 
-        yield 'invalid type' => [new Url(), 1, $typeMessage];
+        yield 'invalid type' => [new Url(), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

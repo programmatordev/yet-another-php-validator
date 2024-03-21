@@ -1,13 +1,13 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\YetAnotherPhpValidator\Exception\CountryException;
-use ProgrammatorDev\YetAnotherPhpValidator\Rule\Country;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleFailureConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleMessageOptionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleSuccessConditionTrait;
-use ProgrammatorDev\YetAnotherPhpValidator\Test\Util\TestRuleUnexpectedValueTrait;
+use ProgrammatorDev\Validator\Exception\CountryException;
+use ProgrammatorDev\Validator\Rule\Country;
+use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
+use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
 class CountryTest extends AbstractTest
 {
@@ -18,11 +18,11 @@ class CountryTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $codeMessage = '/Invalid code "(.*)". Accepted values are: "(.*)"./';
-        $typeMessage = '/Expected value of type "string", (.*) given./';
+        $unexpectedCodeMessage = '/Invalid code "(.*)". Accepted values are: "(.*)"./';
+        $unexpectedTypeMessage = '/Expected value of type "string", (.*) given./';
 
-        yield 'invalid code' => [new Country('invalid'), 'PT', $codeMessage];
-        yield 'invalid type' => [new Country(), 123, $typeMessage];
+        yield 'invalid code' => [new Country('invalid'), 'PT', $unexpectedCodeMessage];
+        yield 'invalid type' => [new Country(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

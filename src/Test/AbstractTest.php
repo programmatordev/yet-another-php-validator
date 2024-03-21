@@ -1,6 +1,6 @@
 <?php
 
-namespace ProgrammatorDev\YetAnotherPhpValidator\Test;
+namespace ProgrammatorDev\Validator\Test;
 
 use PHPUnit\Framework\TestCase;
 
