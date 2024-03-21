@@ -1,6 +1,6 @@
 ## EachKey
 
-Validates every key of an `array` or object implementing `\Traversable` with a given set of rules.
+Validates every key of an `array`, or object implementing `\Traversable`, with a given set of rules.
 
 ```php
 EachKey(
@@ -12,8 +12,13 @@ EachKey(
 ## Basic Usage
 
 ```php
-Validator::eachKey(Validator::notBlank()->type('string'))->validate(['red' => '#f00', 'green' => '#0f0']); // true
-Validator::eachKey(Validator::notBlank()->type('string'))->validate(['red' => '#f00', 1 => '#0f0']); // false
+Validator::eachKey(
+    Validator::notBlank()->type('string')
+)->validate(['red' => '#f00', 'green' => '#0f0']); // true
+
+Validator::eachKey(
+    Validator::notBlank()->type('string')
+)->validate(['red' => '#f00', 1 => '#0f0']); // false
 ```
 
 > [!NOTE]
@@ -29,13 +34,15 @@ Validator that will validate each key of an `array` or object implementing `\Tra
 
 ### `message`
 
-type: `string` default: `Invalid key: {{ message }}`
+type: `?string` default: `Invalid key: {{ message }}`
 
 Message that will be shown if at least one input value key is invalid according to the given `validator`.
 
 ```php
-Validator::eachKey(Validator::notBlank())->assert(['red' => '#f00', 1 => '#0f0'], 'color'); 
 // Throws: Invalid key: The color key value should be of type "string", 1 given.
+Validator::eachKey(
+    Validator::type('string')
+)->assert(['red' => '#f00', 1 => '#0f0'], 'color');
 ```
 
 The following parameters are available:

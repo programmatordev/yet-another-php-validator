@@ -47,7 +47,7 @@ class Count extends AbstractRule implements RuleInterface
         $numElements = \count($value);
 
         if ($this->min !== null && $numElements < $this->min) {
-            $message = $this->min === $this->max ? $this->exactMessage : $this->minMessage;
+            $message = ($this->min === $this->max) ? $this->exactMessage : $this->minMessage;
 
             throw new CountException(
                 message: $message,
@@ -62,7 +62,7 @@ class Count extends AbstractRule implements RuleInterface
         }
 
         if ($this->max !== null && $numElements > $this->max) {
-            $message = $this->min === $this->max ? $this->exactMessage : $this->maxMessage;
+            $message = ($this->min === $this->max) ? $this->exactMessage : $this->maxMessage;
 
             throw new CountException(
                 message: $message,

@@ -18,13 +18,13 @@ class CountTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedOptionMessage = '/At least one of the options "min" or "max" must be given./';
-        $unexpectedTypeMessage = '/Expected value of type "array|\Countable", "(.*)" given./';
+        $unexpectedMissingMinMaxMessage = '/At least one of the options "min" or "max" must be given./';
         $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value./';
+        $unexpectedTypeMessage = '/Expected value of type "array|\Countable", "(.*)" given./';
 
-        yield 'missing options' => [new Count(), [1, 2, 3], $unexpectedOptionMessage];
-        yield 'invalid type value' => [new Count(min: 5, max: 10), 1, $unexpectedTypeMessage];
+        yield 'missing min max' => [new Count(), [1, 2, 3], $unexpectedMissingMinMaxMessage];
         yield 'min greater than max constraint' => [new Count(min: 3, max: 2), [1, 2, 3], $unexpectedMinMaxMessage];
+        yield 'invalid type value' => [new Count(min: 5, max: 10), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

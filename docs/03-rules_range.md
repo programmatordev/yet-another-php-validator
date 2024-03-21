@@ -57,7 +57,7 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
-type: `string` default: `The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.`
 
 Message that will be shown if the value is not between the minimum and maximum values.
 
