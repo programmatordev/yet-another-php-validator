@@ -13,6 +13,7 @@ use ProgrammatorDev\Validator\Rule\RuleInterface;
  */
 class Validator implements RuleInterface
 {
+    /** @var RuleInterface[] */
     private array $rules;
 
     public function __construct(RuleInterface ...$rules)
@@ -49,11 +50,11 @@ class Validator implements RuleInterface
      */
     public function assert(mixed $value, ?string $name = null): void
     {
-        if (empty($this->getRules())) {
+        if (empty($this->rules)) {
             throw new UnexpectedValueException('Validator rules not found: at least one rule is required.');
         }
 
-        foreach ($this->getRules() as $rule) {
+        foreach ($this->rules as $rule) {
             $rule->assert($value, $name);
         }
     }
@@ -70,9 +71,6 @@ class Validator implements RuleInterface
         return true;
     }
 
-    /**
-     * @return RuleInterface[]
-     */
     public function getRules(): array
     {
         return $this->rules;
