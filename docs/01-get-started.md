@@ -30,16 +30,10 @@ Simple usage looks like:
 use ProgrammatorDev\Validator\Rule;
 use ProgrammatorDev\Validator\Validator;
 
-// Do this...
+// do this...
 $validator = Validator::notBlank()->greaterThanOrEqual(18);
 
-// Or this...
-$validator = new Validator(
-    new Rule\NotBlank(), 
-    new Rule\GreaterThanOrEqual(18)
-);
-
-// Validate with these:
+// ...and validate with these:
 $validator->validate(16); // returns bool: false
 $validator->assert(16, 'age'); // throws exception: The age value should be greater than or equal to 18, 16 given.
 ```
