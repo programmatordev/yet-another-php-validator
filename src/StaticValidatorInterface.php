@@ -83,6 +83,11 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function passwordStrength(
+        string $minStrength = 'medium',
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function range(
         mixed $min,
         mixed $max,

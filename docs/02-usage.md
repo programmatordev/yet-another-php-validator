@@ -22,7 +22,7 @@ public function getWeather(float $latitude, float $longitude, string $unitSystem
 {
     Validator::range(-90, 90)->assert($latitude, 'latitude');
     Validator::range(-180, 180)->assert($longitude, 'longitude');
-    Validator::notBlank()->choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
+    Validator::choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
     
     // ...
 }
@@ -51,7 +51,7 @@ function getWeather(float $latitude, float $longitude, string $unitSystem): floa
 {
     Validator::range(-90, 90)->assert($latitude, 'latitude');
     Validator::range(-180, 180)->assert($longitude, 'longitude');
-    Validator::notBlank()->choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
+    Validator::choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
     
     // ...
 }
@@ -98,7 +98,7 @@ use ProgrammatorDev\Validator\Validator;
 try {
     Validator::range(-90, 90)->assert($latitude, 'latitude');
     Validator::range(-180, 180)->assert($longitude, 'longitude');
-    Validator::notBlank()->choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
+    Validator::choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
 }
 catch (Exception\RangeException $exception) {
     // do something when Range fails
@@ -120,7 +120,7 @@ use ProgrammatorDev\Validator\Validator;
 try {
     Validator::range(-90, 90)->assert($latitude, 'latitude');
     Validator::range(-180, 180)->assert($longitude, 'longitude');
-    Validator::notBlank()->choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
+    Validator::choice(['metric', 'imperial'])->assert($unitSystem, 'unit system');
 }
 catch (ValidationException $exception) {
     // do something when a rule fails

@@ -99,10 +99,10 @@ Allows to define a `callable` that will be applied to the value before checking 
 For example, use `trim`, or pass your own function, to not measure whitespaces at the end of a string:
 
 ```php
-// existing php callables
+Validator::length(max: 3)->validate('abc '); // false
+
 Validator::length(max: 3, normalizer: 'trim')->validate('abc '); // true
-// function
-Validator::length(max: 3, normalizer: fn($value) => trim($value))->validate('abc '); // false
+Validator::length(max: 3, normalizer: fn($value) => trim($value))->validate('abc '); // true
 ```
 
 ### `minMessage`
