@@ -17,6 +17,7 @@
 
 - [Email](03-rules_email.md)
 - [Length](03-rules_length.md)
+- [PasswordStrength](03-rules_password-strength.md)
 - [URL](03-rules_url.md)
 
 ## Comparison Rules
