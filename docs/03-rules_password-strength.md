@@ -6,7 +6,7 @@ The strength is calculated by measuring the entropy of the password (in bits) ba
 ```php
 PasswordStrength(
     string $minStrength = 'medium', 
-    ?string $minMessage = null
+    ?string $message = null
 );
 ```
 
