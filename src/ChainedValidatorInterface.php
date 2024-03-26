@@ -95,6 +95,13 @@ interface ChainedValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public function regex(
+        string $pattern,
+        bool $match = true,
+        ?callable $normalizer = null,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public function rule(
         RuleInterface $constraint
     ): ChainedValidatorInterface&Validator;
