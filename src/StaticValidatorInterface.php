@@ -94,6 +94,13 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function regex(
+        string $pattern,
+        bool $match = true,
+        ?callable $normalizer = null,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function rule(
         RuleInterface $constraint
     ): ChainedValidatorInterface&Validator;
