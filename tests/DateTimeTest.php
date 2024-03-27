@@ -25,18 +25,20 @@ class DateTimeTest extends AbstractTest
 
     public static function provideRuleFailureConditionData(): \Generator
     {
-        $value = 'invalid';
         $exception = DateTimeException::class;
         $message = '/The (.*) value is not a valid datetime./';
 
-        yield 'invalid datetime' => [new DateTime(), $value, $exception, $message];
         yield 'invalid format' => [new DateTime(format: 'invalid'), '2024-01-01 00:00:00', $exception, $message];
+        yield 'invalid datetime' => [new DateTime(), '2024-01-01', $exception, $message];
+        yield 'invalid overflow date' => [new DateTime(format: 'Y-m-d'), '2024-01-35', $exception, $message];
+        yield 'invalid overflow time' => [new DateTime(format: 'H:i:s'), '35:00:00', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
         yield 'datetime' => [new DateTime(), '2024-01-01 00:00:00'];
-        yield 'format' => [new DateTime(format: 'Y-m-d'), '2024-01-01'];
+        yield 'date' => [new DateTime(format: 'Y-m-d'), '2024-01-01'];
+        yield 'time' => [new DateTime(format: 'H:i:s'), '21:00:00'];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
