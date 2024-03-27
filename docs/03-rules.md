@@ -31,6 +31,7 @@
 
 ## Date Rules
 
+- [DateTime](03-rules_date-time.md)
 - [Timezone](03-rules_timezone.md)
 
 ## Choice Rules
