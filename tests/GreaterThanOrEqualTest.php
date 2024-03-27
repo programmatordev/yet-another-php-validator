@@ -18,7 +18,7 @@ class GreaterThanOrEqualTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
+        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
         yield 'datetime constraint with int value' => [new GreaterThanOrEqual(new \DateTime()), 10, $unexpectedTypeMessage];
         yield 'datetime constraint with float value' => [new GreaterThanOrEqual(new \DateTime()), 1.0, $unexpectedTypeMessage];
@@ -32,7 +32,7 @@ class GreaterThanOrEqualTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = GreaterThanOrEqualException::class;
-        $message = '/The (.*) value should be greater than or equal to (.*), (.*) given./';
+        $message = '/The (.*) value should be greater than or equal to (.*), (.*) given\./';
 
         yield 'datetime' => [new GreaterThanOrEqual(new \DateTime('today')), new \DateTime('yesterday'), $exception, $message];
         yield 'int' => [new GreaterThanOrEqual(10), 1, $exception, $message];

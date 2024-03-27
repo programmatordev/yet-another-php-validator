@@ -20,10 +20,10 @@ class LengthTest extends AbstractTest
     {
         $value = 'abcde';
 
-        $unexpectedMissingMinMaxMessage = '/At least one of the options "min" or "max" must be given./';
-        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value./';
-        $unexpectedOptionMessage = '/Invalid (.*) "(.*)". Accepted values are: "(.*)"./';
-        $unexpectedTypeMessage = '/Expected value of type "array|\Stringable", "(.*)" given./';
+        $unexpectedMissingMinMaxMessage = '/At least one of the options "min" or "max" must be given\./';
+        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value\./';
+        $unexpectedOptionMessage = '/Invalid (.*) "(.*)"\. Accepted values are\: "(.*)"\./';
+        $unexpectedTypeMessage = '/Expected value of type "string\|\\\Stringable", "(.*)" given\./';
 
         yield 'missing min max' => [new Length(), $value, $unexpectedMissingMinMaxMessage];
         yield 'min greater than max constraint' => [new Length(min: 3, max: 2), $value, $unexpectedMinMaxMessage];
@@ -37,10 +37,10 @@ class LengthTest extends AbstractTest
         $value = 'abcde';
         $exception = LengthException::class;
 
-        $minMessage = '/The (.*) value should have (.*) characters or more, (.*) characters given./';
-        $maxMessage = '/The (.*) value should have (.*) characters or less, (.*) characters given./';
-        $exactMessage = '/The (.*) value should have exactly (.*) characters, (.*) characters given./';
-        $charsetMessage = '/The (.*) value does not match the expected (.*) charset./';
+        $minMessage = '/The (.*) value should have (.*) characters or more, (.*) characters given\./';
+        $maxMessage = '/The (.*) value should have (.*) characters or less, (.*) characters given\./';
+        $exactMessage = '/The (.*) value should have exactly (.*) characters, (.*) characters given\./';
+        $charsetMessage = '/The (.*) value does not match the expected (.*) charset\./';
 
         yield 'min constraint' => [new Length(min: 10), $value, $exception, $minMessage];
         yield 'max constraint' => [new Length(max: 2), $value, $exception, $maxMessage];

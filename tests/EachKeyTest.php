@@ -21,8 +21,8 @@ class EachKeyTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given./';
-        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"./';
+        $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given\./';
+        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
         yield 'invalid value type' => [
             new EachKey(new Validator(new Type('string'))),
@@ -39,7 +39,7 @@ class EachKeyTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EachKeyException::class;
-        $message = '/Invalid key: The (.*) key value should be of type (.*), (.*) given./';
+        $message = '/Invalid key\: The (.*) key value should be of type (.*), (.*) given\./';
 
         yield 'invalid array element' => [
             new EachKey(new Validator(new Type('string'))),

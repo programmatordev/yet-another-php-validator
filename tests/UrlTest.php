@@ -18,7 +18,7 @@ class UrlTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given./';
+        $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given\./';
 
         yield 'invalid type' => [new Url(), 1, $unexpectedTypeMessage];
     }
@@ -26,7 +26,7 @@ class UrlTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = UrlException::class;
-        $message = '/The (.*) value is not a valid URL address, (.*) given./';
+        $message = '/The (.*) value is not a valid URL address, (.*) given\./';
 
         yield 'invalid url' => [new URL(), 'invalid', $exception, $message];
         yield 'unallowed protocol' => [new URL(protocols: ['https']), 'http://test.com', $exception, $message];
