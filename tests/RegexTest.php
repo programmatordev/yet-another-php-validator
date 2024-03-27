@@ -19,7 +19,7 @@ class RegexTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $unexpectedPatternMessage = '/Invalid regular expression pattern./';
-        $unexpectedTypeMessage = '/Expected value of type "array|\Stringable", "(.*)" given./';
+        $unexpectedTypeMessage = '/Expected value of type "string|\Stringable", "(.*)" given./';
 
         yield 'invalid pattern' => [new Regex('invalid'), 'abc', $unexpectedPatternMessage];
         yield 'invalid value type' => [new Regex('/[a-z]/'), ['abc'], $unexpectedTypeMessage];
