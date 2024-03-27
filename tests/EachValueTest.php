@@ -21,8 +21,8 @@ class EachValueTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given./';
-        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"./';
+        $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given\./';
+        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
         yield 'invalid value type' => [
             new EachValue(new Validator(new NotBlank())),
@@ -39,7 +39,7 @@ class EachValueTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EachValueException::class;
-        $message = '/At key (.*): The (.*) value should not be blank, (.*) given./';
+        $message = '/At key (.*)\: The (.*) value should not be blank, (.*) given\./';
 
         yield 'invalid array element' => [
             new EachValue(new Validator(new NotBlank())),

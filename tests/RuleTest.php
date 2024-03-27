@@ -17,7 +17,7 @@ class RuleTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Dummy unexpected value./';
+        $unexpectedTypeMessage = '/Dummy unexpected value\./';
 
         yield 'invalid value type' => [
             new Rule(new DummyRule()),
@@ -29,7 +29,7 @@ class RuleTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = ValidationException::class;
-        $message = '/Dummy exception./';
+        $message = '/Dummy exception\./';
 
         yield 'invalid value' => [
             new Rule(new DummyRule()),

@@ -30,6 +30,11 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function dateTime(
+        string $format = 'Y-m-d H:i:s',
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function eachKey(
         Validator $validator,
         ?string $message = null
@@ -83,9 +88,21 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function passwordStrength(
+        string $minStrength = 'medium',
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function range(
         mixed $min,
         mixed $max,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function regex(
+        string $pattern,
+        bool $match = true,
+        ?callable $normalizer = null,
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
