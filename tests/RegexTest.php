@@ -18,8 +18,8 @@ class RegexTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedPatternMessage = '/Invalid regular expression pattern./';
-        $unexpectedTypeMessage = '/Expected value of type "string|\Stringable", "(.*)" given./';
+        $unexpectedPatternMessage = '/Invalid regular expression pattern\./';
+        $unexpectedTypeMessage = '/Expected value of type "string\|\\\Stringable", "(.*)" given\./';
 
         yield 'invalid pattern' => [new Regex('invalid'), 'abc', $unexpectedPatternMessage];
         yield 'invalid value type' => [new Regex('/[a-z]/'), ['abc'], $unexpectedTypeMessage];
@@ -29,7 +29,7 @@ class RegexTest extends AbstractTest
     {
         $value = 'abc';
         $exception = RegexException::class;
-        $message = '/The (.*) value is not valid./';
+        $message = '/The (.*) value is not valid\./';
 
         yield 'match true' => [new Regex('/[0-9]/'), $value, $exception, $message];
         yield 'match false' => [new Regex('/[a-z]/', match: false), $value, $exception, $message];

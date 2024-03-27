@@ -18,7 +18,7 @@ class LessThanOrEqualTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
+        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
         yield 'datetime constraint with int value' => [new LessThanOrEqual(new \DateTime()), 10, $unexpectedTypeMessage];
         yield 'datetime constraint with float value' => [new LessThanOrEqual(new \DateTime()), 1.0, $unexpectedTypeMessage];
@@ -32,7 +32,7 @@ class LessThanOrEqualTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = LessThanOrEqualException::class;
-        $message = '/The (.*) value should be less than or equal to (.*), (.*) given./';
+        $message = '/The (.*) value should be less than or equal to (.*), (.*) given\./';
 
         yield 'datetime' => [new LessThanOrEqual(new \DateTime('today')), new \DateTime('tomorrow'), $exception, $message];
         yield 'int' => [new LessThanOrEqual(10), 20, $exception, $message];

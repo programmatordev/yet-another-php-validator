@@ -18,7 +18,7 @@ class DateTimeTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Expected value of type "string|\Stringable", "(.*)" given./';
+        $unexpectedTypeMessage = '/Expected value of type "string\|\\\Stringable", "(.*)" given\./';
 
         yield 'invalid value type' => [new DateTime(), ['2024-01-01 00:00:00'], $unexpectedTypeMessage];
     }
@@ -26,7 +26,7 @@ class DateTimeTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = DateTimeException::class;
-        $message = '/The (.*) value is not a valid datetime./';
+        $message = '/The (.*) value is not a valid datetime\./';
 
         yield 'invalid format' => [new DateTime(format: 'invalid'), '2024-01-01 00:00:00', $exception, $message];
         yield 'invalid datetime' => [new DateTime(), '2024-01-01', $exception, $message];

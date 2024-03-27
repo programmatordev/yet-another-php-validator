@@ -18,8 +18,8 @@ class RangeTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"/';
-        $unexpectedMinMaxMessage = '/Maximum value must be greater than minimum value./';
+        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
+        $unexpectedMinMaxMessage = '/Maximum value must be greater than minimum value\./';
 
         yield 'datetime constraint with int constraint' => [new Range(new \DateTime(), 10), new \DateTime(), $unexpectedTypeMessage];
         yield 'datetime constraint with float constraint' => [new Range(new \DateTime(), 10.0), new \DateTime(), $unexpectedTypeMessage];
@@ -36,7 +36,7 @@ class RangeTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = RangeException::class;
-        $message = '/The (.*) value should be between (.*) and (.*), (.*) given./';
+        $message = '/The (.*) value should be between (.*) and (.*), (.*) given\./';
 
         yield 'min datetime' => [new Range(new \DateTime('today'), new \DateTime('tomorrow')), new \DateTime('yesterday'), $exception, $message];
         yield 'min int' => [new Range(10, 20), 1, $exception, $message];
