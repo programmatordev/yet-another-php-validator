@@ -31,9 +31,9 @@ Validator::regex('/[a-z]/', match: false)->validate('123'); // true
 
 ## Options
 
-### `pattern` `required`
+### `pattern`
 
-type: `string`
+type: `string` `required`
 
 Regular expression pattern to be matched against.
 
