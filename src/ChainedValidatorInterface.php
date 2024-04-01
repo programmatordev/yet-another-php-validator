@@ -18,6 +18,14 @@ interface ChainedValidatorInterface
         ?string $maxMessage = null
     ): ChainedValidatorInterface&Validator;
 
+    public function collection(
+        array $fields,
+        bool $allowExtraFields = false,
+        ?string $message = null,
+        ?string $extraFieldsMessage = null,
+        ?string $missingFieldsMessage = null
+    ): ChainedValidatorInterface&Validator;
+
     public function count(
         ?int $min = null,
         ?int $max = null,

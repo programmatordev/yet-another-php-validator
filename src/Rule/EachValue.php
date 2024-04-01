@@ -25,22 +25,22 @@ class EachValue extends AbstractRule implements RuleInterface
             throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
         }
 
-        try {
-            foreach ($value as $key => $element) {
+        foreach ($value as $key => $element) {
+            try {
                 $this->validator->assert($element, $name);
             }
-        }
-        catch (ValidationException $exception) {
-            throw new EachValueException(
-                message: $this->message,
-                parameters: [
-                    'value' => $value,
-                    'name' => $name,
-                    'key' => $key,
-                    'element' => $element,
-                    'message' => $exception->getMessage()
-                ]
-            );
+            catch (ValidationException $exception) {
+                throw new EachValueException(
+                    message: $this->message,
+                    parameters: [
+                        'value' => $value,
+                        'name' => $name,
+                        'key' => $key,
+                        'element' => $element,
+                        'message' => $exception->getMessage()
+                    ]
+                );
+            }
         }
     }
 }

@@ -93,7 +93,7 @@ class Type extends AbstractRule implements RuleInterface
             }
 
             if (!isset(self::TYPE_FUNCTIONS[$constraint]) && !\class_exists($constraint) && !\interface_exists($constraint)) {
-                throw new UnexpectedOptionException('constraint type', \array_keys(self::TYPE_FUNCTIONS), $constraint);
+                throw new UnexpectedOptionException('type', \array_keys(self::TYPE_FUNCTIONS), $constraint);
             }
         }
 
