@@ -40,8 +40,8 @@ class Collection extends AbstractRule implements RuleInterface
             throw new UnexpectedValueException($exception->getMessage());
         }
 
-        if (!\is_array($value)) {
-            throw new UnexpectedTypeException('array', get_debug_type($value));
+        if (!\is_iterable($value)) {
+            throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
         }
 
         foreach ($this->fields as $field => $validator) {
@@ -49,6 +49,7 @@ class Collection extends AbstractRule implements RuleInterface
                 throw new CollectionException(
                     message: $this->missingFieldsMessage,
                     parameters: [
+                        'name' => $name,
                         'field' => $field
                     ]
                 );
@@ -61,6 +62,7 @@ class Collection extends AbstractRule implements RuleInterface
                 throw new CollectionException(
                     message: $this->message,
                     parameters: [
+                        'name' => $name,
                         'field' => $field,
                         'message' => $exception->getMessage()
                     ]
@@ -74,6 +76,7 @@ class Collection extends AbstractRule implements RuleInterface
                     throw new CollectionException(
                         message: $this->extraFieldsMessage,
                         parameters: [
+                            'name' => $name,
                             'field' => $field
                         ]
                     );

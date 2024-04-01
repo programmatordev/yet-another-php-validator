@@ -20,7 +20,7 @@ class CollectionTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $unexpectedFieldValueMessage = '/At field (.*)\: (.*)\./';
-        $unexpectedTypeMessage = '/Expected value of type "array", "(.*)" given\./';
+        $unexpectedTypeMessage = '/Expected value of type "array\|\\\Traversable", "(.*)" given\./';
 
         yield 'invalid field value' => [
             new Collection(fields: ['field' => 'invalid']),
@@ -67,9 +67,13 @@ class CollectionTest extends AbstractTest
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
-        yield 'field' => [
+        yield 'array' => [
             new Collection(fields: ['field' => Validator::notBlank()]),
             ['field' => 'value'],
+        ];
+        yield 'traversable' => [
+            new Collection(fields: ['field' => Validator::notBlank()]),
+            new \ArrayIterator(['field' => 'value'])
         ];
         yield 'extra fields' => [
             new Collection(
