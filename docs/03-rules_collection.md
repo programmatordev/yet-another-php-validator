@@ -32,7 +32,9 @@ Validator::collection(fields: [
     'age' => 25
 ]); // false ("name" is blank)
 
-// by default, unknown keys are not allowed
+///////////////////////////////
+
+// by default, extra fields are not allowed
 Validator::collection(fields: [
     'name' => Validator::notBlank(),
     'age' => Validator::type('int')->greaterThanOrEqual(18)
@@ -54,6 +56,26 @@ Validator::collection(
     'age' => 25,
     'email' => 'mail@example.com'
 ]); // true
+
+///////////////////////////////
+
+// by default, missing fields are not allowed
+Validator::collection(fields: [
+    'name' => Validator::notBlank(),
+    'age' => Validator::type('int')->greaterThanOrEqual(18)
+])->validate([
+    'age' => 25
+]); // false ("name" is missing)
+
+// but it is possible to use the Optional validation for optiona fields
+Validator::collection(fields: [
+    'name' => Validator::optional(
+        Validator::notBlank()
+    ),
+    'age' => Validator::type('int')->greaterThanOrEqual(18)
+])->validate([
+    'age' => 25
+]); // true ("name" is optional)
 ```
 
 > [!NOTE]

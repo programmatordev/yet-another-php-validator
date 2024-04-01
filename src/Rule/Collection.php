@@ -45,7 +45,10 @@ class Collection extends AbstractRule implements RuleInterface
         }
 
         foreach ($this->fields as $field => $validator) {
-            if (!isset($value[$field])) {
+            // find if validation is optional
+            $isOptional = $validator->getRules()[0] instanceof Optional;
+
+            if (!isset($value[$field]) && !$isOptional) {
                 throw new CollectionException(
                     message: $this->missingFieldsMessage,
                     parameters: [
@@ -53,6 +56,11 @@ class Collection extends AbstractRule implements RuleInterface
                         'field' => $field
                     ]
                 );
+            }
+
+            // if value is not set but field is optional
+            if (!isset($value[$field]) && $isOptional) {
+                $value[$field] = null;
             }
 
             try {
