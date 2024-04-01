@@ -41,5 +41,6 @@
 
 ## Iterable Rules
 
+- [Collection](03-rules_collection.md)
 - [EachValue](03-rules_each-value.md)
 - [EachKey](03-rules_each-key.md)

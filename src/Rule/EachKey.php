@@ -25,23 +25,23 @@ class EachKey extends AbstractRule implements RuleInterface
             throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
         }
 
-        try {
-            foreach ($value as $key => $element) {
+        foreach ($value as $key => $element) {
+            try {
                 $this->validator->assert($key, $name);
             }
-        }
-        catch (ValidationException $exception) {
-            throw new EachKeyException(
-                message: $this->message,
-                parameters: [
-                    'value' => $value,
-                    'name' => $name,
-                    'key' => $key,
-                    'element' => $element,
-                    // Replaces string "value" with string "key value" to get a more intuitive error message
-                    'message' => \str_replace(' value ', ' key value ', $exception->getMessage())
-                ]
-            );
+            catch (ValidationException $exception) {
+                throw new EachKeyException(
+                    message: $this->message,
+                    parameters: [
+                        'value' => $value,
+                        'name' => $name,
+                        'key' => $key,
+                        'element' => $element,
+                        // Replaces string "value" with string "key value" to get a more intuitive error message
+                        'message' => \str_replace(' value ', ' key value ', $exception->getMessage())
+                    ]
+                );
+            }
         }
     }
 }
