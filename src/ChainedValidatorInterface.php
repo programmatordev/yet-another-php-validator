@@ -97,6 +97,10 @@ interface ChainedValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public function optional(
+        Validator $validator
+    ): ChainedValidatorInterface&Validator;
+
     public function passwordStrength(
         string $minStrength = 'medium',
         ?string $message = null

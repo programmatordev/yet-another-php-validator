@@ -37,6 +37,7 @@ class CollectionTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = CollectionException::class;
+        $notBlankMessage = '/The "(.*)" value should not be blank, "" given\./';
         $extraFieldsMessage = '/The (.*) field is not allowed\./';
         $missingFieldsMessage = '/The (.*) field is missing\./';
 
@@ -44,7 +45,7 @@ class CollectionTest extends AbstractTest
             new Collection(fields: ['field' => Validator::notBlank()]),
             ['field' => ''],
             $exception,
-            '/The "(.*)" value should not be blank, "" given\./'
+            $notBlankMessage
         ];
         yield 'extra fields' => [
             new Collection(fields: ['field' => Validator::notBlank()]),
@@ -53,15 +54,24 @@ class CollectionTest extends AbstractTest
             $extraFieldsMessage
         ];
         yield 'missing fields' => [
-            new Collection(
-                fields: [
-                    'field1' => Validator::notBlank(),
-                    'field2' => Validator::notBlank()
-                ]
-            ),
+            new Collection(fields: [
+                'field1' => Validator::notBlank(),
+                'field2' => Validator::notBlank()
+            ]),
             ['field1' => 'value1'],
             $exception,
             $missingFieldsMessage
+        ];
+        yield 'optional' => [
+            new Collection(fields: [
+                'field' => Validator::notBlank(),
+                'optional' => Validator::optional(
+                    Validator::notBlank()
+                )
+            ]),
+            ['field' => 'value', 'optional' => ''],
+            $exception,
+            $notBlankMessage
         ];
     }
 
@@ -81,6 +91,24 @@ class CollectionTest extends AbstractTest
                 allowExtraFields: true
             ),
             ['field' => 'value', 'extrafield' => 'extravalue']
+        ];
+        yield 'optional' => [
+            new Collection(fields: [
+                'field' => Validator::notBlank(),
+                'optional' => Validator::optional(
+                    Validator::notBlank()
+                )
+            ]),
+            ['field' => 'value']
+        ];
+        yield 'optional null' => [
+            new Collection(fields: [
+                'field' => Validator::notBlank(),
+                'optional' => Validator::optional(
+                    Validator::notBlank()
+                )
+            ]),
+            ['field' => 'value', 'optional' => null]
         ];
     }
 
