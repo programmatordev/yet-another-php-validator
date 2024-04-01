@@ -32,7 +32,7 @@ Validator::collection(fields: [
     'age' => 25
 ]); // false ("name" is blank)
 
-// by default, unknown keys are not allowed and it will fail
+// by default, unknown keys are not allowed
 Validator::collection(fields: [
     'name' => Validator::notBlank(),
     'age' => Validator::type('int')->greaterThanOrEqual(18)
