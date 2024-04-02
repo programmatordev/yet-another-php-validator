@@ -13,16 +13,16 @@ Timezone(
 ## Basic Usage
 
 ```php
-// All timezone identifiers
+// all timezone identifiers
 Validator::timezone()->validate('Europe/Lisbon'); // true
 
-// Restrict timezone identifiers to a specific geographical zone
+// restrict timezone identifiers to a specific geographical zone
 Validator::timezone(timezoneGroup: \DateTimeZone::EUROPE)->validate('Europe/Lisbon'); // true
 Validator::timezone(timezoneGroup: \DateTimeZone::AFRICA)->validate('Europe/Lisbon'); // false
-// Or multiple geographical zones
+// or multiple geographical zones
 Validator::timezone(timezoneGroup: \DateTimeZone::AFRICA | \DateTimeZone::EUROPE)->validate('Europe/Lisbon'); // true
 
-// Restrict timezone identifiers to a specific country
+// restrict timezone identifiers to a specific country
 Validator::timezone(timezoneGroup: \DateTimeZone::PER_COUNTRY, countryCode: 'pt')->validate('Europe/Lisbon'); // true
 Validator::timezone(timezoneGroup: \DateTimeZone::PER_COUNTRY, countryCode: 'en')->validate('Europe/Lisbon'); // false
 ```

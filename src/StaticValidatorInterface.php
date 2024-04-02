@@ -17,6 +17,14 @@ interface StaticValidatorInterface
         ?string $maxMessage = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function collection(
+        array $fields,
+        bool $allowExtraFields = false,
+        ?string $message = null,
+        ?string $extraFieldsMessage = null,
+        ?string $missingFieldsMessage = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function count(
         ?int $min = null,
         ?int $max = null,
@@ -86,6 +94,10 @@ interface StaticValidatorInterface
     public static function notBlank(
         ?callable $normalizer = null,
         ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function optional(
+        Validator $validator
     ): ChainedValidatorInterface&Validator;
 
     public static function passwordStrength(

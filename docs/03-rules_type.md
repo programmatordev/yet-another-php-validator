@@ -15,17 +15,17 @@ Type(
 ## Basic Usage
 
 ```php
-// Single type
+// single type
 Validator::type('string')->validate('green'); // true
 Validator::type('alphanumeric')->validate('gr33n'); // true
 
-// Multiple types
-// Validates if value is of at least one of the provided types
+// multiple types
+// validates if value is of at least one of the provided types
 Validator::type(['alpha', 'numeric'])->validate('green'); // true (alpha)
 Validator::type(['alpha', 'numeric'])->validate('33'); // true (numeric)
 Validator::type(['alpha', 'numeric'])->validate('gr33n'); // false (not alpha nor numeric)
 
-// Class or interface type
+// class or interface type
 Validator::type(\DateTime::class)->validate(new \DateTime()); // true
 Validator::type(\DateTimeInterface::class)->validate(new \DateTime()); // true
 ```

@@ -16,12 +16,12 @@ Url(
 ```php
 Validator::url()->validate('https://example.com'); // true
 
-// Only allow the https protocol
+// only allow the https protocol
 Validator::url(protocols: ['https'])->validate('http://example.com'); // false
-// Or allow the ftp protocol too
+// or allow the ftp protocol too
 Validator::url(protocols: ['https', 'ftp'])->validate('ftp://example.com'); // true
 
-// Allow relative protocol
+// allow relative protocol
 Validator::url()->validate('//example.com'); // false
 Validator::url(allowRelativeProtocol: true)->validate('//example.com'); // true
 Validator::url(allowRelativeProtocol: true)->validate('https://example.com'); // true

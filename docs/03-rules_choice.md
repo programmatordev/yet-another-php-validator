@@ -18,23 +18,23 @@ Choice(
 ## Basic Usage
 
 ```php
-// Single choice
+// single choice
 Validator::choice(['red', 'green', 'blue'])->validate('green'); // true
 Validator::choice(['red', 'green', 'blue'])->validate('yellow'); // false
 
-// Multiple choices
+// multiple choices
 Validator::choice(['red', 'green', 'blue'], multiple: true)->validate(['red', 'blue']); // true;
 Validator::choice(['red', 'green', 'blue'], multiple: true)->validate(['red', 'yellow']); // false;
 
-// Multiple with minimum number of choices
+// multiple with minimum number of choices
 Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2)->validate(['red', 'blue']); // true
 Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2)->validate(['red']); // false
 
-// Multiple with maximum number of choices
+// multiple with maximum number of choices
 Validator::choice(['red', 'green', 'blue'], multiple: true, max: 2)->validate(['red', 'blue']); // true
 Validator::choice(['red', 'green', 'blue'], multiple: true, max: 2)->validate(['red', 'green', 'blue']); // false
 
-// Multiple with minimum and maximum number of choices
+// multiple with minimum and maximum number of choices
 Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2, max: 3)->validate(['red', 'blue']); // true
 Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2, max: 3)->validate(['red']); // false
 ```

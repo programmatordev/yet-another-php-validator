@@ -6,6 +6,7 @@
 - [Date Rules](#date-rules)
 - [Choice Rules](#choice-rules)
 - [Iterable Rules](#iterable-rules)
+- [Other Rules](#other-rules)
 
 ## Basic Rules
 
@@ -41,5 +42,10 @@
 
 ## Iterable Rules
 
+- [Collection](03-rules_collection.md)
 - [EachValue](03-rules_each-value.md)
 - [EachKey](03-rules_each-key.md)
+
+## Other Rules
+
+- [Optional](03-rules_optional.md)
