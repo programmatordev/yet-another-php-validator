@@ -103,9 +103,6 @@ try {
 catch (Exception\RangeException $exception) {
     // do something when Range fails
 }
-catch (Exception\NotBlankException $exception) {
-    // do something when NotBlank fails
-}
 catch (Exception\ChoiceException $exception) {
     // do something when Choice fails
 }

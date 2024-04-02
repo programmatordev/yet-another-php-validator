@@ -27,7 +27,6 @@ require_once 'vendor/autoload.php';
 Simple usage looks like:
 
 ```php
-use ProgrammatorDev\Validator\Rule;
 use ProgrammatorDev\Validator\Validator;
 
 // do this:
