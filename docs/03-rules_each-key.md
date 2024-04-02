@@ -13,11 +13,11 @@ EachKey(
 
 ```php
 Validator::eachKey(
-    Validator::notBlank()->type('string')
+    Validator::type('string')->notBlank()
 )->validate(['red' => '#f00', 'green' => '#0f0']); // true
 
 Validator::eachKey(
-    Validator::notBlank()->type('string')
+    Validator::type('string')->notBlank()
 )->validate(['red' => '#f00', 1 => '#0f0']); // false
 ```
 

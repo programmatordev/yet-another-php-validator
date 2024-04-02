@@ -6,13 +6,6 @@
 
 PHP validator with expressive error messages.
 
-> [!NOTE]
-> This library is not in version 1.x mainly because there are few available rules.
-> Hopefully, that will change in the near future.
-
-> [!IMPORTANT]
-> Expect some breaking changes until version `1.0`.
-
 ## Requirements
 
 - PHP 8.1 or higher.

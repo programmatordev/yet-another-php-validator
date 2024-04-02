@@ -13,11 +13,11 @@ EachValue(
 
 ```php
 Validator::eachValue(
-    Validator::notBlank()->greaterThan(1)->lessThan(10)
+    Validator::type('int')->range(1, 10)
 )->validate([4, 5, 6]); // true
 
 Validator::eachValue(
-    Validator::notBlank()->greaterThan(1)->lessThan(10)
+    Validator::type('int')->range(1, 10)
 )->validate([4, 5, 20]); // false
 ```
 

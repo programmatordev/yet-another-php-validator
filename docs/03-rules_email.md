@@ -13,7 +13,7 @@ Email(
 ## Basic Usage
 
 ```php
-// html5 mode (default)
+// default html5 mode
 Validator::email()->validate('test@example.com'); // true
 Validator::email()->validate('test@example'); // false
 

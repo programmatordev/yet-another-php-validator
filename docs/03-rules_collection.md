@@ -67,7 +67,7 @@ Validator::collection(fields: [
     'age' => 25
 ]); // false ("name" is missing)
 
-// but it is possible to use the Optional validation for optiona fields
+// but it is possible to use the Optional validation for optional fields
 Validator::collection(fields: [
     'name' => Validator::optional(
         Validator::notBlank()

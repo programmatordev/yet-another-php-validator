@@ -12,12 +12,11 @@ Country(
 ## Basic Usage
 
 ```php
-// Default alpha-2 code
-Validator::country()->validate('PT'); // true
-Validator::country(code: 'alpha-2')->validate('PT'); // true
+// default alpha-2 code
+Validator::country()->validate('pt'); // true
 
-// Alpha-3 code
-Validator::country(code: 'alpha-3')->validate('PRT'); // true
+// alpha-3 code
+Validator::country(code: 'alpha-3')->validate('prt'); // true
 ```
 
 > [!NOTE]
