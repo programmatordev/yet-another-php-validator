@@ -2,14 +2,14 @@
 
 namespace ProgrammatorDev\Validator\Test;
 
-use ProgrammatorDev\Validator\Exception\CountryException;
-use ProgrammatorDev\Validator\Rule\Country;
+use ProgrammatorDev\Validator\Exception\LanguageException;
+use ProgrammatorDev\Validator\Rule\Language;
 use ProgrammatorDev\Validator\Test\Util\TestRuleFailureConditionTrait;
 use ProgrammatorDev\Validator\Test\Util\TestRuleMessageOptionTrait;
 use ProgrammatorDev\Validator\Test\Util\TestRuleSuccessConditionTrait;
 use ProgrammatorDev\Validator\Test\Util\TestRuleUnexpectedValueTrait;
 
-class CountryTest extends AbstractTest
+class LanguageTest extends AbstractTest
 {
     use TestRuleUnexpectedValueTrait;
     use TestRuleFailureConditionTrait;
@@ -21,35 +21,35 @@ class CountryTest extends AbstractTest
         $unexpectedCodeMessage = '/Invalid code "(.*)"\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string", (.*) given\./';
 
-        yield 'invalid code' => [new Country('invalid'), 'pt', $unexpectedCodeMessage];
-        yield 'invalid type' => [new Country(), 123, $unexpectedTypeMessage];
+        yield 'invalid code' => [new Language('invalid'), 'pt', $unexpectedCodeMessage];
+        yield 'invalid type' => [new Language(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
-        $exception = CountryException::class;
-        $message = '/The (.*) value is not a valid country, (.*) given\./';
+        $exception = LanguageException::class;
+        $message = '/The (.*) value is not a valid language, (.*) given\./';
 
-        yield 'default' => [new Country(), 'prt', $exception, $message];
-        yield 'alpha2' => [new Country(code: 'alpha-2'), 'prt', $exception, $message];
-        yield 'alpha3' => [new Country(code: 'alpha-3'), 'pt', $exception, $message];
+        yield 'default' => [new Language(), 'prt', $exception, $message];
+        yield 'alpha2' => [new Language(code: 'alpha-2'), 'por', $exception, $message];
+        yield 'alpha3' => [new Language(code: 'alpha-3'), 'pt', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
-        yield 'default' => [new Country(), 'pt'];
-        yield 'alpha2' => [new Country(code: 'alpha-2'), 'pt'];
-        yield 'alpha3' => [new Country(code: 'alpha-3'), 'prt'];
+        yield 'default' => [new Language(), 'pt'];
+        yield 'alpha2' => [new Language(code: 'alpha-2'), 'pt'];
+        yield 'alpha3' => [new Language(code: 'alpha-3'), 'por'];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
     {
         yield 'message' => [
-            new Country(
-                message: 'The {{ name }} value {{ value }} is not a valid {{ code }} country code.'
+            new Language(
+                message: 'The {{ name }} value {{ value }} is not a valid {{ code }} language code.'
             ),
             'invalid',
-            'The test value "invalid" is not a valid "alpha-2" country code.'
+            'The test value "invalid" is not a valid "alpha-2" language code.'
         ];
     }
 }
