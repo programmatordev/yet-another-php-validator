@@ -21,26 +21,26 @@ class CountryTest extends AbstractTest
         $unexpectedCodeMessage = '/Invalid code "(.*)"\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string", (.*) given\./';
 
-        yield 'invalid code' => [new Country('invalid'), 'PT', $unexpectedCodeMessage];
+        yield 'invalid code' => [new Country('invalid'), 'pt', $unexpectedCodeMessage];
         yield 'invalid type' => [new Country(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = CountryException::class;
-        $message = '/The (.*) value is not a valid (.*) country code, (.*) given\./';
+        $message = '/The (.*) value is not a valid country, (.*) given\./';
 
         yield 'default' => [new Country(), 'PRT', $exception, $message];
-        yield 'alpha2' => [new Country(code: 'alpha-2'), 'PRT', $exception, $message];
-        yield 'alpha3' => [new Country(code: 'alpha-3'), 'PT', $exception, $message];
+        yield 'alpha2' => [new Country(code: 'alpha-2'), 'prt', $exception, $message];
+        yield 'alpha3' => [new Country(code: 'alpha-3'), 'pt', $exception, $message];
     }
 
     public static function provideRuleSuccessConditionData(): \Generator
     {
-        yield 'default' => [new Country(), 'PT'];
-        yield 'alpha2' => [new Country(code: 'alpha-2'), 'PT'];
+        yield 'default' => [new Country(), 'pt'];
+        yield 'alpha2' => [new Country(code: 'alpha-2'), 'pt'];
         yield 'alpha2 lowercase' => [new Country(code: 'alpha-2'), 'pt'];
-        yield 'alpha3' => [new Country(code: 'alpha-3'), 'PRT'];
+        yield 'alpha3' => [new Country(code: 'alpha-3'), 'prt'];
         yield 'alpha3 lowercase' => [new Country(code: 'alpha-3'), 'prt'];
     }
 
