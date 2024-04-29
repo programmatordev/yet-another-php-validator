@@ -30,7 +30,7 @@ class CountryTest extends AbstractTest
         $exception = CountryException::class;
         $message = '/The (.*) value is not a valid country, (.*) given\./';
 
-        yield 'default' => [new Country(), 'PRT', $exception, $message];
+        yield 'default' => [new Country(), 'prt', $exception, $message];
         yield 'alpha2' => [new Country(code: 'alpha-2'), 'prt', $exception, $message];
         yield 'alpha3' => [new Country(code: 'alpha-3'), 'pt', $exception, $message];
     }
@@ -39,9 +39,7 @@ class CountryTest extends AbstractTest
     {
         yield 'default' => [new Country(), 'pt'];
         yield 'alpha2' => [new Country(code: 'alpha-2'), 'pt'];
-        yield 'alpha2 lowercase' => [new Country(code: 'alpha-2'), 'pt'];
         yield 'alpha3' => [new Country(code: 'alpha-3'), 'prt'];
-        yield 'alpha3 lowercase' => [new Country(code: 'alpha-3'), 'prt'];
     }
 
     public static function provideRuleMessageOptionData(): \Generator
