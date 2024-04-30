@@ -46,10 +46,10 @@ class LanguageTest extends AbstractTest
     {
         yield 'message' => [
             new Language(
-                message: 'The {{ name }} value {{ value }} is not a valid {{ code }} language code.'
+                message: '{{ name }} | {{ value }} | {{ code }}'
             ),
             'invalid',
-            'The test value "invalid" is not a valid "alpha-2" language code.'
+            'test | "invalid" | "alpha-2"'
         ];
     }
 }

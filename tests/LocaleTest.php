@@ -47,10 +47,10 @@ class LocaleTest extends AbstractTest
     {
         yield 'message' => [
             new Locale(
-                message: '{{ name }} {{ value }}'
+                message: '{{ name }} | {{ value }}'
             ),
             'invalid',
-            'test "invalid"'
+            'test | "invalid"'
         ];
     }
 }

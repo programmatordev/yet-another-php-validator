@@ -72,10 +72,10 @@ class EachValueTest extends AbstractTest
         yield 'message' => [
             new EachValue(
                 validator: new Validator(new NotBlank()),
-                message: 'The {{ name }} value {{ value }} failed at key {{ key }}.'
+                message: '{{ name }} | {{ value }} | {{ key }} | {{ element }} | {{ message }}'
             ),
             [1, 2, ''],
-            'The test value [1, 2, ""] failed at key 2.'
+            'test | [1, 2, ""] | 2 | "" | The test value should not be blank, "" given.'
         ];
     }
 }

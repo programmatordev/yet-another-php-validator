@@ -49,10 +49,10 @@ class RegexTest extends AbstractTest
         yield 'message' => [
             new Regex(
                 pattern: '/[a-z]/',
-                message: 'The {{ name }} value does not match the pattern {{ pattern }}.'
+                message: '{{ name }} | {{ value }} | {{ pattern }}'
             ),
             '123',
-            'The test value does not match the pattern "/[a-z]/".'
+            'test | "123" | "/[a-z]/"'
         ];
     }
 }

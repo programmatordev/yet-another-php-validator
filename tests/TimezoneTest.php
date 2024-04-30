@@ -55,10 +55,10 @@ class TimezoneTest extends AbstractTest
     {
         yield 'message' => [
             new Timezone(
-                message: 'The {{ name }} value {{ value }} is not a valid timezone.'
+                message: '{{ name }} | {{ value }} | {{ countryCode }}'
             ),
             'Invalid/Timezone',
-            'The test value "Invalid/Timezone" is not a valid timezone.'
+            'test | "Invalid/Timezone" | null'
         ];
     }
 
