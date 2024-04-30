@@ -19,7 +19,7 @@ class ValidatorTest extends AbstractTest
         $this->expectExceptionMessage('Validator rules not found: at least one rule is required.');
 
         $validator = new Validator();
-        $validator->assert(true, 'test');
+        $validator->assert(true);
     }
 
     #[DataProvider('provideValidatorUsageApproachData')]
@@ -34,32 +34,32 @@ class ValidatorTest extends AbstractTest
     {
         $this->assertFalse($validator->validate(false));
         $this->expectException(ValidationException::class);
-        $validator->assert(false, 'test');
+        $validator->assert(false);
     }
 
     #[DataProvider('provideValidatorUsageApproachData')]
     public function testValidatorSuccessCondition(Validator $validator)
     {
         $this->assertTrue($validator->validate(15));
-        $validator->assert(15, 'test');
+        $validator->assert(15);
     }
 
     public static function provideValidatorUsageApproachData(): \Generator
     {
-        yield 'fluent approach' => [
+        yield 'fluent' => [
             Validator
                 ::notBlank()
                 ->greaterThan(10)
                 ->lessThan(20)
         ];
-        yield 'dependency injection approach' => [
+        yield 'dependency injection' => [
             new Validator(
                 new NotBlank(),
                 new GreaterThan(10),
                 new LessThan(20)
             )
         ];
-        yield 'method approach' => [
+        yield 'method' => [
             (new Validator)
                 ->addRule(new NotBlank())
                 ->addRule(new GreaterThan(10))

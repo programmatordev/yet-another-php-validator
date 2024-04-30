@@ -117,26 +117,26 @@ class CollectionTest extends AbstractTest
         yield 'message' => [
             new Collection(
                 fields: ['field' => Validator::notBlank()],
-                message: 'There was an error: {{ message }}'
+                message: '{{ name }} | {{ field }} | {{ message }}'
             ),
             ['field' => ''],
-            'There was an error: The "field" value should not be blank, "" given.'
+            'test | "field" | The "field" value should not be blank, "" given.'
         ];
         yield 'extra fields message' => [
             new Collection(
                 fields: ['field' => Validator::notBlank()],
-                extraFieldsMessage: 'The {{ field }} was not expected.'
+                extraFieldsMessage: '{{ name }} | {{ field }}'
             ),
             ['field' => 'value', 'extrafield' => 'extravalue'],
-            'The "extrafield" was not expected.'
+            'test | "extrafield"'
         ];
         yield 'missing fields message' => [
             new Collection(
                 fields: ['field' => Validator::notBlank()],
-                missingFieldsMessage: 'Missing field: {{ field }}.'
+                missingFieldsMessage: '{{ name }} | {{ field }}'
             ),
             [],
-            'Missing field: "field".'
+            'test | "field"'
         ];
     }
 }

@@ -66,39 +66,39 @@ class ChoiceTest extends AbstractTest
         yield 'message' => [
             new Choice(
                 constraints: $constraints,
-                message: 'The {{ name }} value {{ value }} is not a valid choice.'
+                message: '{{ name }} | {{ value }} | {{ constraints }}'
             ),
             10,
-            'The test value 10 is not a valid choice.'
+            'test | 10 | [1, 2, 3, 4, 5]'
         ];
         yield 'multiple message' => [
             new Choice(
                 constraints: $constraints,
                 multiple: true,
-                multipleMessage: 'The {{ name }} value {{ value }} is not a valid choice.'
+                multipleMessage: '{{ name }} | {{ value }} | {{ constraints }}'
             ),
             [10],
-            'The test value [10] is not a valid choice.'
+            'test | [10] | [1, 2, 3, 4, 5]'
         ];
         yield 'min message' => [
             new Choice(
                 constraints: $constraints,
                 multiple: true,
                 min: 2,
-                minMessage: 'The {{ name }} value should have at least {{ min }} choices.'
+                minMessage: '{{ name }} | {{ value }} | {{ constraints }} | {{ min }} | {{ max }} | {{ numElements }}'
             ),
             [1],
-            'The test value should have at least 2 choices.'
+            'test | [1] | [1, 2, 3, 4, 5] | 2 | null | 1'
         ];
         yield 'max message' => [
             new Choice(
                 constraints: $constraints,
                 multiple: true,
                 max: 2,
-                maxMessage: 'The {{ name }} value should have at most {{ max }} choices.'
+                maxMessage: '{{ name }} | {{ value }} | {{ constraints }} | {{ min }} | {{ max }} | {{ numElements }}'
             ),
             [1, 2, 3],
-            'The test value should have at most 2 choices.'
+            'test | [1, 2, 3] | [1, 2, 3, 4, 5] | null | 2 | 3'
         ];
     }
 

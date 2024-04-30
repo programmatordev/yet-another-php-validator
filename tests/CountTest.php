@@ -59,27 +59,27 @@ class CountTest extends AbstractTest
         yield 'min message' => [
             new Count(
                 min: 10,
-                minMessage: 'The {{ name }} value should have at least {{ min }} elements.'
+                minMessage: '{{ name }} | {{ value }} | {{ min }} | {{ max }} | {{ numElements }}'
             ),
             $value,
-            'The test value should have at least 10 elements.'
+            'test | [1, 2, 3, 4, 5] | 10 | null | 5'
         ];
         yield 'max message' => [
             new Count(
                 max: 2,
-                maxMessage: 'The {{ name }} value should have at most {{ max }} elements.'
+                maxMessage: '{{ name }} | {{ value }} | {{ min }} | {{ max }} | {{ numElements }}'
             ),
             $value,
-            'The test value should have at most 2 elements.'
+            'test | [1, 2, 3, 4, 5] | null | 2 | 5'
         ];
         yield 'exact message' => [
             new Count(
                 min: 2,
                 max: 2,
-                exactMessage: 'The {{ name }} value should have exactly {{ min }} elements.'
+                exactMessage: '{{ name }} | {{ value }} | {{ min }} | {{ max }} | {{ numElements }}'
             ),
             $value,
-            'The test value should have exactly 2 elements.'
+            'test | [1, 2, 3, 4, 5] | 2 | 2 | 5'
         ];
     }
 }

@@ -72,10 +72,10 @@ class EachKeyTest extends AbstractTest
         yield 'message' => [
             new EachKey(
                 validator: new Validator(new Type('string')),
-                message: 'The {{ name }} key {{ key }} is invalid.'
+                message: '{{ name }} | {{ value }} | {{ key }} | {{ element }} | {{ message }}'
             ),
             ['key1' => 1, 'key2' => 2, 1 => 3],
-            'The test key 1 is invalid.'
+            'test | [1, 2, 3] | 1 | 3 | The test key value should be of type "string", 1 given.'
         ];
     }
 }

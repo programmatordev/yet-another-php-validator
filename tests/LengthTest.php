@@ -71,36 +71,36 @@ class LengthTest extends AbstractTest
         yield 'min message' => [
             new Length(
                 min: 10,
-                minMessage: 'The {{ name }} value with count unit {{ countUnit }} should have at least {{ min }} characters.'
+                minMessage: '{{ name }} | {{ value }} | {{ min }} | {{ max }} | {{ numChars }} | {{ charset }} | {{ countUnit }}'
             ),
             $value,
-            'The test value with count unit "codepoints" should have at least 10 characters.'
+            'test | "abcde" | 10 | null | 5 | "UTF-8" | "codepoints"'
         ];
         yield 'max message' => [
             new Length(
                 max: 2,
-                maxMessage: 'The {{ name }} value with count unit {{ countUnit }} should have at most {{ max }} characters.'
+                maxMessage: '{{ name }} | {{ value }} | {{ min }} | {{ max }} | {{ numChars }} | {{ charset }} | {{ countUnit }}'
             ),
             $value,
-            'The test value with count unit "codepoints" should have at most 2 characters.'
+            'test | "abcde" | null | 2 | 5 | "UTF-8" | "codepoints"'
         ];
         yield 'exact message' => [
             new Length(
                 min: 2,
                 max: 2,
-                exactMessage: 'The {{ name }} value with count unit {{ countUnit }} should have exactly {{ min }} characters.'
+                exactMessage: '{{ name }} | {{ value }} | {{ min }} | {{ max }} | {{ numChars }} | {{ charset }} | {{ countUnit }}'
             ),
             $value,
-            'The test value with count unit "codepoints" should have exactly 2 characters.'
+            'test | "abcde" | 2 | 2 | 5 | "UTF-8" | "codepoints"'
         ];
         yield 'charset message' => [
             new Length(
                 min: 2,
                 charset: 'ASCII',
-                charsetMessage: 'The {{ name }} value is not a {{ charset }} charset.'
+                charsetMessage: '{{ name }} | {{ value }} | {{ charset }}'
             ),
             'テスト',
-            'The test value is not a "ASCII" charset.'
+            'test | "テスト" | "ASCII"'
         ];
     }
 }

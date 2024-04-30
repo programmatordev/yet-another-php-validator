@@ -75,10 +75,10 @@ class RangeTest extends AbstractTest
             new Range(
                 min: 10,
                 max: 20,
-                message: 'The {{ name }} value {{ value }} should be between {{ min }} and {{ max }}.'
+                message: '{{ name }} | {{ value }} | {{ min }} | {{ max }}'
             ),
             30,
-            'The test value 30 should be between 10 and 20.'
+            'test | 30 | 10 | 20'
         ];
     }
 }

@@ -60,10 +60,10 @@ class UrlTest extends AbstractTest
     {
         yield 'message' => [
             new Url(
-                message: 'The {{ name }} value {{ value }} is not a valid URL address. Allowed protocols: {{ protocols }}.'
+                message: '{{ name }} | {{ value }} | {{ protocols }}'
             ),
             'invalid',
-            'The test value "invalid" is not a valid URL address. Allowed protocols: ["http", "https"].'
+            'test | "invalid" | ["http", "https"]'
         ];
     }
 }

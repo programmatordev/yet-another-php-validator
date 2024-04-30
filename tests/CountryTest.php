@@ -46,10 +46,10 @@ class CountryTest extends AbstractTest
     {
         yield 'message' => [
             new Country(
-                message: 'The {{ name }} value {{ value }} is not a valid {{ code }} country code.'
+                message: '{{ name }} | {{ value }} | {{ code }}'
             ),
             'invalid',
-            'The test value "invalid" is not a valid "alpha-2" country code.'
+            'test | "invalid" | "alpha-2"'
         ];
     }
 }

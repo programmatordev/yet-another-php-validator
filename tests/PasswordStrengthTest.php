@@ -51,10 +51,10 @@ class PasswordStrengthTest extends AbstractTest
     {
         yield 'message' => [
             new PasswordStrength(
-                message: 'The {{ name }} value entropy is not high enough.'
+                message: '{{ name }} | {{ minStrength }}'
             ),
             'password',
-            'The test value entropy is not high enough.'
+            'test | "medium"'
         ];
     }
 }

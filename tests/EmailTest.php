@@ -49,10 +49,10 @@ class EmailTest extends AbstractTest
     {
         yield 'message' => [
             new Email(
-                message: 'The {{ name }} value {{ value }} in {{ mode }} mode is not a valid email address.'
+                message: '{{ name }} | {{ value }} | {{ mode }}'
             ),
             'invalid',
-            'The test value "invalid" in "html5" mode is not a valid email address.'
+            'test | "invalid" | "html5"'
         ];
     }
 }
