@@ -96,6 +96,11 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function locale(
+        bool $canonicalize = false,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function notBlank(
         ?callable $normalizer = null,
         ?string $message = null
