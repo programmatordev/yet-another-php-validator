@@ -40,6 +40,7 @@
 - [Choice](03-rules_choice.md)
 - [Country](03-rules_country.md)
 - [Language](03-rules_language.md)
+- [Locale](03-rules_locale.md)
 
 ## Iterable Rules
 
