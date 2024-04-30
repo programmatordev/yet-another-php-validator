@@ -19,7 +19,7 @@ class TimezoneTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $unexpectedMissingCountryCodeMessage = '/A country code is required when timezone group is "\\\DateTimeZone::PER_COUNTRY"\./';
-        $unexpectedCountryCodeMessage = '/The (.*) value is not a valid (.*) country code, (.*) given\./';
+        $unexpectedCountryCodeMessage = '/The (.*) value is not a valid country, (.*) given\./';
 
         yield 'missing country code' => [
             new Timezone(\DateTimeZone::PER_COUNTRY),
@@ -27,7 +27,7 @@ class TimezoneTest extends AbstractTest
             $unexpectedMissingCountryCodeMessage
         ];
         yield 'invalid country code' => [
-            new Timezone(\DateTimeZone::PER_COUNTRY, 'PRT'),
+            new Timezone(\DateTimeZone::PER_COUNTRY, 'prt'),
             'Europe/Lisbon',
             $unexpectedCountryCodeMessage
         ];
@@ -55,10 +55,10 @@ class TimezoneTest extends AbstractTest
     {
         yield 'message' => [
             new Timezone(
-                message: 'The {{ name }} value {{ value }} is not a valid timezone.'
+                message: '{{ name }} | {{ value }} | {{ countryCode }}'
             ),
             'Invalid/Timezone',
-            'The test value "Invalid/Timezone" is not a valid timezone.'
+            'test | "Invalid/Timezone" | null'
         ];
     }
 

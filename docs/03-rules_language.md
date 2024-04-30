@@ -1,9 +1,9 @@
-# Country
+# Language
 
-Validates that a value is a valid country code.
+Validates that a value is a valid language code.
 
 ```php
-Country(
+Language(
     string $code = 'alpha-2',
     ?string $message = null
 );
@@ -13,10 +13,10 @@ Country(
 
 ```php
 // default alpha-2 code
-Validator::country()->validate('pt'); // true
+Validator::language()->validate('pt'); // true
 
 // alpha-3 code
-Validator::country(code: 'alpha-3')->validate('prt'); // true
+Validator::language(code: 'alpha-3')->validate('por'); // true
 ```
 
 > [!NOTE]
@@ -31,8 +31,8 @@ Validator::country(code: 'alpha-3')->validate('prt'); // true
 
 type: `string` default: `alpha-2`
 
-Set code type to validate the country. 
-Check the [official country codes](https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes) list for more information.
+Set code type to validate the language. 
+Check the [official language codes](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) list for more information.
 
 Available options:
 
@@ -41,9 +41,9 @@ Available options:
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value is not a valid country, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid language, {{ value }} given.`
 
-Message that will be shown if the input value is not a valid country code.
+Message that will be shown if the input value is not a valid language code.
 
 The following parameters are available:
 
@@ -55,4 +55,4 @@ The following parameters are available:
 
 ## Changelog
 
-- `0.2.0` Created
+- `1.1.0` Created

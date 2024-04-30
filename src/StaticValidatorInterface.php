@@ -69,6 +69,11 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function language(
+        string $code = 'alpha-2',
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function length(
         ?int $min = null,
         ?int $max = null,
@@ -88,6 +93,11 @@ interface StaticValidatorInterface
 
     public static function lessThanOrEqual(
         mixed $constraint,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function locale(
+        bool $canonicalize = false,
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 

@@ -45,10 +45,10 @@ class DateTimeTest extends AbstractTest
     {
         yield 'message' => [
             new DateTime(
-                message: 'The {{ name }} datetime does not match the format {{ format }}.'
+                message: '{{ name }} | {{ value }} | {{ format }}'
             ),
             '2024-01-01',
-            'The test datetime does not match the format "Y-m-d H:i:s".'
+            'test | "2024-01-01" | "Y-m-d H:i:s"'
         ];
     }
 }

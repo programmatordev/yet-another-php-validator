@@ -60,10 +60,10 @@ class GreaterThanTest extends AbstractTest
         yield 'message' => [
             new GreaterThan(
                 constraint: 10,
-                message: 'The {{ name }} value {{ value }} is not greater than {{ constraint }}.'
+                message: '{{ name }} | {{ value }} | {{ constraint }}'
             ),
             1,
-            'The test value 1 is not greater than 10.'
+            'test | 1 | 10'
         ];
     }
 }

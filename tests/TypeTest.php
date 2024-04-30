@@ -107,10 +107,10 @@ class TypeTest extends AbstractTest
         yield 'message' => [
             new Type(
                 constraint: 'int',
-                message: 'The {{ name }} value is not of type {{ constraint }}.'
+                message: '{{ name }} | {{ value }} | {{ constraint }}'
             ),
             'string',
-            'The test value is not of type "int".'
+            'test | "string" | "int"'
         ];
     }
 
