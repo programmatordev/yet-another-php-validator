@@ -16,6 +16,7 @@
 
 ## String Rules
 
+- [CssColor](03-rules_css-color.md)
 - [Email](03-rules_email.md)
 - [Length](03-rules_length.md)
 - [PasswordStrength](03-rules_password-strength.md)
