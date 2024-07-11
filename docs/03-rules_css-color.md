@@ -15,7 +15,7 @@ CssColor(
 // by default, all possible ways to define a CSS color are considered valid
 Validator::cssColor()->validate('#0f0f0f'); // true
 Validator::cssColor()->validate('black'); // true
-Validator::cssColor()->validate('rgb(0, 255, 0'); // true
+Validator::cssColor()->validate('rgb(0, 255, 0)'); // true
 // ...
 
 // restrict allowed formats
@@ -38,7 +38,20 @@ Use this options to restrict the allowed CSS formats.
 
 Available options are:
 
-#### `hex-long` 
+- [`hex-long`](#hex-long)
+- [`hex-long-with-alpha`](#hex-long-with-alpha)
+- [`hex-short`](#hex-short)
+- [`hex-short-with-alpha`](#hex-short-with-alpha)
+- [`basic-named-colors`](#basic-named-colors)
+- [`extended-named-colors`](#extended-named-colors)
+- [`system-colors`](#system-colors)
+- [`keywords`](#keywords)
+- [`rgb`](#rgb)
+- [`rgba`](#rgba)
+- [`hsl`](#hsl)
+- [`hsla`](#hsla)
+
+#### `hex-long`
 
 Examples: `#0f0f0f`, `#0F0F0F`
 
