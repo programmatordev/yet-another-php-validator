@@ -69,7 +69,7 @@ class CssColor extends AbstractRule implements RuleInterface
         self::FORMAT_HSLA => self::PATTERN_HSLA
     ];
 
-    private array $formats;
+    private array $formats = self::COLOR_FORMATS;
     private string $message = 'The {{ name }} value is not a valid CSS color.';
 
     public function __construct(
@@ -77,7 +77,7 @@ class CssColor extends AbstractRule implements RuleInterface
         ?string $message = null
     )
     {
-        $this->formats = $formats ?? self::COLOR_FORMATS;
+        $this->formats = $formats ?? $this->formats;
         $this->message = $message ?? $this->message;
     }
 
