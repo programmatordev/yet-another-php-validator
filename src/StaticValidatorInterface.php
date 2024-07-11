@@ -38,6 +38,11 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function cssColor(
+        ?array $formats = null,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function dateTime(
         string $format = 'Y-m-d H:i:s',
         ?string $message = null
