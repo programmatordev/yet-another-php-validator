@@ -10,16 +10,10 @@
 
 ## Installation
 
-You can install the library via [Composer](https://getcomposer.org/):
+Install the library via [Composer](https://getcomposer.org/):
 
 ```bash
 composer require programmatordev/yet-another-php-validator
-```
-
-To use the library, use Composer's [autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading):
-
-```php
-require_once 'vendor/autoload.php';
 ```
 
 ## Basic Usage

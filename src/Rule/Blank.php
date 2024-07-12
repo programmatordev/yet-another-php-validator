@@ -2,14 +2,13 @@
 
 namespace ProgrammatorDev\Validator\Rule;
 
-use ProgrammatorDev\Validator\Exception\NotBlankException;
-use ProgrammatorDev\Validator\Validator;
+use ProgrammatorDev\Validator\Exception\BlankException;
 
-class NotBlank extends AbstractRule implements RuleInterface
+class Blank extends AbstractRule implements RuleInterface
 {
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value should not be blank, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be blank, {{ value }} given.';
 
     public function __construct(
         ?callable $normalizer = null,
@@ -22,8 +21,12 @@ class NotBlank extends AbstractRule implements RuleInterface
 
     public function assert(mixed $value, ?string $name = null): void
     {
-        if (Validator::blank(normalizer: $this->normalizer)->validate($value) === true) {
-            throw new NotBlankException(
+        if ($this->normalizer !== null) {
+            $value = ($this->normalizer)($value);
+        }
+
+        if ($value !== null && $value !== false && $value !== '' && $value !== []) {
+            throw new BlankException(
                 message: $this->message,
                 parameters: [
                     'value' => $value,

@@ -7,6 +7,11 @@ use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface ChainedValidatorInterface
 {
+    public function blank(
+        ?callable $normalizer = null,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public function choice(
         array $constraints,
         bool $multiple = false,
