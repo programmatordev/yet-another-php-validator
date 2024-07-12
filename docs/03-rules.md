@@ -10,6 +10,7 @@
 
 ## Basic Rules
 
+- [Blank](03-rules_blank.md)
 - [Count](03-rules_count.md)
 - [NotBlank](03-rules_not-blank.md)
 - [Type](03-rules_type.md)
