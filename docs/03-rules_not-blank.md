@@ -1,6 +1,6 @@
 # NotBlank
 
-Validates that a value is not equal to a blank string, blank array, `false` or `null`.
+Validates that a value is not equal to an empty string, empty array, `false` or `null`.
 
 Check the [Blank](03-rules_blank.md) rule for the opposite validation.
 

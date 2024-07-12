@@ -31,7 +31,7 @@ type: `?callable` default: `null`
 
 Allows to define a `callable` that will be applied to the value before checking if it is valid.
 
-For example, use `trim`, or pass your own function, to not allow a string with whitespaces only:
+For example, use `trim`, or pass your own function, to allow a string with whitespaces only:
 
 ```php
 Validator::blank(normalizer: 'trim')->validate(' '); // true
