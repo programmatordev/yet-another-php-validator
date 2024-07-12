@@ -1,6 +1,8 @@
 # NotBlank
 
-Validates that a value is not equal to a blank string, blank array, `false` or `null`.
+Validates that a value is not equal to an empty string, empty array, `false` or `null`.
+
+Check the [Blank](03-rules_blank.md) rule for the opposite validation.
 
 ```php
 NotBlank(
@@ -25,17 +27,14 @@ Validator::notBlank()->validate(null); // false
 
 ### `normalizer`
 
-type: `callable` default: `null`
+type: `?callable` default: `null`
 
 Allows to define a `callable` that will be applied to the value before checking if it is valid.
 
 For example, use `trim`, or pass your own function, to not allow a string with whitespaces only:
 
 ```php
-// Existing PHP callables
 Validator::notBlank(normalizer: 'trim')->validate(' '); // false
-
-// Function
 Validator::notBlank(normalizer: fn($value) => trim($value))->validate(' '); // false
 ```
 

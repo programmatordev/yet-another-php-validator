@@ -7,6 +7,11 @@ use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface ChainedValidatorInterface
 {
+    public function blank(
+        ?callable $normalizer = null,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public function choice(
         array $constraints,
         bool $multiple = false,
@@ -36,6 +41,11 @@ interface ChainedValidatorInterface
 
     public function country(
         string $code = 'alpha-2',
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public function cssColor(
+        ?array $formats = null,
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 

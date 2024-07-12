@@ -10,12 +10,14 @@
 
 ## Basic Rules
 
+- [Blank](03-rules_blank.md)
 - [Count](03-rules_count.md)
 - [NotBlank](03-rules_not-blank.md)
 - [Type](03-rules_type.md)
 
 ## String Rules
 
+- [CssColor](03-rules_css-color.md)
 - [Email](03-rules_email.md)
 - [Length](03-rules_length.md)
 - [PasswordStrength](03-rules_password-strength.md)
