@@ -80,6 +80,10 @@ interface ChainedValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public function isFalse(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public function isNull(
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
