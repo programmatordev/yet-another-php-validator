@@ -12,6 +12,7 @@
 
 - [Blank](03-rules_blank.md)
 - [Count](03-rules_count.md)
+- [IsFalse](03-rules_is-false.md)
 - [IsNull](03-rules_is-null.md)
 - [IsTrue](03-rules_is-true.md)
 - [NotBlank](03-rules_not-blank.md)

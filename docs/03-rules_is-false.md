@@ -1,11 +1,11 @@
-# IsTrue
+# IsFalse
 
-Validates that a value is `true`.
+Validates that a value is `false`.
 
-Check the [IsFalse](03-rules_is-false.md) rule for a `false` validation.
+Check the [IsTrue](03-rules_is-true.md) rule for a `true` validation.
 
 ```php
-IsTrue(
+IsFalse(
     ?string $message = null
 );
 ```
@@ -14,16 +14,16 @@ IsTrue(
 
 ```php
 // anything else will be false
-Validator::isTrue()->validate(true); // true
+Validator::isFalse()->validate(false); // true
 ```
 
 ## Options
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value should be true, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should be false, {{ value }} given.`
 
-Message that will be shown if the value is true.
+Message that will be shown if the value is false.
 
 The following parameters are available:
 
