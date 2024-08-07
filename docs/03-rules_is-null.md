@@ -2,6 +2,8 @@
 
 Validates that a value is `null`.
 
+Check the [NotNull](03-rules_not-null.md) rule for the opposite validation.
+
 ```php
 IsNull(
     ?string $message = null
