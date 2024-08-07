@@ -124,6 +124,10 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function isTrue(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function optional(
         Validator $validator
     ): ChainedValidatorInterface&Validator;
