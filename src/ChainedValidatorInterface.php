@@ -121,6 +121,10 @@ interface ChainedValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public function notNull(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public function optional(
         Validator $validator
     ): ChainedValidatorInterface&Validator;
