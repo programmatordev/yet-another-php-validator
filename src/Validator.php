@@ -6,12 +6,13 @@ use ProgrammatorDev\Validator\Exception\RuleNotFoundException;
 use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 use ProgrammatorDev\Validator\Exception\ValidationException;
 use ProgrammatorDev\Validator\Factory\Factory;
+use ProgrammatorDev\Validator\Rule\AbstractRule;
 use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 /**
  * @mixin StaticValidatorInterface
  */
-class Validator implements RuleInterface
+class Validator extends AbstractRule implements RuleInterface
 {
     /** @var RuleInterface[] */
     private array $rules;
@@ -57,18 +58,6 @@ class Validator implements RuleInterface
         foreach ($this->rules as $rule) {
             $rule->assert($value, $name);
         }
-    }
-
-    public function validate(mixed $value): bool
-    {
-        try {
-            $this->assert($value);
-        }
-        catch (ValidationException) {
-            return false;
-        }
-
-        return true;
     }
 
     public function getRules(): array

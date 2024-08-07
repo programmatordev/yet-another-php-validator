@@ -79,6 +79,10 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function isNull(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function language(
         string $code = 'alpha-2',
         ?string $message = null
