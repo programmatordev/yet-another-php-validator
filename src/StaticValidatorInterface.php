@@ -6,6 +6,11 @@ use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface StaticValidatorInterface
 {
+    public static function atLeastOneOf(
+        array $constraints,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function blank(
         ?callable $normalizer = null,
         ?string $message = null

@@ -80,7 +80,7 @@ class Length extends AbstractRule implements RuleInterface
             $value = ($this->normalizer)($value);
         }
 
-        if (!mb_check_encoding($value, $this->charset)) {
+        if (!\mb_check_encoding($value, $this->charset)) {
             throw new LengthException(
                 message: $this->charsetMessage,
                 parameters: [
