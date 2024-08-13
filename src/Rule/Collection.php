@@ -41,7 +41,7 @@ class Collection extends AbstractRule implements RuleInterface
         }
 
         if (!\is_iterable($value)) {
-            throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array|\Traversable');
         }
 
         foreach ($this->fields as $field => $validator) {

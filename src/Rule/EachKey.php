@@ -22,7 +22,7 @@ class EachKey extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_iterable($value)) {
-            throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array|\Traversable');
         }
 
         foreach ($value as $key => $element) {

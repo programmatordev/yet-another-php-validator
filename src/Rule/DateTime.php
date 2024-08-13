@@ -20,7 +20,7 @@ class DateTime extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_scalar($value) && !$value instanceof \Stringable) {
-            throw new UnexpectedTypeException('string|\Stringable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string|\Stringable');
         }
 
         $value = (string) $value;

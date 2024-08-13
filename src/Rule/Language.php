@@ -34,7 +34,7 @@ class Language extends AbstractRule implements RuleInterface
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         // keep original value for parameters

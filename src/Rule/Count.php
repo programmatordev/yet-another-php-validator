@@ -41,7 +41,7 @@ class Count extends AbstractRule implements RuleInterface
         }
 
         if (!\is_countable($value)) {
-            throw new UnexpectedTypeException('array|\Countable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array|\Countable');
         }
 
         $numElements = \count($value);

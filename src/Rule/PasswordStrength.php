@@ -46,7 +46,7 @@ class PasswordStrength extends AbstractRule implements RuleInterface
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         $minScore = self::STRENGTH_SCORE[$this->minStrength];

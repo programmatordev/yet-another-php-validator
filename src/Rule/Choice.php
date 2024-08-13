@@ -33,7 +33,7 @@ class Choice extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->multiple && !\is_array($value)) {
-            throw new UnexpectedTypeException('array', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array');
         }
 
         if (
@@ -42,9 +42,7 @@ class Choice extends AbstractRule implements RuleInterface
             && $this->max !== null
             && $this->min > $this->max
         ) {
-            throw new UnexpectedValueException(
-                'Maximum value must be greater than or equal to minimum value.'
-            );
+            throw new UnexpectedValueException('Maximum value must be greater than or equal to minimum value.');
         }
 
         if ($this->multiple) {
