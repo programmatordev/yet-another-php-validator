@@ -67,7 +67,7 @@ class AtLeastOneOfTest extends AbstractTest
                 message: '{{ name }} | {{ value }} | {{ messages }}'
             ),
             'string',
-            'test | "string" | [1] The test value should be blank, "string" given.'
+            'test | "string" | [1] The value should be blank, "string" given.'
         ];
     }
 }

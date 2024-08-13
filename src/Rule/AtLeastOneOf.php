@@ -35,7 +35,7 @@ class AtLeastOneOf extends AbstractRule implements RuleInterface
 
         foreach ($this->constraints as $key => $constraint) {
             try {
-                $constraint->assert($value, $name);
+                $constraint->assert($value);
                 return;
             }
             catch (ValidationException|UnexpectedValueException $exception) {
