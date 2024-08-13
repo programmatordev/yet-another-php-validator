@@ -6,7 +6,7 @@ use ProgrammatorDev\Validator\Exception\IsNullException;
 
 class IsNull extends AbstractRule implements RuleInterface
 {
-    private string $message = 'The {{ name }} value should be null, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be null.';
 
     public function __construct(
         ?string $message = null

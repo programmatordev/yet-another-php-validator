@@ -37,7 +37,7 @@ class CollectionTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = CollectionException::class;
-        $notBlankMessage = '/The "(.*)" value should not be blank, "" given\./';
+        $notBlankMessage = '/The "(.*)" value should not be blank\./';
         $extraFieldsMessage = '/The (.*) field is not allowed\./';
         $missingFieldsMessage = '/The (.*) field is missing\./';
 
@@ -120,7 +120,7 @@ class CollectionTest extends AbstractTest
                 message: '{{ name }} | {{ field }} | {{ message }}'
             ),
             ['field' => ''],
-            'test | "field" | The "field" value should not be blank, "" given.'
+            'test | "field" | The "field" value should not be blank.'
         ];
         yield 'extra fields message' => [
             new Collection(

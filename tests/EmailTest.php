@@ -28,7 +28,7 @@ class EmailTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EmailException::class;
-        $message = '/The (.*) value is not a valid email address, (.*) given\./';
+        $message = '/The (.*) value is not a valid email address\./';
 
         yield 'html5' => [new Email('html5'), 'invalid', $exception, $message];
         yield 'html5 without tld' => [new Email('html5'), 'test@example', $exception, $message];

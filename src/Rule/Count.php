@@ -9,9 +9,9 @@ use ProgrammatorDev\Validator\Validator;
 
 class Count extends AbstractRule implements RuleInterface
 {
-    private string $minMessage = 'The {{ name }} value should contain {{ min }} elements or more, {{ numElements }} elements given.';
-    private string $maxMessage = 'The {{ name }} value should contain {{ max }} elements or less, {{ numElements }} elements given.';
-    private string $exactMessage = 'The {{ name }} value should contain exactly {{ min }} elements, {{ numElements }} elements given.';
+    private string $minMessage = 'The {{ name }} value should contain {{ min }} elements or more.';
+    private string $maxMessage = 'The {{ name }} value should contain {{ max }} elements or less.';
+    private string $exactMessage = 'The {{ name }} value should contain exactly {{ min }} elements.';
 
     public function __construct(
         private readonly ?int $min = null,

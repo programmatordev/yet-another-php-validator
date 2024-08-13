@@ -32,7 +32,7 @@ class GreaterThanOrEqualTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = GreaterThanOrEqualException::class;
-        $message = '/The (.*) value should be greater than or equal to (.*), (.*) given\./';
+        $message = '/The (.*) value should be greater than or equal to (.*)\./';
 
         yield 'datetime' => [new GreaterThanOrEqual(new \DateTime('today')), new \DateTime('yesterday'), $exception, $message];
         yield 'int' => [new GreaterThanOrEqual(10), 1, $exception, $message];

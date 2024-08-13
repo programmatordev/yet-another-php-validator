@@ -22,7 +22,7 @@ class OptionalTest extends AbstractTest
             ),
             '',
             NotBlankException::class,
-            '/The (.*) value should not be blank, (.*) given\./'
+            '/The (.*) value should not be blank\./'
         ];
     }
 

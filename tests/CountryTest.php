@@ -28,7 +28,7 @@ class CountryTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = CountryException::class;
-        $message = '/The (.*) value is not a valid country, (.*) given\./';
+        $message = '/The (.*) value is not a valid country\./';
 
         yield 'default' => [new Country(), 'prt', $exception, $message];
         yield 'alpha2' => [new Country(code: 'alpha-2'), 'prt', $exception, $message];

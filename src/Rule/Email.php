@@ -27,7 +27,7 @@ class Email extends AbstractRule implements RuleInterface
 
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid email address.';
 
     public function __construct(
         private readonly string $mode = self::MODE_HTML5,

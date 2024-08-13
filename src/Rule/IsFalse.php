@@ -6,7 +6,7 @@ use ProgrammatorDev\Validator\Exception\IsFalseException;
 
 class IsFalse extends AbstractRule implements RuleInterface
 {
-    private string $message = 'The {{ name }} value should be false, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be false.';
 
     public function __construct(
         ?string $message = null

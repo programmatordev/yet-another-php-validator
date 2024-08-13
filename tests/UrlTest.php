@@ -26,7 +26,7 @@ class UrlTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = UrlException::class;
-        $message = '/The (.*) value is not a valid URL address, (.*) given\./';
+        $message = '/The (.*) value is not a valid URL address\./';
 
         yield 'invalid url' => [new URL(), 'invalid', $exception, $message];
         yield 'unallowed protocol' => [new URL(protocols: ['https']), 'http://test.com', $exception, $message];

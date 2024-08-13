@@ -17,7 +17,7 @@ class IsNullTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = IsNullException::class;
-        $message = '/The (.*) value should be null, (.*) given\./';
+        $message = '/The (.*) value should be null\./';
 
         yield 'int' => [new IsNull(), 1, $exception, $message];
         yield 'string' => [new IsNull(), 'string', $exception, $message];

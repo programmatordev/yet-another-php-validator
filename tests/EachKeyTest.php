@@ -39,7 +39,7 @@ class EachKeyTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EachKeyException::class;
-        $message = '/Invalid key\: The (.*) key value should be of type (.*), (.*) given\./';
+        $message = '/Invalid key\: The (.*) key value should be of type (.*)\./';
 
         yield 'invalid array element' => [
             new EachKey(new Validator(new Type('string'))),
@@ -75,7 +75,7 @@ class EachKeyTest extends AbstractTest
                 message: '{{ name }} | {{ value }} | {{ key }} | {{ element }} | {{ message }}'
             ),
             ['key1' => 1, 'key2' => 2, 1 => 3],
-            'test | [1, 2, 3] | 1 | 3 | The test key value should be of type "string", 1 given.'
+            'test | [1, 2, 3] | 1 | 3 | The test key value should be of type "string".'
         ];
     }
 }

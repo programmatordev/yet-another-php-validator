@@ -32,9 +32,9 @@ class CountTest extends AbstractTest
         $value = [1, 2, 3, 4, 5];
         $exception = CountException::class;
 
-        $minMessage = '/The (.*) value should contain (.*) elements or more, (.*) elements given\./';
-        $maxMessage = '/The (.*) value should contain (.*) elements or less, (.*) elements given\./';
-        $exactMessage = '/The (.*) value should contain exactly (.*) elements, (.*) elements given\./';
+        $minMessage = '/The (.*) value should contain (.*) elements or more\./';
+        $maxMessage = '/The (.*) value should contain (.*) elements or less\./';
+        $exactMessage = '/The (.*) value should contain exactly (.*) elements\./';
 
         yield 'min constraint' => [new Count(min: 10), $value, $exception, $minMessage];
         yield 'max constraint' => [new Count(max: 2), $value, $exception, $maxMessage];

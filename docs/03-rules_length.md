@@ -107,7 +107,7 @@ Validator::length(max: 3, normalizer: fn($value) => trim($value))->validate('abc
 
 ### `minMessage`
 
-type: `?string` default: `The {{ name }} value should have {{ min }} characters or more, {{ numChars }} characters given.`
+type: `?string` default: `The {{ name }} value should have {{ min }} characters or more.`
 
 Message that will be shown when the input value has fewer characters than the defined in `min`.
 
@@ -125,7 +125,7 @@ The following parameters are available:
 
 ### `maxMessage`
 
-type: `?string` default: `The {{ name }} value should have {{ max }} characters or less, {{ numChars }} characters given.`
+type: `?string` default: `The {{ name }} value should have {{ max }} characters or less.`
 
 Message that will be shown when the input value has more characters than the defined in `max`.
 
@@ -143,7 +143,7 @@ The following parameters are available:
 
 ### `exactMessage`
 
-type: `?string` default: `The {{ name }} value should have exactly {{ min }} characters, {{ numChars }} characters given.`
+type: `?string` default: `The {{ name }} value should have exactly {{ min }} characters.`
 
 Message that will be shown when `min` and `max` options have the same value and the input value has a different number of characters.
 

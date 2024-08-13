@@ -39,7 +39,7 @@ class EachValueTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EachValueException::class;
-        $message = '/At key (.*)\: The (.*) value should not be blank, (.*) given\./';
+        $message = '/At key (.*)\: The (.*) value should not be blank\./';
 
         yield 'invalid array element' => [
             new EachValue(new Validator(new NotBlank())),
@@ -75,7 +75,7 @@ class EachValueTest extends AbstractTest
                 message: '{{ name }} | {{ value }} | {{ key }} | {{ element }} | {{ message }}'
             ),
             [1, 2, ''],
-            'test | [1, 2, ""] | 2 | "" | The test value should not be blank, "" given.'
+            'test | [1, 2, ""] | 2 | "" | The test value should not be blank.'
         ];
     }
 }

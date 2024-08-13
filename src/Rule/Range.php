@@ -12,7 +12,7 @@ class Range extends AbstractRule implements RuleInterface
 {
     use ComparableTrait;
 
-    private string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}.';
 
     public function __construct(
         private readonly mixed $min,

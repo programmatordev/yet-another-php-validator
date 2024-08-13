@@ -37,9 +37,9 @@ class LengthTest extends AbstractTest
         $value = 'abcde';
         $exception = LengthException::class;
 
-        $minMessage = '/The (.*) value should have (.*) characters or more, (.*) characters given\./';
-        $maxMessage = '/The (.*) value should have (.*) characters or less, (.*) characters given\./';
-        $exactMessage = '/The (.*) value should have exactly (.*) characters, (.*) characters given\./';
+        $minMessage = '/The (.*) value should have (.*) characters or more\./';
+        $maxMessage = '/The (.*) value should have (.*) characters or less\./';
+        $exactMessage = '/The (.*) value should have exactly (.*) characters\./';
         $charsetMessage = '/The (.*) value does not match the expected (.*) charset\./';
 
         yield 'min constraint' => [new Length(min: 10), $value, $exception, $minMessage];

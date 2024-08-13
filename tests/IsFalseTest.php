@@ -17,7 +17,7 @@ class IsFalseTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = IsFalseException::class;
-        $message = '/The (.*) value should be false, (.*) given\./';
+        $message = '/The (.*) value should be false\./';
 
         yield 'int' => [new IsFalse(), 1, $exception, $message];
         yield 'string' => [new IsFalse(), 'string', $exception, $message];

@@ -69,7 +69,7 @@ class Type extends AbstractRule implements RuleInterface
         self::UPPERCASE => 'ctype_upper'
     ];
 
-    private string $message = 'The {{ name }} value should be of type {{ constraint }}, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be of type {{ constraint }}.';
 
     public function __construct(
         private readonly string|array $constraint,

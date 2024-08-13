@@ -17,7 +17,7 @@ class BlankTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = BlankException::class;
-        $message = '/The (.*) value should be blank, (.*) given\./';
+        $message = '/The (.*) value should be blank\./';
 
         yield 'true' => [new Blank(), true, $exception, $message];
 

@@ -26,7 +26,7 @@ class TypeTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = TypeException::class;
-        $message = '/The (.*) value should be of type (.*), (.*) given\./';
+        $message = '/The (.*) value should be of type (.*)\./';
 
         yield 'bool' => [new Type('bool'), 'invalid', $exception, $message];
         yield 'boolean' => [new Type('boolean'), 'invalid', $exception, $message];

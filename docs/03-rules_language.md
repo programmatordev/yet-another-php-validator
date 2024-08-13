@@ -41,7 +41,7 @@ Available options:
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value is not a valid language, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid language.`
 
 Message that will be shown if the input value is not a valid language code.
 

@@ -40,7 +40,7 @@ Validator::notBlank(normalizer: fn($value) => trim($value))->validate(' '); // f
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value should not be blank, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should not be blank.`
 
 Message that will be shown if the value is blank.
 

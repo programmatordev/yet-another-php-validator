@@ -21,7 +21,7 @@ Validator::isNull()->validate(null); // true
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value should be null, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should be null.`
 
 Message that will be shown if the value is null.
 

@@ -41,7 +41,7 @@ Available options:
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value is not a valid country, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid country.`
 
 Message that will be shown if the input value is not a valid country code.
 

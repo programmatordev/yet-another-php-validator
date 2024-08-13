@@ -34,7 +34,7 @@ class Url extends AbstractRule implements RuleInterface
 
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid URL address.';
 
     public function __construct(
         private readonly array $protocols = ['http', 'https'],

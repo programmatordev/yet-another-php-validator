@@ -28,7 +28,7 @@ class LanguageTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = LanguageException::class;
-        $message = '/The (.*) value is not a valid language, (.*) given\./';
+        $message = '/The (.*) value is not a valid language\./';
 
         yield 'default' => [new Language(), 'prt', $exception, $message];
         yield 'alpha2' => [new Language(code: 'alpha-2'), 'por', $exception, $message];

@@ -23,7 +23,7 @@ class AtLeastOneOfTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/At key (.*)\: The value should be of type "ProgrammatorDev\\\Validator\\\Validator", (.*) given\./';
+        $unexpectedTypeMessage = '/At key (.*)\: The value should be of type "ProgrammatorDev\\\Validator\\\Validator"./';
 
         yield 'invalid type' => [new AtLeastOneOf(['invalid']), 'string', $unexpectedTypeMessage];
     }
@@ -67,7 +67,7 @@ class AtLeastOneOfTest extends AbstractTest
                 message: '{{ name }} | {{ value }} | {{ messages }}'
             ),
             'string',
-            'test | "string" | [1] The value should be blank, "string" given.'
+            'test | "string" | [1] The value should be blank.'
         ];
     }
 }

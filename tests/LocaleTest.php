@@ -26,7 +26,7 @@ class LocaleTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = LocaleException::class;
-        $message = '/The (.*) value is not a valid locale, (.*) given\./';
+        $message = '/The (.*) value is not a valid locale\./';
 
         yield 'invalid' => [new Locale(), 'invalid', $exception, $message];
         yield 'uncanonicalized 1' => [new Locale(), 'pt_pt', $exception, $message];

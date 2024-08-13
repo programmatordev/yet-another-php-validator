@@ -8,10 +8,10 @@ use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 
 class Choice extends AbstractRule implements RuleInterface
 {
-    private string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.';
-    private string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.';
-    private string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.';
-    private string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.';
+    private string $message = 'The {{ name }} value is not a valid choice. Accepted values are: {{ constraints }}.';
+    private string $multipleMessage = 'The {{ name }} value has one or more invalid choices. Accepted values are: {{ constraints }}.';
+    private string $minMessage = 'The {{ name }} value must have at least {{ min }} choices.';
+    private string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices.';
 
     public function __construct(
         private readonly array $constraints,

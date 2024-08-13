@@ -22,9 +22,9 @@ class Length extends AbstractRule implements RuleInterface
 
     /** @var ?callable */
     private $normalizer;
-    private string $minMessage = 'The {{ name }} value should have {{ min }} characters or more, {{ numChars }} characters given.';
-    private string $maxMessage = 'The {{ name }} value should have {{ max }} characters or less, {{ numChars }} characters given.';
-    private string $exactMessage = 'The {{ name }} value should have exactly {{ min }} characters, {{ numChars }} characters given.';
+    private string $minMessage = 'The {{ name }} value should have {{ min }} characters or more.';
+    private string $maxMessage = 'The {{ name }} value should have {{ max }} characters or less.';
+    private string $exactMessage = 'The {{ name }} value should have exactly {{ min }} characters.';
     private string $charsetMessage = 'The {{ name }} value does not match the expected {{ charset }} charset.';
 
     public function __construct(
