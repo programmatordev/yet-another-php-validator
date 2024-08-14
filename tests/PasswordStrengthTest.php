@@ -18,11 +18,11 @@ class PasswordStrengthTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedOptionMessage = '/Invalid (.*) "(.*)"\. Accepted values are\: "(.*)"\./';
+        $invalidOptionMessage = '/The "minStrength" option is not valid\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given\./';
 
-        yield 'invalid min strength' => [new PasswordStrength(minStrength: 'invalid'), 'password', $unexpectedOptionMessage];
-        yield 'invalid value type' => [new PasswordStrength(), 123, $unexpectedTypeMessage];
+        yield 'invalid option min strength' => [new PasswordStrength(minStrength: 'invalid'), 'password', $invalidOptionMessage];
+        yield 'unexpected type' => [new PasswordStrength(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

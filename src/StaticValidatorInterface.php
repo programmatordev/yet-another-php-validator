@@ -6,6 +6,11 @@ use ProgrammatorDev\Validator\Rule\RuleInterface;
 
 interface StaticValidatorInterface
 {
+    public static function atLeastOneOf(
+        array $constraints,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function blank(
         ?callable $normalizer = null,
         ?string $message = null
@@ -79,6 +84,10 @@ interface StaticValidatorInterface
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 
+    public static function isNull(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
     public static function language(
         string $code = 'alpha-2',
         ?string $message = null
@@ -113,6 +122,18 @@ interface StaticValidatorInterface
 
     public static function notBlank(
         ?callable $normalizer = null,
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function isFalse(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function notNull(
+        ?string $message = null
+    ): ChainedValidatorInterface&Validator;
+
+    public static function isTrue(
         ?string $message = null
     ): ChainedValidatorInterface&Validator;
 

@@ -18,13 +18,11 @@ class CountTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedMissingMinMaxMessage = '/At least one of the options "min" or "max" must be given\./';
-        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value\./';
+        $optionDefinitionMessage = '/At least one of the "min" or "max" options must be specified\./';
         $unexpectedTypeMessage = '/Expected value of type "array\|\\\Countable", "(.*)" given\./';
 
-        yield 'missing min max' => [new Count(), [1, 2, 3], $unexpectedMissingMinMaxMessage];
-        yield 'min greater than max constraint' => [new Count(min: 3, max: 2), [1, 2, 3], $unexpectedMinMaxMessage];
-        yield 'invalid type value' => [new Count(min: 5, max: 10), 1, $unexpectedTypeMessage];
+        yield 'option definition min max' => [new Count(), [1, 2, 3], $optionDefinitionMessage];
+        yield 'unexpected type' => [new Count(min: 5, max: 10), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
@@ -32,9 +30,9 @@ class CountTest extends AbstractTest
         $value = [1, 2, 3, 4, 5];
         $exception = CountException::class;
 
-        $minMessage = '/The (.*) value should contain (.*) elements or more, (.*) elements given\./';
-        $maxMessage = '/The (.*) value should contain (.*) elements or less, (.*) elements given\./';
-        $exactMessage = '/The (.*) value should contain exactly (.*) elements, (.*) elements given\./';
+        $minMessage = '/The (.*) value should contain (.*) elements or more\./';
+        $maxMessage = '/The (.*) value should contain (.*) elements or less\./';
+        $exactMessage = '/The (.*) value should contain exactly (.*) elements\./';
 
         yield 'min constraint' => [new Count(min: 10), $value, $exception, $minMessage];
         yield 'max constraint' => [new Count(max: 2), $value, $exception, $maxMessage];

@@ -33,9 +33,6 @@ Validator::count(min: 3, max: 3)->validate(['a', 'b', 'c']); // true
 > An `UnexpectedValueException` will be thrown when either `min` or `max` options are not given.
 
 > [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `min` value is greater than the `max` value.
-
-> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not an `array` or an object implementing `\Countable`.
 
 ## Options
@@ -54,7 +51,7 @@ It defines the maximum number of elements required.
 
 ### `minMessage`
 
-type: `?string` default: `The {{ name }} value should contain {{ min }} elements or more, {{ numElements }} elements given.`
+type: `?string` default: `The {{ name }} value should contain {{ min }} elements or more.`
 
 Message that will be shown when the input value has fewer elements than the defined in `min`.
 
@@ -70,7 +67,7 @@ The following parameters are available:
 
 ### `maxMessage`
 
-type: `?string` default: `The {{ name }} value should contain {{ max }} elements or less, {{ numElements }} elements given.`
+type: `?string` default: `The {{ name }} value should contain {{ max }} elements or less.`
 
 Message that will be shown when the input value has more elements than the defined in `max`.
 
@@ -86,7 +83,7 @@ The following parameters are available:
 
 ### `exactMessage`
 
-type: `?string` default: `The {{ name }} value should contain exactly {{ min }} elements, {{ numElements }} elements given.`
+type: `?string` default: `The {{ name }} value should contain exactly {{ min }} elements.`
 
 Message that will be shown when `min` and `max` options have the same value and the input value has a different number of elements.
 

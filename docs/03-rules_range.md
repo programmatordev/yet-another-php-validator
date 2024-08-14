@@ -36,9 +36,6 @@ Validator::range(new DateTime('yesterday'), new DateTime('tomorrow'))->validate(
 > [!NOTE]
 > An `UnexpectedValueException` will be thrown when trying to compare incomparable values, like a `string` with an `int`.
 
-> [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `min` value is greater than or equal to the `max` value.
-
 ## Options
 
 ### `min`
@@ -57,7 +54,7 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should be between {{ min }} and {{ max }}.`
 
 Message that will be shown if the value is not between the minimum and maximum values.
 

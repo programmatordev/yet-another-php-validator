@@ -44,9 +44,6 @@ Validator::length(max: 1, countUnit: 'graphemes')->validate('🔥'); // true
 > An `UnexpectedValueException` will be thrown when either `min` or `max` options are not given.
 
 > [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `min` value is greater than the `max` value.
-
-> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the `charset` value is not a valid option.
 > Check all the supported character encodings [here](https://www.php.net/manual/en/mbstring.supported-encodings.php).
 
@@ -107,7 +104,7 @@ Validator::length(max: 3, normalizer: fn($value) => trim($value))->validate('abc
 
 ### `minMessage`
 
-type: `?string` default: `The {{ name }} value should have {{ min }} characters or more, {{ numChars }} characters given.`
+type: `?string` default: `The {{ name }} value should have {{ min }} character(s) or more.`
 
 Message that will be shown when the input value has fewer characters than the defined in `min`.
 
@@ -125,7 +122,7 @@ The following parameters are available:
 
 ### `maxMessage`
 
-type: `?string` default: `The {{ name }} value should have {{ max }} characters or less, {{ numChars }} characters given.`
+type: `?string` default: `The {{ name }} value should have {{ max }} character(s) or less.`
 
 Message that will be shown when the input value has more characters than the defined in `max`.
 
@@ -143,7 +140,7 @@ The following parameters are available:
 
 ### `exactMessage`
 
-type: `?string` default: `The {{ name }} value should have exactly {{ min }} characters, {{ numChars }} characters given.`
+type: `?string` default: `The {{ name }} value should have exactly {{ min }} characters.`
 
 Message that will be shown when `min` and `max` options have the same value and the input value has a different number of characters.
 

@@ -18,25 +18,21 @@ class RangeTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
-        $unexpectedMinMaxMessage = '/Maximum value must be greater than minimum value\./';
+        $unexpectedComparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
-        yield 'datetime constraint with int constraint' => [new Range(new \DateTime(), 10), new \DateTime(), $unexpectedTypeMessage];
-        yield 'datetime constraint with float constraint' => [new Range(new \DateTime(), 10.0), new \DateTime(), $unexpectedTypeMessage];
-        yield 'datetime constraint with string constraint' => [new Range(new \DateTime(), 'a'), new \DateTime(), $unexpectedTypeMessage];
-        yield 'int constraint with string constraint' => [new Range(10, 'a'), 10, $unexpectedTypeMessage];
-        yield 'float constraint with string constraint' => [new Range(1.0, 'a'), 1.0, $unexpectedTypeMessage];
-        yield 'array constraint' => [new Range([10], 10), 10, $unexpectedTypeMessage];
-        yield 'null constraint' => [new Range(null, 10), 10, $unexpectedTypeMessage];
-
-        yield 'min greater than max constraint' => [new Range(10, 9), 10, $unexpectedMinMaxMessage];
-        yield 'same min and max constraint' => [new Range(10, 10), 10, $unexpectedMinMaxMessage];
+        yield 'datetime constraint with int constraint' => [new Range(new \DateTime(), 10), new \DateTime(), $unexpectedComparableMessage];
+        yield 'datetime constraint with float constraint' => [new Range(new \DateTime(), 10.0), new \DateTime(), $unexpectedComparableMessage];
+        yield 'datetime constraint with string constraint' => [new Range(new \DateTime(), 'a'), new \DateTime(), $unexpectedComparableMessage];
+        yield 'int constraint with string constraint' => [new Range(10, 'a'), 10, $unexpectedComparableMessage];
+        yield 'float constraint with string constraint' => [new Range(1.0, 'a'), 1.0, $unexpectedComparableMessage];
+        yield 'array constraint' => [new Range([10], 10), 10, $unexpectedComparableMessage];
+        yield 'null constraint' => [new Range(null, 10), 10, $unexpectedComparableMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = RangeException::class;
-        $message = '/The (.*) value should be between (.*) and (.*), (.*) given\./';
+        $message = '/The (.*) value should be between (.*) and (.*)\./';
 
         yield 'min datetime' => [new Range(new \DateTime('today'), new \DateTime('tomorrow')), new \DateTime('yesterday'), $exception, $message];
         yield 'min int' => [new Range(10, 20), 1, $exception, $message];

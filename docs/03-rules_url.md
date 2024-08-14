@@ -58,7 +58,7 @@ Validator::url(normalizer: fn($value) => trim($value))->validate('https://exampl
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value is not a valid URL address, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid URL address.`
 
 Message that will be shown if the input value is not a valid URL address.
 

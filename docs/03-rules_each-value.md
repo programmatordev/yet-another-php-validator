@@ -39,7 +39,7 @@ type: `?string` default: `At key "{{ key }}": {{ message }}`
 Message that will be shown if at least one input value element is invalid according to the given `validator`.
 
 ```php
-// Throws: At key 2: The color value should not be blank, "" given.
+// throws: At key 2: The color value should not be blank.
 Validator::eachValue(
     Validator::notBlank()
 )->assert(['red', 'green', ''], 'color');

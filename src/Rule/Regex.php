@@ -2,9 +2,9 @@
 
 namespace ProgrammatorDev\Validator\Rule;
 
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\RegexException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 
 class Regex extends AbstractRule implements RuleInterface
 {
@@ -26,7 +26,7 @@ class Regex extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_scalar($value) && !$value instanceof \Stringable) {
-            throw new UnexpectedTypeException('string|\Stringable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string|\Stringable');
         }
 
         $value = (string) $value;
@@ -36,7 +36,7 @@ class Regex extends AbstractRule implements RuleInterface
         }
 
         if (($regex = @\preg_match($this->pattern, $value)) === false) {
-            throw new UnexpectedValueException('Invalid regular expression pattern.');
+            throw new InvalidOptionException('pattern', 'The value should be a valid regular expression.');
         }
 
         if ($this->match xor $regex) {

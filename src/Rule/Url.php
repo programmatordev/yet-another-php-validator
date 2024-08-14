@@ -34,7 +34,7 @@ class Url extends AbstractRule implements RuleInterface
 
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value is not a valid URL address, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid URL address.';
 
     public function __construct(
         private readonly array $protocols = ['http', 'https'],
@@ -50,7 +50,7 @@ class Url extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         if ($this->normalizer !== null) {

@@ -20,13 +20,13 @@ class LocaleTest extends AbstractTest
     {
         $unexpectedTypeMessage = '/Expected value of type "string", (.*) given\./';
 
-        yield 'invalid type' => [new Locale(), 123, $unexpectedTypeMessage];
+        yield 'unexpected type' => [new Locale(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = LocaleException::class;
-        $message = '/The (.*) value is not a valid locale, (.*) given\./';
+        $message = '/The (.*) value is not a valid locale\./';
 
         yield 'invalid' => [new Locale(), 'invalid', $exception, $message];
         yield 'uncanonicalized 1' => [new Locale(), 'pt_pt', $exception, $message];

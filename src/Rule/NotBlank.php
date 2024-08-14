@@ -9,7 +9,7 @@ class NotBlank extends AbstractRule implements RuleInterface
 {
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value should not be blank, {{ value }} given.';
+    private string $message = 'The {{ name }} value should not be blank.';
 
     public function __construct(
         ?callable $normalizer = null,

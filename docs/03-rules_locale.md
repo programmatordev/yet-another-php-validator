@@ -40,7 +40,7 @@ If `true`, the input value will be normalized before validation, according to th
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value is not a valid locale, {{ value }} given.`
+type: `?string` default: `The {{ name }} value is not a valid locale.`
 
 Message that will be shown if the input value is not a valid locale code.
 

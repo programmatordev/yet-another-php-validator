@@ -18,11 +18,11 @@ class CssColorTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedOptionMessage = '/Invalid (.*) "(.*)"\. Accepted values are\: "(.*)"./';
+        $invalidOptionMessage = '/The "formats" option is not valid\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string", "(.*)" given\./';
 
-        yield 'invalid option' => [new CssColor(formats: ['invalid']), '#123456', $unexpectedOptionMessage];
-        yield 'invalid type' => [new CssColor(), 1, $unexpectedTypeMessage];
+        yield 'invalid option format' => [new CssColor(formats: ['invalid']), '#123456', $invalidOptionMessage];
+        yield 'unexpected type' => [new CssColor(), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

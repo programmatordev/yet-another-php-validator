@@ -18,21 +18,21 @@ class LessThanTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
+        $unexpectedComparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
-        yield 'datetime constraint with int value' => [new LessThan(new \DateTime()), 10, $unexpectedTypeMessage];
-        yield 'datetime constraint with float value' => [new LessThan(new \DateTime()), 1.0, $unexpectedTypeMessage];
-        yield 'datetime constraint with string value' => [new LessThan(new \DateTime()), 'a', $unexpectedTypeMessage];
-        yield 'int constraint with string value' => [new LessThan(10), 'a', $unexpectedTypeMessage];
-        yield 'float constraint with string value' => [new LessThan(1.0), 'a', $unexpectedTypeMessage];
-        yield 'array constraint' => [new LessThan([10]), 10, $unexpectedTypeMessage];
-        yield 'null constraint' => [new LessThan(null), 10, $unexpectedTypeMessage];
+        yield 'datetime constraint with int value' => [new LessThan(new \DateTime()), 10, $unexpectedComparableMessage];
+        yield 'datetime constraint with float value' => [new LessThan(new \DateTime()), 1.0, $unexpectedComparableMessage];
+        yield 'datetime constraint with string value' => [new LessThan(new \DateTime()), 'a', $unexpectedComparableMessage];
+        yield 'int constraint with string value' => [new LessThan(10), 'a', $unexpectedComparableMessage];
+        yield 'float constraint with string value' => [new LessThan(1.0), 'a', $unexpectedComparableMessage];
+        yield 'array constraint' => [new LessThan([10]), 10, $unexpectedComparableMessage];
+        yield 'null constraint' => [new LessThan(null), 10, $unexpectedComparableMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = LessThanException::class;
-        $message = '/The (.*) value should be less than (.*), (.*) given\./';
+        $message = '/The (.*) value should be less than (.*)\./';
 
         yield 'datetime' => [new LessThan(new \DateTime('today')), new \DateTime('tomorrow'), $exception, $message];
         yield 'same datetime' => [new LessThan(new \DateTime('today')), new \DateTime('today'), $exception, $message];
