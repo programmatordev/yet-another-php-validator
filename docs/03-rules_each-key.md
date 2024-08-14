@@ -34,7 +34,7 @@ Validator that will validate each key of an `array` or object implementing `\Tra
 
 ### `message`
 
-type: `?string` default: `Invalid key: {{ message }}`
+type: `?string` default: `Invalid key {{ key }}: {{ message }}`
 
 Message that will be shown if at least one input value key is invalid according to the given `validator`.
 
