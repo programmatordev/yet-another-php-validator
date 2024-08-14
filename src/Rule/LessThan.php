@@ -6,7 +6,7 @@ use ProgrammatorDev\Validator\Exception\LessThanException;
 
 class LessThan extends AbstractComparisonRule implements RuleInterface
 {
-    protected string $message = 'The {{ name }} value should be less than {{ constraint }}, {{ value }} given.';
+    protected string $message = 'The {{ name }} value should be less than {{ constraint }}.';
 
     public function __construct(
         protected readonly mixed $constraint,

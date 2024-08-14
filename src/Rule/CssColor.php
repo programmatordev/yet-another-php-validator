@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\CssColorException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 
 class CssColor extends AbstractRule implements RuleInterface
@@ -85,12 +85,12 @@ class CssColor extends AbstractRule implements RuleInterface
     {
         foreach ($this->formats as $format) {
             if (!\in_array($format, self::COLOR_FORMATS, true)) {
-                throw new UnexpectedOptionException('format', self::COLOR_FORMATS, $format);
+                throw new InvalidOptionException('formats', self::COLOR_FORMATS);
             }
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         foreach ($this->formats as $format) {

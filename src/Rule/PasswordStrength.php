@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\PasswordStrengthException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 
 class PasswordStrength extends AbstractRule implements RuleInterface
@@ -42,11 +42,11 @@ class PasswordStrength extends AbstractRule implements RuleInterface
     public function assert(#[\SensitiveParameter] mixed $value, ?string $name = null): void
     {
         if (!\in_array($this->minStrength, self::STRENGTH_OPTIONS)) {
-            throw new UnexpectedOptionException('minStrength', self::STRENGTH_OPTIONS, $this->minStrength);
+            throw new InvalidOptionException('minStrength', self::STRENGTH_OPTIONS);
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         $minScore = self::STRENGTH_SCORE[$this->minStrength];

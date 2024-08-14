@@ -18,11 +18,11 @@ class RegexTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedPatternMessage = '/Invalid regular expression pattern\./';
+        $invalidOptionMessage = '/The "pattern" option is not valid\. The value should be a valid regular expression\./';
         $unexpectedTypeMessage = '/Expected value of type "string\|\\\Stringable", "(.*)" given\./';
 
-        yield 'invalid pattern' => [new Regex('invalid'), 'abc', $unexpectedPatternMessage];
-        yield 'invalid value type' => [new Regex('/[a-z]/'), ['abc'], $unexpectedTypeMessage];
+        yield 'invalid option pattern' => [new Regex('invalid'), 'abc', $invalidOptionMessage];
+        yield 'unexpected type' => [new Regex('/[a-z]/'), ['abc'], $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

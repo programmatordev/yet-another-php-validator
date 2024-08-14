@@ -5,7 +5,7 @@ namespace ProgrammatorDev\Validator\Rule;
 use Egulias\EmailValidator\EmailValidator;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use ProgrammatorDev\Validator\Exception\EmailException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 
 class Email extends AbstractRule implements RuleInterface
@@ -27,7 +27,7 @@ class Email extends AbstractRule implements RuleInterface
 
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value is not a valid email address, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid email address.';
 
     public function __construct(
         private readonly string $mode = self::MODE_HTML5,
@@ -42,11 +42,11 @@ class Email extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\in_array($this->mode, self::EMAIL_MODES, true)) {
-            throw new UnexpectedOptionException('mode', self::EMAIL_MODES, $this->mode);
+            throw new InvalidOptionException('mode', self::EMAIL_MODES);
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         if ($this->normalizer !== null) {

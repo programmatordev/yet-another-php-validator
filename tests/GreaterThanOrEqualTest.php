@@ -18,21 +18,21 @@ class GreaterThanOrEqualTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
+        $unexpectedComparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
-        yield 'datetime constraint with int value' => [new GreaterThanOrEqual(new \DateTime()), 10, $unexpectedTypeMessage];
-        yield 'datetime constraint with float value' => [new GreaterThanOrEqual(new \DateTime()), 1.0, $unexpectedTypeMessage];
-        yield 'datetime constraint with string value' => [new GreaterThanOrEqual(new \DateTime()), 'a', $unexpectedTypeMessage];
-        yield 'int constraint with string value' => [new GreaterThanOrEqual(10), 'a', $unexpectedTypeMessage];
-        yield 'float constraint with string value' => [new GreaterThanOrEqual(1.0), 'a', $unexpectedTypeMessage];
-        yield 'array constraint' => [new GreaterThanOrEqual([10]), 10, $unexpectedTypeMessage];
-        yield 'null constraint' => [new GreaterThanOrEqual(null), 10, $unexpectedTypeMessage];
+        yield 'datetime constraint with int value' => [new GreaterThanOrEqual(new \DateTime()), 10, $unexpectedComparableMessage];
+        yield 'datetime constraint with float value' => [new GreaterThanOrEqual(new \DateTime()), 1.0, $unexpectedComparableMessage];
+        yield 'datetime constraint with string value' => [new GreaterThanOrEqual(new \DateTime()), 'a', $unexpectedComparableMessage];
+        yield 'int constraint with string value' => [new GreaterThanOrEqual(10), 'a', $unexpectedComparableMessage];
+        yield 'float constraint with string value' => [new GreaterThanOrEqual(1.0), 'a', $unexpectedComparableMessage];
+        yield 'array constraint' => [new GreaterThanOrEqual([10]), 10, $unexpectedComparableMessage];
+        yield 'null constraint' => [new GreaterThanOrEqual(null), 10, $unexpectedComparableMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = GreaterThanOrEqualException::class;
-        $message = '/The (.*) value should be greater than or equal to (.*), (.*) given\./';
+        $message = '/The (.*) value should be greater than or equal to (.*)\./';
 
         yield 'datetime' => [new GreaterThanOrEqual(new \DateTime('today')), new \DateTime('yesterday'), $exception, $message];
         yield 'int' => [new GreaterThanOrEqual(10), 1, $exception, $message];

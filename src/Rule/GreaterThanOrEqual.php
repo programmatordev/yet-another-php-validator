@@ -6,7 +6,7 @@ use ProgrammatorDev\Validator\Exception\GreaterThanOrEqualException;
 
 class GreaterThanOrEqual extends AbstractComparisonRule implements RuleInterface
 {
-    protected string $message = 'The {{ name }} value should be greater than or equal to {{ constraint }}, {{ value }} given.';
+    protected string $message = 'The {{ name }} value should be greater than or equal to {{ constraint }}.';
 
     public function __construct(
         protected readonly mixed $constraint,

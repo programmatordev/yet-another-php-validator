@@ -3,15 +3,14 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\CountException;
+use ProgrammatorDev\Validator\Exception\OptionDefinitionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
-use ProgrammatorDev\Validator\Validator;
 
 class Count extends AbstractRule implements RuleInterface
 {
-    private string $minMessage = 'The {{ name }} value should contain {{ min }} elements or more, {{ numElements }} elements given.';
-    private string $maxMessage = 'The {{ name }} value should contain {{ max }} elements or less, {{ numElements }} elements given.';
-    private string $exactMessage = 'The {{ name }} value should contain exactly {{ min }} elements, {{ numElements }} elements given.';
+    private string $minMessage = 'The {{ name }} value should contain {{ min }} elements or more.';
+    private string $maxMessage = 'The {{ name }} value should contain {{ max }} elements or less.';
+    private string $exactMessage = 'The {{ name }} value should contain exactly {{ min }} elements.';
 
     public function __construct(
         private readonly ?int $min = null,
@@ -29,19 +28,11 @@ class Count extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->min === null && $this->max === null) {
-            throw new UnexpectedValueException('At least one of the options "min" or "max" must be given.');
-        }
-
-        if (
-            $this->min !== null
-            && $this->max !== null
-            && !Validator::greaterThanOrEqual($this->min)->validate($this->max)
-        ) {
-            throw new UnexpectedValueException('Maximum value must be greater than or equal to minimum value.');
+            throw new OptionDefinitionException('At least one of the "min" or "max" options must be specified.');
         }
 
         if (!\is_countable($value)) {
-            throw new UnexpectedTypeException('array|\Countable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array|\Countable');
         }
 
         $numElements = \count($value);

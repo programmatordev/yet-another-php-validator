@@ -4,7 +4,6 @@ namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\RangeException;
 use ProgrammatorDev\Validator\Exception\UnexpectedComparableException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 use ProgrammatorDev\Validator\Rule\Util\ComparableTrait;
 use ProgrammatorDev\Validator\Validator;
 
@@ -12,7 +11,7 @@ class Range extends AbstractRule implements RuleInterface
 {
     use ComparableTrait;
 
-    private string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be between {{ min }} and {{ max }}.';
 
     public function __construct(
         private readonly mixed $min,
@@ -26,14 +25,7 @@ class Range extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!$this->isComparable($this->min, $this->max)) {
-            throw new UnexpectedComparableException(
-                get_debug_type($this->min),
-                get_debug_type($this->max)
-            );
-        }
-
-        if (!Validator::greaterThan($this->min)->validate($this->max)) {
-            throw new UnexpectedValueException('Maximum value must be greater than minimum value.');
+            throw new UnexpectedComparableException($this->min, $this->max);
         }
 
         if (!Validator::greaterThanOrEqual($this->min)->lessThanOrEqual($this->max)->validate($value)) {

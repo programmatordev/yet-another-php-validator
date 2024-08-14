@@ -8,7 +8,7 @@ class Blank extends AbstractRule implements RuleInterface
 {
     /** @var ?callable */
     private $normalizer;
-    private string $message = 'The {{ name }} value should be blank, {{ value }} given.';
+    private string $message = 'The {{ name }} value should be blank.';
 
     public function __construct(
         ?callable $normalizer = null,

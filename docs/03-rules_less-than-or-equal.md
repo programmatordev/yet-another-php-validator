@@ -44,7 +44,7 @@ Can be a `string`, `int`, `float` or `DateTimeInterface` object.
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value should be less than or equal to {{ constraint }}, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should be less than or equal to {{ constraint }}.`
 
 Message that will be shown if the value is not less than or equal to the constraint value.
 

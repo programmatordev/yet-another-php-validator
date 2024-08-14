@@ -9,7 +9,7 @@ use ProgrammatorDev\Validator\Validator;
 
 class EachKey extends AbstractRule implements RuleInterface
 {
-    private string $message = 'Invalid key: {{ message }}';
+    private string $message = 'Invalid key {{ key }}: {{ message }}';
 
     public function __construct(
         private readonly Validator $validator,
@@ -22,12 +22,12 @@ class EachKey extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_iterable($value)) {
-            throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array|\Traversable');
         }
 
         foreach ($value as $key => $element) {
             try {
-                $this->validator->assert($key, $name);
+                $this->validator->assert($key);
             }
             catch (ValidationException $exception) {
                 throw new EachKeyException(
@@ -37,8 +37,7 @@ class EachKey extends AbstractRule implements RuleInterface
                         'name' => $name,
                         'key' => $key,
                         'element' => $element,
-                        // Replaces string "value" with string "key value" to get a more intuitive error message
-                        'message' => \str_replace(' value ', ' key value ', $exception->getMessage())
+                        'message' => $exception->getMessage()
                     ]
                 );
             }

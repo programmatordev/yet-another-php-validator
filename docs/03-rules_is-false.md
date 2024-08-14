@@ -21,7 +21,7 @@ Validator::isFalse()->validate(false); // true
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value should be false, {{ value }} given.`
+type: `?string` default: `The {{ name }} value should be false.`
 
 Message that will be shown if the value is false.
 

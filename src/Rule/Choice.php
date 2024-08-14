@@ -4,14 +4,13 @@ namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\ChoiceException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 
 class Choice extends AbstractRule implements RuleInterface
 {
-    private string $message = 'The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.';
-    private string $multipleMessage = 'The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.';
-    private string $minMessage = 'The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.';
-    private string $maxMessage = 'The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.';
+    private string $message = 'The {{ name }} value is not a valid choice. Accepted values are: {{ constraints }}.';
+    private string $multipleMessage = 'The {{ name }} value has one or more invalid choices. Accepted values are: {{ constraints }}.';
+    private string $minMessage = 'The {{ name }} value must have at least {{ min }} choice(s).';
+    private string $maxMessage = 'The {{ name }} value must have at most {{ max }} choice(s).';
 
     public function __construct(
         private readonly array $constraints,
@@ -33,18 +32,7 @@ class Choice extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->multiple && !\is_array($value)) {
-            throw new UnexpectedTypeException('array', get_debug_type($value));
-        }
-
-        if (
-            $this->multiple
-            && $this->min !== null
-            && $this->max !== null
-            && $this->min > $this->max
-        ) {
-            throw new UnexpectedValueException(
-                'Maximum value must be greater than or equal to minimum value.'
-            );
+            throw new UnexpectedTypeException($value, 'array');
         }
 
         if ($this->multiple) {

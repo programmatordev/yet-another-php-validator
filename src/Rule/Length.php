@@ -3,10 +3,9 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\LengthException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
+use ProgrammatorDev\Validator\Exception\OptionDefinitionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
-use ProgrammatorDev\Validator\Validator;
 
 class Length extends AbstractRule implements RuleInterface
 {
@@ -22,9 +21,9 @@ class Length extends AbstractRule implements RuleInterface
 
     /** @var ?callable */
     private $normalizer;
-    private string $minMessage = 'The {{ name }} value should have {{ min }} characters or more, {{ numChars }} characters given.';
-    private string $maxMessage = 'The {{ name }} value should have {{ max }} characters or less, {{ numChars }} characters given.';
-    private string $exactMessage = 'The {{ name }} value should have exactly {{ min }} characters, {{ numChars }} characters given.';
+    private string $minMessage = 'The {{ name }} value should have {{ min }} character(s) or more.';
+    private string $maxMessage = 'The {{ name }} value should have {{ max }} character(s) or less.';
+    private string $exactMessage = 'The {{ name }} value should have exactly {{ min }} characters.';
     private string $charsetMessage = 'The {{ name }} value does not match the expected {{ charset }} charset.';
 
     public function __construct(
@@ -49,29 +48,21 @@ class Length extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->min === null && $this->max === null) {
-            throw new UnexpectedValueException('At least one of the options "min" or "max" must be given.');
+            throw new OptionDefinitionException('At least one of the "min" or "max" options must be specified.');
         }
 
-        if (
-            $this->min !== null
-            && $this->max !== null
-            && !Validator::greaterThanOrEqual($this->min)->validate($this->max)
-        ) {
-            throw new UnexpectedValueException('Maximum value must be greater than or equal to minimum value.');
-        }
-
-        $encodings = mb_list_encodings();
+        $encodings = \mb_list_encodings();
 
         if (!\in_array($this->charset, $encodings)) {
-            throw new UnexpectedOptionException('charset', $encodings, $this->charset);
+            throw new InvalidOptionException('charset', $encodings);
         }
 
         if (!\in_array($this->countUnit, self::COUNT_UNITS)) {
-            throw new UnexpectedOptionException('countUnit', self::COUNT_UNITS, $this->countUnit);
+            throw new InvalidOptionException('countUnit', self::COUNT_UNITS);
         }
 
         if (!\is_scalar($value) && !$value instanceof \Stringable) {
-            throw new UnexpectedTypeException('string|\Stringable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string|\Stringable');
         }
 
         $value = (string) $value;

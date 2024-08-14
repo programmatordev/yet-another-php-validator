@@ -23,9 +23,9 @@ class AtLeastOneOfTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/At key (.*)\: The value should be of type "ProgrammatorDev\\\Validator\\\Validator", (.*) given\./';
+        $invalidOptionMessage = '/The "constraints" option is not valid. All values should be of type "ProgrammatorDev\\\Validator\\\Validator"./';
 
-        yield 'invalid type' => [new AtLeastOneOf(['invalid']), 'string', $unexpectedTypeMessage];
+        yield 'invalid option constraints' => [new AtLeastOneOf(['invalid']), 'string', $invalidOptionMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
@@ -67,7 +67,7 @@ class AtLeastOneOfTest extends AbstractTest
                 message: '{{ name }} | {{ value }} | {{ messages }}'
             ),
             'string',
-            'test | "string" | [1] The test value should be blank, "string" given.'
+            'test | "string" | [1] The value should be blank.'
         ];
     }
 }

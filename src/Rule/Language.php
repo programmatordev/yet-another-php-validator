@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\LanguageException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Intl\Languages;
 
@@ -17,7 +17,7 @@ class Language extends AbstractRule implements RuleInterface
         self::ALPHA_3_CODE
     ];
 
-    private string $message = 'The {{ name }} value is not a valid language, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid language.';
 
     public function __construct(
         private readonly string $code = self::ALPHA_2_CODE,
@@ -30,11 +30,11 @@ class Language extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\in_array($this->code, self::CODE_OPTIONS)) {
-            throw new UnexpectedOptionException('code', self::CODE_OPTIONS, $this->code);
+            throw new InvalidOptionException('code', self::CODE_OPTIONS);
         }
 
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         // keep original value for parameters

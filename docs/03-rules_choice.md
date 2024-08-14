@@ -42,9 +42,6 @@ Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2, max: 3)->val
 > [!NOTE]
 > An `UnexpectedValueException` will be thrown when `multiple` is `true` and the input value is not an `array`.
 
-> [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `min` value is greater than or equal to the `max` value.
-
 ## Options
 
 ### `constraints`
@@ -78,7 +75,7 @@ For example, if `max` is 2, the input array must have at most 2 values.
 
 ### `message`
 
-type: `?string` default: `The {{ name }} value is not a valid choice, {{ value }} given. Accepted values are: {{ constraints }}.`
+type: `?string` default: `The {{ name }} value is not a valid choice. Accepted values are: {{ constraints }}.`
 
 Message that will be shown if input value is not a valid choice.
 
@@ -92,7 +89,7 @@ The following parameters are available:
 
 ### `multipleMessage`
 
-type: `?string` default: `The {{ name }} value has one or more invalid choices, {{ value }} given. Accepted values are: {{ constraints }}.`
+type: `?string` default: `The {{ name }} value has one or more invalid choices. Accepted values are: {{ constraints }}.`
 
 Message that will be shown when `multiple` is `true` and at least one of the input array values is not a valid choice.
 
@@ -106,7 +103,7 @@ The following parameters are available:
 
 ### `minMessage`
 
-type: `?string` default: `The {{ name }} value must have at least {{ min }} choices, {{ numElements }} choices given.`
+type: `?string` default: `The {{ name }} value must have at least {{ min }} choice(s).`
 
 Message that will be shown when `multiple` is `true` and input array has fewer values than the defined in `min`.
 
@@ -123,7 +120,7 @@ The following parameters are available:
 
 ### `maxMessage`
 
-type: `?string` default: `The {{ name }} value must have at most {{ max }} choices, {{ numElements }} choices given.`
+type: `?string` default: `The {{ name }} value must have at most {{ max }} choice(s).`
 
 Message that will be shown when `multiple` is `true` and input array has more values than the defined in `max`.
 

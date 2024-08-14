@@ -8,7 +8,7 @@ use Symfony\Component\Intl\Locales;
 
 class Locale extends AbstractRule implements RuleInterface
 {
-    private string $message = 'The {{ name }} value is not a valid locale, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid locale.';
 
     public function __construct(
         private readonly bool $canonicalize = false,
@@ -21,7 +21,7 @@ class Locale extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\is_string($value)) {
-            throw new UnexpectedTypeException('string', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'string');
         }
 
         // keep original value for parameters

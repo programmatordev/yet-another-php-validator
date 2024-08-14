@@ -19,12 +19,9 @@ class ChoiceTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $constraints = [1, 2, 3, 4, 5];
+        $unexpectedTypeMessage = '/Expected value of type "array", "(.*)" given\./';
 
-        $unexpectedMultipleMessage = '/Expected value of type "array", "(.*)" given\./';
-        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value\./';
-
-        yield 'multiple not array' => [new Choice($constraints, true), 1, $unexpectedMultipleMessage];
-        yield 'min greater than max constraint' => [new Choice($constraints, true, 3, 2), [1, 2], $unexpectedMinMaxMessage];
+        yield 'unexpected type multiple' => [new Choice($constraints, true), 1, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
@@ -32,10 +29,10 @@ class ChoiceTest extends AbstractTest
         $constraints = [1, 2, 3, 4, 5];
         $exception = ChoiceException::class;
 
-        $message = '/The (.*) value is not a valid choice, (.*) given\. Accepted values are\: (.*)\./';
-        $multipleMessage = '/The (.*) value has one or more invalid choices, (.*) given\. Accepted values are\: (.*)\./';
-        $maxMessage = '/The (.*) value must have at most (.*) choices, (.*) choices given\./';
-        $minMessage = '/The (.*) value must have at least (.*) choices, (.*) choices given\./';
+        $message = '/The (.*) value is not a valid choice\. Accepted values are\: (.*)\./';
+        $multipleMessage = '/The (.*) value has one or more invalid choices\. Accepted values are\: (.*)\./';
+        $maxMessage = '/The (.*) value must have at most (.*) choice\(s\)\./';
+        $minMessage = '/The (.*) value must have at least (.*) choice\(s\)\./';
 
         yield 'invalid choice' => [new Choice($constraints), 10, $exception, $message];
         yield 'invalid choice type' => [new Choice($constraints), '1', $exception, $message];

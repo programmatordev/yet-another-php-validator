@@ -20,7 +20,7 @@ class DateTimeTest extends AbstractTest
     {
         $unexpectedTypeMessage = '/Expected value of type "string\|\\\Stringable", "(.*)" given\./';
 
-        yield 'invalid value type' => [new DateTime(), ['2024-01-01 00:00:00'], $unexpectedTypeMessage];
+        yield 'unexpected type' => [new DateTime(), ['2024-01-01 00:00:00'], $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

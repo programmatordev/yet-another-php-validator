@@ -19,15 +19,15 @@ class CollectionTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedFieldValueMessage = '/At field (.*)\: (.*)\./';
+        $invalidOptionMessage = '/The "fields" option is not valid. All values should be of type "ProgrammatorDev\\\Validator\\\Validator"./';
         $unexpectedTypeMessage = '/Expected value of type "array\|\\\Traversable", "(.*)" given\./';
 
-        yield 'invalid field value' => [
+        yield 'invalid option fields' => [
             new Collection(fields: ['field' => 'invalid']),
             ['field' => 'value'],
-            $unexpectedFieldValueMessage
+            $invalidOptionMessage
         ];
-        yield 'invalid value type' => [
+        yield 'unexpected type' => [
             new Collection(fields: ['field' => Validator::notBlank()]),
             'invalid',
             $unexpectedTypeMessage
@@ -37,7 +37,7 @@ class CollectionTest extends AbstractTest
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = CollectionException::class;
-        $notBlankMessage = '/The "(.*)" value should not be blank, "" given\./';
+        $notBlankMessage = '/The "(.*)" value should not be blank\./';
         $extraFieldsMessage = '/The (.*) field is not allowed\./';
         $missingFieldsMessage = '/The (.*) field is missing\./';
 
@@ -120,7 +120,7 @@ class CollectionTest extends AbstractTest
                 message: '{{ name }} | {{ field }} | {{ message }}'
             ),
             ['field' => ''],
-            'test | "field" | The "field" value should not be blank, "" given.'
+            'test | "field" | The "field" value should not be blank.'
         ];
         yield 'extra fields message' => [
             new Collection(

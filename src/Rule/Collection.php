@@ -3,8 +3,8 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\CollectionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 use ProgrammatorDev\Validator\Exception\ValidationException;
 use ProgrammatorDev\Validator\Validator;
 
@@ -33,15 +33,17 @@ class Collection extends AbstractRule implements RuleInterface
         try {
             Validator::eachValue(
                 validator: Validator::type(Validator::class),
-                message: 'At field {{ key }}: {{ message }}'
             )->assert($this->fields);
         }
-        catch (ValidationException $exception) {
-            throw new UnexpectedValueException($exception->getMessage());
+        catch (ValidationException) {
+            throw new InvalidOptionException(
+                name: 'fields',
+                expected: \sprintf('All values should be of type "%s".', Validator::class)
+            );
         }
 
         if (!\is_iterable($value)) {
-            throw new UnexpectedTypeException('array|\Traversable', get_debug_type($value));
+            throw new UnexpectedTypeException($value, 'array|\Traversable');
         }
 
         foreach ($this->fields as $field => $validator) {

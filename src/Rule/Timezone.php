@@ -2,14 +2,15 @@
 
 namespace ProgrammatorDev\Validator\Rule;
 
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
+use ProgrammatorDev\Validator\Exception\OptionDefinitionException;
 use ProgrammatorDev\Validator\Exception\TimezoneException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 use ProgrammatorDev\Validator\Exception\ValidationException;
 use ProgrammatorDev\Validator\Validator;
 
 class Timezone extends AbstractRule implements RuleInterface
 {
-    private string $message = 'The {{ name }} value is not a valid timezone, {{ value }} given.';
+    private string $message = 'The {{ name }} value is not a valid timezone.';
 
     public function __construct(
         private readonly int $timezoneGroup = \DateTimeZone::ALL,
@@ -23,21 +24,21 @@ class Timezone extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->timezoneGroup === \DateTimeZone::PER_COUNTRY) {
-            // Country code is required when using PER_COUNTRY timezone group
+            // country code is required when using PER_COUNTRY timezone group
             if ($this->countryCode === null) {
-                throw new UnexpectedValueException(
-                    'A country code is required when timezone group is "\DateTimeZone::PER_COUNTRY".'
+                throw new OptionDefinitionException(
+                    'The "countryCode" option should be specified when the "timezoneGroup" is "\DateTimeZone::PER_COUNTRY".'
                 );
             }
 
-            // Normalize country code
+            // normalize country code
             $this->countryCode = strtoupper($this->countryCode);
 
             try {
-                Validator::country()->assert($this->countryCode, 'country code');
+                Validator::country()->assert($this->countryCode);
             }
-            catch (ValidationException $exception) {
-                throw new UnexpectedValueException($exception->getMessage());
+            catch (ValidationException) {
+                throw new InvalidOptionException('countryCode');
             }
         }
 
