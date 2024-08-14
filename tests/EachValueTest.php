@@ -22,17 +22,17 @@ class EachValueTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given\./';
-        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
+        $unexpectedComparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
-        yield 'invalid value type' => [
+        yield 'unexpected type' => [
             new EachValue(new Validator(new NotBlank())),
             'invalid',
             $unexpectedTypeMessage
         ];
-        yield 'unexpected value propagation' => [
+        yield 'unexpected comparable' => [
             new EachValue(new Validator(new GreaterThan(10))),
             ['a'],
-            $unexpectedPropagationMessage
+            $unexpectedComparableMessage
         ];
     }
 

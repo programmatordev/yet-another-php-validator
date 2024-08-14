@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\TypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 
 class Type extends AbstractRule implements RuleInterface
 {
@@ -93,7 +93,7 @@ class Type extends AbstractRule implements RuleInterface
             }
 
             if (!isset(self::TYPE_FUNCTIONS[$constraint]) && !\class_exists($constraint) && !\interface_exists($constraint)) {
-                throw new UnexpectedOptionException('type', \array_keys(self::TYPE_FUNCTIONS), $constraint);
+                throw new InvalidOptionException('type', \array_keys(self::TYPE_FUNCTIONS));
             }
         }
 

@@ -20,16 +20,14 @@ class LengthTest extends AbstractTest
     {
         $value = 'abcde';
 
-        $unexpectedMissingMinMaxMessage = '/At least one of the options "min" or "max" must be given\./';
-        $unexpectedMinMaxMessage = '/Maximum value must be greater than or equal to minimum value\./';
-        $unexpectedOptionMessage = '/Invalid (.*) "(.*)"\. Accepted values are\: "(.*)"\./';
+        $optionDefinitionMessage = '/At least one of the "min" or "max" options must be specified\./';
+        $invalidOptionMessage = '/The "(.*)" option is not valid\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string\|\\\Stringable", "(.*)" given\./';
 
-        yield 'missing min max' => [new Length(), $value, $unexpectedMissingMinMaxMessage];
-        yield 'min greater than max constraint' => [new Length(min: 3, max: 2), $value, $unexpectedMinMaxMessage];
-        yield 'invalid charset value' => [new Length(min: 2, charset: 'INVALID'), $value, $unexpectedOptionMessage];
-        yield 'invalid count unit value' => [new Length(min: 2, countUnit: 'invalid'), $value, $unexpectedOptionMessage];
-        yield 'invalid value type' => [new Length(min: 2), [$value], $unexpectedTypeMessage];
+        yield 'option definition min max' => [new Length(), $value, $optionDefinitionMessage];
+        yield 'invalid option charset' => [new Length(min: 2, charset: 'INVALID'), $value, $invalidOptionMessage];
+        yield 'invalid option count unit' => [new Length(min: 2, countUnit: 'invalid'), $value, $invalidOptionMessage];
+        yield 'unexpected type' => [new Length(min: 2), [$value], $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
@@ -37,8 +35,8 @@ class LengthTest extends AbstractTest
         $value = 'abcde';
         $exception = LengthException::class;
 
-        $minMessage = '/The (.*) value should have (.*) characters or more\./';
-        $maxMessage = '/The (.*) value should have (.*) characters or less\./';
+        $minMessage = '/The (.*) value should have (.*) character\(s\) or more\./';
+        $maxMessage = '/The (.*) value should have (.*) character\(s\) or less\./';
         $exactMessage = '/The (.*) value should have exactly (.*) characters\./';
         $charsetMessage = '/The (.*) value does not match the expected (.*) charset\./';
 

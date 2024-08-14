@@ -19,15 +19,15 @@ class CollectionTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedFieldValueMessage = '/At field (.*)\: (.*)\./';
+        $invalidOptionMessage = '/The "fields" option is not valid. All values should be of type "ProgrammatorDev\\\Validator\\\Validator"./';
         $unexpectedTypeMessage = '/Expected value of type "array\|\\\Traversable", "(.*)" given\./';
 
-        yield 'invalid field value' => [
+        yield 'invalid option fields' => [
             new Collection(fields: ['field' => 'invalid']),
             ['field' => 'value'],
-            $unexpectedFieldValueMessage
+            $invalidOptionMessage
         ];
-        yield 'invalid value type' => [
+        yield 'unexpected type' => [
             new Collection(fields: ['field' => Validator::notBlank()]),
             'invalid',
             $unexpectedTypeMessage

@@ -18,11 +18,11 @@ class CountryTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedCodeMessage = '/Invalid code "(.*)"\. Accepted values are\: "(.*)"\./';
+        $invalidOptionMessage = '/The "code" option is not valid\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string", (.*) given\./';
 
-        yield 'invalid code' => [new Country('invalid'), 'pt', $unexpectedCodeMessage];
-        yield 'invalid type' => [new Country(), 123, $unexpectedTypeMessage];
+        yield 'invalid option code' => [new Country('invalid'), 'pt', $invalidOptionMessage];
+        yield 'unexpected type' => [new Country(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

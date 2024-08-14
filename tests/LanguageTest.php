@@ -18,11 +18,11 @@ class LanguageTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedCodeMessage = '/Invalid code "(.*)"\. Accepted values are\: "(.*)"\./';
+        $invalidOptionMessage = '/The "code" option is not valid\. Accepted values are\: "(.*)"\./';
         $unexpectedTypeMessage = '/Expected value of type "string", (.*) given\./';
 
-        yield 'invalid code' => [new Language('invalid'), 'pt', $unexpectedCodeMessage];
-        yield 'invalid type' => [new Language(), 123, $unexpectedTypeMessage];
+        yield 'invalid option code' => [new Language('invalid'), 'pt', $invalidOptionMessage];
+        yield 'unexpected type' => [new Language(), 123, $unexpectedTypeMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

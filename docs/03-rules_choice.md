@@ -42,9 +42,6 @@ Validator::choice(['red', 'green', 'blue'], multiple: true, min: 2, max: 3)->val
 > [!NOTE]
 > An `UnexpectedValueException` will be thrown when `multiple` is `true` and the input value is not an `array`.
 
-> [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `min` value is greater than or equal to the `max` value.
-
 ## Options
 
 ### `constraints`
@@ -106,7 +103,7 @@ The following parameters are available:
 
 ### `minMessage`
 
-type: `?string` default: `The {{ name }} value must have at least {{ min }} choices.`
+type: `?string` default: `The {{ name }} value must have at least {{ min }} choice(s).`
 
 Message that will be shown when `multiple` is `true` and input array has fewer values than the defined in `min`.
 
@@ -123,7 +120,7 @@ The following parameters are available:
 
 ### `maxMessage`
 
-type: `?string` default: `The {{ name }} value must have at most {{ max }} choices.`
+type: `?string` default: `The {{ name }} value must have at most {{ max }} choice(s).`
 
 Message that will be shown when `multiple` is `true` and input array has more values than the defined in `max`.
 

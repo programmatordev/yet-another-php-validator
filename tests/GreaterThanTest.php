@@ -18,15 +18,15 @@ class GreaterThanTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
+        $unexpectedComparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
-        yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $unexpectedTypeMessage];
-        yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $unexpectedTypeMessage];
-        yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $unexpectedTypeMessage];
-        yield 'int constraint with string value' => [new GreaterThan(10), 'a', $unexpectedTypeMessage];
-        yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $unexpectedTypeMessage];
-        yield 'array constraint' => [new GreaterThan([10]), 10, $unexpectedTypeMessage];
-        yield 'null constraint' => [new GreaterThan(null), 10, $unexpectedTypeMessage];
+        yield 'datetime constraint with int value' => [new GreaterThan(new \DateTime()), 10, $unexpectedComparableMessage];
+        yield 'datetime constraint with float value' => [new GreaterThan(new \DateTime()), 1.0, $unexpectedComparableMessage];
+        yield 'datetime constraint with string value' => [new GreaterThan(new \DateTime()), 'a', $unexpectedComparableMessage];
+        yield 'int constraint with string value' => [new GreaterThan(10), 'a', $unexpectedComparableMessage];
+        yield 'float constraint with string value' => [new GreaterThan(1.0), 'a', $unexpectedComparableMessage];
+        yield 'array constraint' => [new GreaterThan([10]), 10, $unexpectedComparableMessage];
+        yield 'null constraint' => [new GreaterThan(null), 10, $unexpectedComparableMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

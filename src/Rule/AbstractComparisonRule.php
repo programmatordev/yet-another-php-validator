@@ -12,10 +12,7 @@ abstract class AbstractComparisonRule extends AbstractRule
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!$this->isComparable($value, $this->constraint)) {
-            throw new UnexpectedComparableException(
-                get_debug_type($value),
-                get_debug_type($this->constraint)
-            );
+            throw new UnexpectedComparableException($value, $this->constraint);
         }
 
         if (!$this->compareValues($value, $this->constraint)) {

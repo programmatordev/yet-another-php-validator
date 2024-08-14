@@ -23,9 +23,9 @@ class AtLeastOneOfTest extends AbstractTest
 
     public static function provideRuleUnexpectedValueData(): \Generator
     {
-        $unexpectedTypeMessage = '/At key (.*)\: The value should be of type "ProgrammatorDev\\\Validator\\\Validator"./';
+        $invalidOptionMessage = '/The "constraints" option is not valid. All values should be of type "ProgrammatorDev\\\Validator\\\Validator"./';
 
-        yield 'invalid type' => [new AtLeastOneOf(['invalid']), 'string', $unexpectedTypeMessage];
+        yield 'invalid option constraints' => [new AtLeastOneOf(['invalid']), 'string', $invalidOptionMessage];
     }
 
     public static function provideRuleFailureConditionData(): \Generator

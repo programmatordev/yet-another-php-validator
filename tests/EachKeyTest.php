@@ -22,24 +22,24 @@ class EachKeyTest extends AbstractTest
     public static function provideRuleUnexpectedValueData(): \Generator
     {
         $unexpectedTypeMessage = '/Expected value of type "(.*)", "(.*)" given\./';
-        $unexpectedPropagationMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
+        $unexpectedComparableMessage = '/Cannot compare a type "(.*)" with a type "(.*)"\./';
 
-        yield 'invalid value type' => [
+        yield 'unexpected type' => [
             new EachKey(new Validator(new Type('string'))),
             'invalid',
             $unexpectedTypeMessage
         ];
-        yield 'unexpected value propagation' => [
+        yield 'unexpected comparable' => [
             new EachKey(new Validator(new GreaterThan(10))),
             ['key1' => 1],
-            $unexpectedPropagationMessage
+            $unexpectedComparableMessage
         ];
     }
 
     public static function provideRuleFailureConditionData(): \Generator
     {
         $exception = EachKeyException::class;
-        $message = '/Invalid key\: The (.*) key value should be of type (.*)\./';
+        $message = '/Invalid key (.*)\: The value should be of type (.*)\./';
 
         yield 'invalid array element' => [
             new EachKey(new Validator(new Type('string'))),
@@ -75,7 +75,7 @@ class EachKeyTest extends AbstractTest
                 message: '{{ name }} | {{ value }} | {{ key }} | {{ element }} | {{ message }}'
             ),
             ['key1' => 1, 'key2' => 2, 1 => 3],
-            'test | [1, 2, 3] | 1 | 3 | The test key value should be of type "string".'
+            'test | [1, 2, 3] | 1 | 3 | The value should be of type "string".'
         ];
     }
 }

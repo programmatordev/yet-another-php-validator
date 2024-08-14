@@ -3,9 +3,8 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\CountException;
+use ProgrammatorDev\Validator\Exception\OptionDefinitionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
-use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
-use ProgrammatorDev\Validator\Validator;
 
 class Count extends AbstractRule implements RuleInterface
 {
@@ -29,15 +28,7 @@ class Count extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if ($this->min === null && $this->max === null) {
-            throw new UnexpectedValueException('At least one of the options "min" or "max" must be given.');
-        }
-
-        if (
-            $this->min !== null
-            && $this->max !== null
-            && !Validator::greaterThanOrEqual($this->min)->validate($this->max)
-        ) {
-            throw new UnexpectedValueException('Maximum value must be greater than or equal to minimum value.');
+            throw new OptionDefinitionException('At least one of the "min" or "max" options must be specified.');
         }
 
         if (!\is_countable($value)) {

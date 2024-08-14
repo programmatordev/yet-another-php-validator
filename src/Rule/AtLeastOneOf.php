@@ -3,6 +3,7 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\AtLeastOneOfException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedValueException;
 use ProgrammatorDev\Validator\Exception\ValidationException;
 use ProgrammatorDev\Validator\Validator;
@@ -27,8 +28,11 @@ class AtLeastOneOf extends AbstractRule implements RuleInterface
                 validator: Validator::type(Validator::class)
             )->assert($this->constraints);
         }
-        catch (ValidationException $exception) {
-            throw new UnexpectedValueException($exception->getMessage());
+        catch (ValidationException) {
+            throw new InvalidOptionException(
+                name: 'constraints',
+                expected: \sprintf('All values should be of type "%s".', Validator::class)
+            );
         }
 
         $messages = [];

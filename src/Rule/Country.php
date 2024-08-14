@@ -3,7 +3,7 @@
 namespace ProgrammatorDev\Validator\Rule;
 
 use ProgrammatorDev\Validator\Exception\CountryException;
-use ProgrammatorDev\Validator\Exception\UnexpectedOptionException;
+use ProgrammatorDev\Validator\Exception\InvalidOptionException;
 use ProgrammatorDev\Validator\Exception\UnexpectedTypeException;
 use Symfony\Component\Intl\Countries;
 
@@ -30,7 +30,7 @@ class Country extends AbstractRule implements RuleInterface
     public function assert(mixed $value, ?string $name = null): void
     {
         if (!\in_array($this->code, self::CODE_OPTIONS)) {
-            throw new UnexpectedOptionException('code', self::CODE_OPTIONS, $this->code);
+            throw new InvalidOptionException('code', self::CODE_OPTIONS);
         }
 
         if (!\is_string($value)) {

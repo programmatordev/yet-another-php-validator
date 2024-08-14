@@ -33,9 +33,6 @@ Validator::count(min: 3, max: 3)->validate(['a', 'b', 'c']); // true
 > An `UnexpectedValueException` will be thrown when either `min` or `max` options are not given.
 
 > [!NOTE]
-> An `UnexpectedValueException` will be thrown when the `min` value is greater than the `max` value.
-
-> [!NOTE]
 > An `UnexpectedValueException` will be thrown when the input value is not an `array` or an object implementing `\Countable`.
 
 ## Options
