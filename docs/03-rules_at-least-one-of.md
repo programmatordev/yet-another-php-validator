@@ -4,7 +4,7 @@ Checks that the value satisfies at least one of the given constraints.
 
 ```php
 /** Validator[] $constraints */
-Choice(
+AtLeastOneOf(
     array $constraints,
     ?string $message = null
 );
