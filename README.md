@@ -6,6 +6,10 @@
 
 PHP validator with expressive error messages.
 
+> [!TIP]  
+> This library has been archived in favor of the [Fluent Validator](https://github.com/programmatordev/fluent-validator) library.
+> Check it out if you're interested in the same validation style.
+
 ## Requirements
 
 - PHP 8.1 or higher.
